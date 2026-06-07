@@ -1,0 +1,21 @@
+backend:
+  name: github
+  repo: Zum0DePapaya/portfolio-cms
+  branch: main
+
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "src/projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Category", name: "category", widget: "select", options: ["games", "tools"]}
+      - {label: "Thumbnail Image", name: "thumbnail", widget: "image"}
+      - {label: "Hover Description (HTML allowed)", name: "hover_description", widget: "text"}
+      - {label: "Full Width Card", name: "full_width", widget: "boolean", default: false, required: false}
+      - {label: "Project Body", name: "body", widget: "markdown"}

@@ -1,0 +1,343 @@
+/* CSS Variables for consistent styling */
+:root {
+    --bg-color: #121212;
+    --text-primary: #8BC5BF;
+    --text-title: #E29BA8;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --max-width: 75rem;
+    --padding-x: 4rem;
+    --padding-y: 4rem;
+    --gap-spacing: 2rem;
+    --border-radius: 1.5rem;
+    --border-color: rgba(61, 61, 61, 0.212);
+}
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    line-height: 1.75;
+    font-size: 16pt;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+    text-decoration: underline;
+    transition: color 0.25s ease;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/* Layout */
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.site-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.inner-container {
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--padding-y) var(--padding-x);
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+/* Typography */
+.heading-primary {
+    color: var(--text-title);
+    font-size: 2.25rem;
+    font-weight: 300;
+    line-height: 1.375;
+    margin-bottom: 1rem;
+}
+
+.text-body {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+/* Containers */
+.section-container {
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: var(--padding-y) var(--padding-x);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: -2rem; /* Pull section content closer */
+}
+
+/* Hero Section */
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile-image-container {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.profile-image {
+    width: 100%;
+    border-radius: 0; /* original doesn't seem to have border radius on this image */
+    display: block;
+}
+
+.bio-container {
+    flex: 0 0 80%;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+
+.social-icon svg {
+    width: 60%;
+    height: 60%;
+    fill: #3D3D3D;
+    transition: fill 0.25s ease;
+}
+
+.social-icon:hover {
+    border-color: #000000;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.social-icon:hover svg {
+    fill: #000000;
+}
+
+/* Projects Grid */
+.games-grid, .tools-grid {
+    display: flex;
+    gap: 4rem;
+}
+
+.project-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-item.full-width {
+    flex: 100%;
+}
+
+.project-title {
+    margin-bottom: 0.75rem;
+}
+
+.project-thumbnail {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    height: 19.125rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.25s ease;
+}
+
+.project-thumbnail:hover .thumbnail-image {
+    transform: scale(1.06);
+}
+
+.thumbnail-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    color: white;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    pointer-events: none;
+}
+
+.project-thumbnail:hover .thumbnail-overlay {
+    opacity: 1;
+}
+
+.thumbnail-overlay p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 3rem 0;
+}
+
+/* Credits */
+.credits {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.credits a {
+    color: rgba(226, 155, 168, 0.5);
+    font-size: 0.75rem;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.credits a:hover {
+    color: white;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.9);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-modal.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-inner {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-modal.visible .lightbox-image {
+    transform: translateY(0);
+}
+
+.lightbox-caption {
+    color: white;
+    margin-top: 1.5rem;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PGxpbmUgeDE9IjIwIiB5MT0iMjAiIHgyPSI0NCIgeTI9IjQ0IiBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48bGluZSB4MT0iMjAiIHkxPSI0NCIgeDI9IjQ0IiB5Mj0iMjAiIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==');
+    background-size: cover;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .games-grid, .tools-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --padding-x: 1.5rem;
+        --padding-y: 1.5rem;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-image-container {
+        max-width: 50%;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
