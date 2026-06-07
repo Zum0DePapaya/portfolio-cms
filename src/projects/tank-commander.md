@@ -1,6 +1,7 @@
 ---
 title: "Tank Commander - UE5.7 - Blueprints and C++ - Systems & Tools Programming"
 category: "games"
+weight: 2
 thumbnail: "/assets/images/aecc34f9.jpg"
 hover_description: "• Unreal Engine 5 tank game.<br> • Built data-driven customization hangar with 3D previews & persistent loadouts.<br> • Engineered C++ geometry destruction optimization & modular destructibles.<br> • Programmed runtime debug & cheat menus."
 full_width: false

@@ -30,6 +30,11 @@ title: Daniel Martínez Lozano - Portfolio
 <section class="section-container games-section">
     <div class="games-grid">
         {% for project in collections.games %}
+        {% if project.data.full_width %}
+    </div>
+    <hr class="divider">
+    <div class="games-grid">
+        {% endif %}
         <div class="project-item {% if project.data.full_width %}full-width{% endif %}">
             <p class="text-body project-title"><strong>{{ project.data.title }}</strong></p>
             <a href="{{ project.url | url }}" class="project-thumbnail">
@@ -51,6 +56,11 @@ title: Daniel Martínez Lozano - Portfolio
 <section class="section-container tools-section">
     <div class="tools-grid">
         {% for project in collections.tools %}
+        {% if project.data.full_width %}
+    </div>
+    <hr class="divider">
+    <div class="tools-grid">
+        {% endif %}
         <div class="project-item {% if project.data.full_width %}full-width{% endif %}">
             <p class="text-body project-title"><strong>{{ project.data.title }}</strong></p>
             <a href="{{ project.url | url }}" class="project-thumbnail">

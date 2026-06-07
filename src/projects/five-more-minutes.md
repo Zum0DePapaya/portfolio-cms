@@ -1,6 +1,7 @@
 ---
 title: "Five More Minutes - UE5.5 - Blueprints - Lead Programmer/Designer"
 category: "games"
+weight: 1
 thumbnail: "/assets/images/5035198e.gif"
 hover_description: "• 9 month long 4 person project In Unreal Engine 5. <br> • Third person action platformer with roguelike elements. <br> • Led gameplay/systems. <br> • Built controls, camera, menus, audio, combat, advanced movement, optimization, levels and more."
 full_width: false

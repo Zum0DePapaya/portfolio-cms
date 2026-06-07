@@ -148,17 +148,19 @@ a:hover {
 /* Projects Grid */
 .games-grid, .tools-grid {
     display: flex;
+    flex-wrap: wrap;
     gap: 4rem;
 }
 
 .project-item {
-    flex: 1;
+    flex: 1 1 0%;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
 }
 
 .project-item.full-width {
-    flex: 100%;
+    flex: 1 1 100%;
 }
 
 .project-title {
