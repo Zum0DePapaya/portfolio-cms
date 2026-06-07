@@ -8,5 +8,51 @@
 <body>
   <!-- Include the script that builds the page and powers Sveltia CMS -->
   <script type="module" src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+  <script>
+    // Wait for Sveltia CMS to initialize
+    window.addEventListener('sveltia-cms-init', () => {
+      // Register Itch.io Embed
+      CMS.registerEditorComponent({
+        id: "itch-embed",
+        label: "Itch.io Embed",
+        fields: [
+          {name: 'gameId', label: 'Game ID', widget: 'string'},
+          {name: 'title', label: 'Link Title', widget: 'string', default: 'Play on Itch.io'}
+        ],
+        pattern: /^<iframe frameborder="0" src="https:\/\/itch\.io\/embed\/([a-zA-Z0-9]+)\?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636".*?><a href=".*?">(.*?)<\/a><\/iframe>$/,
+        fromBlock: function(match) {
+          return {
+            gameId: match[1],
+            title: match[2]
+          };
+        },
+        toBlock: function(obj) {
+          return `<iframe frameborder="0" src="https://itch.io/embed/${obj.gameId}?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="552" height="167"><a href="https://example.itch.io/game">${obj.title}</a></iframe>`;
+        },
+        toPreview: function(obj) {
+          return `<iframe frameborder="0" src="https://itch.io/embed/${obj.gameId}?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="552" height="167"><a href="https://example.itch.io/game">${obj.title}</a></iframe>`;
+        }
+      });
+
+      // Register UE5 Blueprint Embed
+      CMS.registerEditorComponent({
+        id: "blueprint-embed",
+        label: "UE5 Blueprint Embed",
+        fields: [
+          {name: 'blueprintId', label: 'BlueprintUE ID', widget: 'string'}
+        ],
+        pattern: /^<iframe src="https:\/\/blueprintue\.com\/render\/iframe\/([a-zA-Z0-9]+)\/" scrolling="no" allowfullscreen><\/iframe>$/,
+        fromBlock: function(match) {
+          return { blueprintId: match[1] };
+        },
+        toBlock: function(obj) {
+          return `<iframe src="https://blueprintue.com/render/iframe/${obj.blueprintId}/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>`;
+        },
+        toPreview: function(obj) {
+          return `<iframe src="https://blueprintue.com/render/iframe/${obj.blueprintId}/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>`;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
