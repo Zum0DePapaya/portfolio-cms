@@ -24,16 +24,17 @@ title: Daniel Martínez Lozano - Portfolio
     </div>
 </section>
 
-<h2 class="heading-primary section-title" id="games">Games</h2>
+{% for section in landing.sections %}
+<h2 class="heading-primary section-title" id="{{ section.id }}">{{ section.title }}</h2>
 
-<!-- Games Section -->
-<section class="section-container games-section">
-    <div class="games-grid">
-        {% for project in collections.games %}
+<section class="section-container {{ section.id }}-section">
+    <div class="projects-grid games-grid">
+        {% set section_projects = collections.allProjects | filterByCategory(section.id) %}
+        {% for project in section_projects %}
         {% if project.data.full_width %}
     </div>
     <hr class="divider">
-    <div class="games-grid">
+    <div class="projects-grid games-grid">
         {% endif %}
         <div class="project-item {% if project.data.full_width %}full-width{% endif %}">
             <p class="text-body project-title"><strong>{{ project.data.title }}</strong></p>
@@ -49,29 +50,4 @@ title: Daniel Martínez Lozano - Portfolio
         {% endfor %}
     </div>
 </section>
-
-<h2 class="heading-primary section-title" id="tools">Tools</h2>
-
-<!-- Tools Section -->
-<section class="section-container tools-section">
-    <div class="tools-grid">
-        {% for project in collections.tools %}
-        {% if project.data.full_width %}
-    </div>
-    <hr class="divider">
-    <div class="tools-grid">
-        {% endif %}
-        <div class="project-item {% if project.data.full_width %}full-width{% endif %}">
-            <p class="text-body project-title"><strong>{{ project.data.title }}</strong></p>
-            <a href="{{ project.url | url }}" class="project-thumbnail">
-                <div class="thumbnail-wrapper">
-                    <img src="{{ project.data.thumbnail | url }}" alt="{{ project.data.title }} preview" class="thumbnail-image">
-                </div>
-                <div class="thumbnail-overlay">
-                    {{ project.data.hover_description | safe }}
-                </div>
-            </a>
-        </div>
-        {% endfor %}
-    </div>
-</section>
+{% endfor %}

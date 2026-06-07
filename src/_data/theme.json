@@ -1,0 +1,12 @@
+{
+  "bg_color": "#121212",
+  "text_primary": "#8BC5BF",
+  "text_title": "#E29BA8",
+  "font_mono": "'IBM Plex Mono', monospace",
+  "max_width": "75rem",
+  "padding_x": "4rem",
+  "padding_y": "4rem",
+  "gap_spacing": "2rem",
+  "border_radius": "1.5rem",
+  "border_color": "rgba(61, 61, 61, 0.212)"
+}

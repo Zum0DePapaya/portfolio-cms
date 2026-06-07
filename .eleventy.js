@@ -4,17 +4,16 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
-  // Create custom collections based on the 'category' frontmatter field
-  eleventyConfig.addCollection("games", function(collectionApi) {
+  // Create a single collection for all projects
+  eleventyConfig.addCollection("allProjects", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/projects/*.md")
-      .filter(item => item.data.category === "games")
       .sort((a, b) => (a.data.weight || 0) - (b.data.weight || 0));
   });
 
-  eleventyConfig.addCollection("tools", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/projects/*.md")
-      .filter(item => item.data.category === "tools")
-      .sort((a, b) => (a.data.weight || 0) - (b.data.weight || 0));
+  // Filter for Nunjucks to dynamically get projects by category ID
+  eleventyConfig.addFilter("filterByCategory", function(projects, categoryId) {
+    if (!projects) return [];
+    return projects.filter(p => p.data.category === categoryId);
   });
 
   return {

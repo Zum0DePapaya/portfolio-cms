@@ -19,6 +19,27 @@ collections:
           - {label: "Profile Image", name: "profile_image", widget: "image"}
           - {label: "LinkedIn URL", name: "linkedin_url", widget: "string"}
           - {label: "GitHub URL", name: "github_url", widget: "string"}
+          - label: "Project Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - {label: "Section Title (e.g. Games)", name: "title", widget: "string"}
+              - {label: "Section ID (no spaces, lowercase)", name: "id", widget: "string"}
+
+      - label: "Theme Settings"
+        name: "theme"
+        file: "src/_data/theme.json"
+        fields:
+          - {label: "Background Color", name: "bg_color", widget: "color", default: "#121212"}
+          - {label: "Primary Text Color", name: "text_primary", widget: "color", default: "#8BC5BF"}
+          - {label: "Accent / Title Color", name: "text_title", widget: "color", default: "#E29BA8"}
+          - {label: "Font Family", name: "font_mono", widget: "string", default: "'IBM Plex Mono', monospace"}
+          - {label: "Container Max Width", name: "max_width", widget: "string", default: "75rem"}
+          - {label: "Horizontal Padding", name: "padding_x", widget: "string", default: "4rem"}
+          - {label: "Vertical Padding", name: "padding_y", widget: "string", default: "4rem"}
+          - {label: "Grid Gap Spacing", name: "gap_spacing", widget: "string", default: "2rem"}
+          - {label: "Thumbnail Border Radius", name: "border_radius", widget: "string", default: "1.5rem"}
+          - {label: "Container Border Color", name: "border_color", widget: "string", default: "rgba(61, 61, 61, 0.212)"}
 
   - name: "projects"
     label: "Projects"
@@ -28,7 +49,7 @@ collections:
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Weight (Order)", name: "weight", widget: "number", value_type: "int", default: 10}
-      - {label: "Category", name: "category", widget: "select", options: ["games", "tools"]}
+      - {label: "Category", name: "category", widget: "relation", collection: "settings", file: "landing", search_fields: ["sections.*.title"], display_fields: ["sections.*.title"], value_field: "sections.*.id"}
       - {label: "Thumbnail Image", name: "thumbnail", widget: "image"}
       - {label: "Hover Description (HTML allowed)", name: "hover_description", widget: "text"}
       - {label: "Full Width Card", name: "full_width", widget: "boolean", default: false, required: false}
