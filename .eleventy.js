@@ -1,7 +1,7 @@
 module.exports = function(eleventyConfig) {
   // Pass through static assets
   eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/images");
+  eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
   // Create custom collections based on the 'category' frontmatter field
@@ -14,6 +14,7 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
+    pathPrefix: "/portfolio-cms/",
     dir: {
       input: "src",
       output: "_site",
