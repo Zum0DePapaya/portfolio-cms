@@ -17,14 +17,22 @@ Here is a technical deep dive into the three core systems I built for this proje
 
 ## 1. Data-Driven Customization System (The Hangar)
 
-I architected a robust, persistent 3D tank customization hangar. To ensure the system was scalable and designer-friendly, I utilized a strict separation of concerns: separating the UI, the visual preview, and the persistent GameInstance data.
+I architected a robust, persistent 3D tank customization hangar. To ensure the system was scalable and designer-friendly, I utilized a strict separation of concerns, isolating the interactive UI, the visual 3D preview, and the persistent data state.
 
-* **Primary Data Asset (PDA) Workflow:** Designers can create new tank parts (engines, suspensions, cannons) entirely through Data Assets (e.g., `DA_Engine`, `DA_Suspension`). Each part is identified by a Gameplay Tag, meaning no code or Blueprint logic needs to be touched to expand the game's arsenal.
-* **Efficient Memory Management:** Inside `BP_GameInstance_Main`, the `InitializeForVehicle` routine iterates through a vehicle's `AvailableParts`, resolving Soft Object References and unlocking them via their Gameplay Tags only when needed, minimizing the base memory footprint.
-* **Dynamic BeginPlay Initialization:** I intercepted the `EventBeginPlay` of `BP_Sherman` to read the player's active loadout from the GameInstance. The tank then iterates through its slot assignments, dynamically resolving and attaching the correct 3D modules before the player gains control.
-* **Interpolating Orbit Camera:** I programmed a smooth orbit camera (`BP_HangarPawn`) that calculates and interpolates `OrbitYaw`, `OrbitPitch`, and `ZoomDistance` against target values, featuring an `IdleRotationSpeed` system that seamlessly takes over when player input stops.
+### Part Registration and Memory Optimization
+* **Primary Data Asset (PDA) Workflow:** Designers author new tank parts (engines, suspensions, cannons) entirely through Data Assets (e.g., `DA_Engine`, `DA_Suspension`). Each part is identified by a hierarchical Gameplay Tag, meaning no code or Blueprint logic needs to be touched to expand the game's arsenal.
+* **Persistent State & Lazy Loading:** Inside `BP_GameInstance_Main`, the `InitializeForVehicle` routine iterates through a vehicle's `AvailableParts`. It maintains an unlocked inventory by resolving Soft Object References and loading them into memory only when needed, minimizing the base memory footprint.
+* **Runtime Initialization:** I intercepted the `EventBeginPlay` of the actual game pawn (`BP_Sherman`) to read the player's active loadout from the GameInstance. The tank then iterates through its slot assignments, dynamically resolving and attaching the correct 3D modules before the player gains control.
 
-*(Placeholder: Insert BlueprintUE.com iframe here showcasing the `InitializeForVehicle` logic from `BP_GameInstance_Main`)*
+### Decoupled UI & Preview Architecture
+* **Dynamic Widget Population (`WBP_PartSelectionPanel`):** The customization UI is completely data-driven. When a player selects a vehicle slot (e.g., "Turret" or "Hull"), the panel iterates through the unlocked inventory and dynamically spawns `WBP_PartListItem` widgets. These list items bind to the underlying data asset properties to display stats and names, pushing updates back to the preview actor upon selection.
+* **Tag-Based Mesh Routing (`SwapSlotMesh`):** The 3D preview actor (`BP_HangarVehiclePreview`) manages the physical representation. To prevent the UI from needing intimate knowledge of the actor's component hierarchy, I built a `SwapSlotMesh` function. It uses a **Switch on Gameplay Tag** node (matching tags like `Vehicle.Modules.Turret.Main` or `Vehicle.Modules.Hull.Base`) to securely route mesh updates to the correct target `StaticMeshComponent` (e.g., `SlotMesh_TurretMain`).
+
+### Enhanced Input & Camera Interpolation
+* **Framerate-Independent Orbit Camera (`BP_HangarPawn`):** To give the hangar a premium, tactile feel, I engineered a custom camera controller using Enhanced Input (`IA_HangarOrbit`, `IA_HangarZoom`). Instead of applying inputs directly to the camera's transform, inputs modify target variables (`TargetYaw`, `TargetPitch`, and `TargetZoom`).
+* **Smooth Interpolation & Idle Panning:** On `Event Tick`, the current `OrbitYaw`, `OrbitPitch`, and `ZoomDistance` smoothly seek their targets using `FInterpTo`. `TargetPitch` is strictly clamped between -60° and 10°, while zoom is bounded between 200 and 1200 units. Furthermore, a `TimeSinceLastInput` tracker detects when the player stops interacting, seamlessly blending into an automated cinematic idle rotation.
+
+*(Placeholder: Insert BlueprintUE.com iframe here showcasing the `SwapSlotMesh` logic from `BP_HangarVehiclePreview`)*
 
 ---
 
