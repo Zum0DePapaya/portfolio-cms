@@ -21,7 +21,7 @@
 
 body {
     background-color: var(--bg-color);
-    color: var(--text-primary);
+    color: #e2f0f0;
     font-family: var(--font-mono);
     line-height: 1.75;
     font-size: 16pt;
@@ -387,12 +387,13 @@ a:hover {
     background-color: rgba(30, 30, 30, 0.8);
     backdrop-filter: blur(10px);
     margin-top: -3rem; /* overlap the image */
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     font-size: 2rem;
     position: relative;
-    border-radius: var(--border-radius);
-    display: inline-block;
-    margin-left: 1rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .experience {

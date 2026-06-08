@@ -25,7 +25,17 @@ Every customization slot on a vehicle (turret, barrel, hull front, etc.) has a G
 
 Because everything is driven by tag lookups and data assets, you can add new parts or even new slots without touching blueprint logic — just create data assets and register them.
 
-*(Placeholder: Insert Hangar Customization UI Flow GIF here)*
+#### Data Assets and Configuration
+
+To properly configure each module without modifying the code, we use extensive Data Assets. Each module's configuration defines exact constraints, such as `MeshPitchMin`/`MeshPitchMax` for vertical rotation and `MeshYawLimit` for horizontal boundaries. We even support nested attachments—if an attachable needs an additional component for rotation (like a secondary turret mount), the `NeedsAdditionalMount` flag dynamically spawns and links the necessary sub-components.
+
+Furthermore, we implemented an advanced hit surface system (`HitSurfacesAttached`). Invisible collision meshes wrap specific components, tracking armor thickness in mm. If an area is highly armored, small arms fire won't deal damage directly, enabling precise weak-point mechanics.
+
+<div class="videos_two">
+  <div class="content-placeholder">
+    <img src="/assets/images/5035198e.gif" alt="Hangar Customization Flow" style="width: 100%;">
+  </div>
+</div>
 
 #### System Architecture
 
@@ -61,7 +71,7 @@ graph TD
     VDef -.-> GI
 ```
 
-[Code - Modular Customization System](#)
+
 
 ### Chaos Destruction & Performance
 
@@ -69,7 +79,11 @@ Unreal's Chaos Destruction engine provides incredible visuals, but generating th
 
 To solve this, I engineered a **custom C++ component** (`GeometryCollectionDebrisComponent`) that tracks fractured geometry. When debris hits the ground below a certain impulse threshold, the component disables its physics proxy, visually hides the meshes, and replaces them with highly performant Niagara particle bursts.
 
-*(Placeholder: Insert Chaos Destruction to Niagara Optimization GIF here)*
+<div class="videos_two">
+  <div class="content-placeholder">
+    <img src="/assets/images/e43b32d8.gif" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
+  </div>
+</div>
 
 ```cpp
 void UGeometryCollectionDebrisComponent::OnGCHit(
@@ -101,13 +115,17 @@ void UGeometryCollectionDebrisComponent::OnGCHit(
 }
 ```
 
-[Code - Geometry Collection Debris Component](#)
+
 
 ### In-Game Developer Tools
 
 Recognizing that rapid iteration is key to game design, I developed a suite of in-game tools to accelerate playtesting for the rest of the team. This included a custom Debug Pause Menu for hot-swapping graphic settings and keybinds, and a Cheat Console for testing physics and AI with infinite ammo and rapid-fire.
 
-*(Placeholder: Insert screenshot here showcasing the WBP_DebugPauseMenu interface)*
+<div class="videos_two">
+  <div class="content-placeholder">
+    <img src="/assets/images/dfba02ee.jpg" alt="Debug Pause Menu" style="width: 100%;">
+  </div>
+</div>
 
 ### What I learned
 
