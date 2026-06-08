@@ -59,11 +59,47 @@ I worked closely with the design team to ensure that the systems I built were mo
 
 ### Modular Customization System (The Hangar)
 
-The customization system is built entirely on a data-driven approach using **Gameplay Tags**. Every customization slot on the vehicle and every attachable part has a unique tag. This allows the system to map parts to slots dynamically using Data Assets.
+The system is built on a simple idea: **Gameplay Tags are the universal key for everything.**
 
-When a player selects a part in the UI, the system instantly updates the 3D preview and saves the loadout persistently. During gameplay deployment, the vehicle reads this data and automatically spawns the correct meshes. Because it's completely data-driven, adding new parts is as simple as creating a new Data Asset—no code changes required.
+Every customization slot on a vehicle (turret, barrel, hull front, etc.) has a Gameplay Tag. Every attachable part also has a Gameplay Tag. When a player picks a part in the hangar UI, the system writes a `{SlotTag → PartTag}` mapping into a persistent struct on the GameInstance. When they deploy to gameplay, the tank reads that struct and spawns the correct meshes into the correct sockets.
+
+Because everything is driven by tag lookups and data assets, you can add new parts or even new slots without touching blueprint logic — just create data assets and register them.
 
 *(Placeholder: Insert Hangar Customization UI Flow GIF here)*
+
+#### System Architecture
+
+```mermaid
+graph TD
+    subgraph Data ["Data Layer (Content Only)"]
+        Tags["DT_GameplayTags<br/>Slot.* & Part.*"]
+        PDA["PDA_AttachableActor<br/>(per part)"]
+        VDef["DA_VehicleDef_Sherman<br/>(per vehicle type)"]
+        PDA -.->|"references"| Tags
+        VDef -->|"AvailableParts[]"| PDA
+        VDef -->|"DefaultLoadout[]"| DefaultSlots["SSlotAssignment[]"]
+    end
+    subgraph Core ["Core (Persistent State)"]
+        GI["BP_GameInstance_Main"]
+        GI -->|"holds"| Loadout["ActiveLoadout<br/>(SVehicleLoadout)"]
+        GI -->|"tracks"| Unlocked["UnlockedParts<br/>(GameplayTagContainer)"]
+    end
+    subgraph Hangar ["Hangar (Preview & UI)"]
+        GM_H["BP_HangarGameMode"] -->|"first-boot init"| GI
+        Ctrl["BP_HangarController"] -->|"creates"| HUD["WBP_HangarHUD"]
+        Ctrl -->|"possesses"| Pawn["BP_HangarPawn<br/>(orbit camera)"]
+        HUD -->|"OpenSlotPanel()"| Panel["WBP_PartSelectionPanel"]
+        Panel -->|"ShowForSlot()"| Items["WBP_PartListItem × N"]
+        Items -->|"on click"| Preview["BP_HangarVehiclePreview<br/>(SwapSlotMesh)"]
+        Items -->|"on click"| GI
+    end
+    subgraph Gameplay ["Gameplay (Spawning)"]
+        Sherman["BP_Sherman"] -->|"BeginPlay"| GI
+        Sherman -->|"populates"| SocketMap["SocketsAndAttachables Map"]
+        SocketMap -->|"Parent::BeginPlay"| Spawner["BP_BaseTrackedVehicle<br/>(AttachModules)"]
+    end
+    VDef -.-> GI
+```
 
 [Code - Modular Customization System](#)
 
