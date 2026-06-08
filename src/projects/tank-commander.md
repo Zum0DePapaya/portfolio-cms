@@ -25,15 +25,15 @@ Every customization slot on a vehicle (turret, barrel, hull front, etc.) has a G
 
 Because everything is driven by tag lookups and data assets, you can add new parts or even new slots without touching blueprint logic — just create data assets and register them.
 
-#### Data Assets and Configuration
+#### Hangar Interface & Preview
 
-To properly configure each module without modifying the code, we use extensive Data Assets. Each module's configuration defines exact constraints, such as `MeshPitchMin`/`MeshPitchMax` for vertical rotation and `MeshYawLimit` for horizontal boundaries. We even support nested attachments—if an attachable needs an additional component for rotation (like a secondary turret mount), the `NeedsAdditionalMount` flag dynamically spawns and links the necessary sub-components.
+To provide a seamless customization experience, I built a dedicated Hangar GameMode. The player controls a `BP_HangarPawn` with custom orbit camera logic to smoothly rotate around the tank. 
 
-Furthermore, we implemented an advanced hit surface system (`HitSurfacesAttached`). Invisible collision meshes wrap specific components, tracking armor thickness in mm. If an area is highly armored, small arms fire won't deal damage directly, enabling precise weak-point mechanics.
+When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers a `SwapSlotMesh` function on the `BP_HangarVehiclePreview` actor. This provides instant 3D visual feedback without affecting the actual gameplay actor. Once the player confirms their loadout, the final configuration is written to the GameInstance.
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/5035198e.gif" alt="Hangar Customization Flow" style="width: 100%;">
+    <img src="{{ '/assets/images/5035198e.gif' | url }}" alt="Hangar Customization Flow" style="width: 100%;">
   </div>
 </div>
 
@@ -81,7 +81,7 @@ To solve this, I engineered a **custom C++ component** (`GeometryCollectionDebri
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/e43b32d8.gif" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
+    <img src="{{ '/assets/images/e43b32d8.gif' | url }}" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
   </div>
 </div>
 
@@ -123,7 +123,7 @@ Recognizing that rapid iteration is key to game design, I developed a suite of i
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/dfba02ee.jpg" alt="Debug Pause Menu" style="width: 100%;">
+    <img src="{{ '/assets/images/dfba02ee.jpg' | url }}" alt="Debug Pause Menu" style="width: 100%;">
   </div>
 </div>
 

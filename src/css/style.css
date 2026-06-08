@@ -396,6 +396,29 @@ a:hover {
     margin-right: 0;
 }
 
+/* Code Blocks */
+pre {
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: #e2f0f0;
+}
+
+/* Inline code specifically */
+p > code, li > code {
+    background-color: rgba(10, 10, 10, 0.5);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+}
+
 .experience {
     display: flex;
     flex-wrap: wrap;
