@@ -22,7 +22,7 @@ I architected a robust, persistent 3D tank customization hangar. To ensure the s
 ### Part Registration and Memory Optimization
 * **Primary Data Asset (PDA) Workflow:** Designers author new tank parts (engines, suspensions, cannons) entirely through Data Assets (e.g., `DA_Engine`, `DA_Suspension`). Each part is identified by a hierarchical Gameplay Tag, meaning no code or Blueprint logic needs to be touched to expand the game's arsenal.
 * **Persistent State & Lazy Loading:** Inside `BP_GameInstance_Main`, the `InitializeForVehicle` routine iterates through a vehicle's `AvailableParts`. It maintains an unlocked inventory by resolving Soft Object References and loading them into memory only when needed, minimizing the base memory footprint.
-* **Runtime Initialization:** I intercepted the `EventBeginPlay` of the actual game pawn (`BP_Sherman`) to read the player's active loadout from the GameInstance. The tank then iterates through its slot assignments, dynamically resolving and attaching the correct 3D modules before the player gains control.
+* **Runtime Instantiation (`BP_Sherman`):** To bring the hangar customizations into live gameplay, I intercepted the `EventBeginPlay` of the actual game pawn (`BP_Sherman`) to fetch the persistent `ActiveLoadout` from the GameInstance. Because the data assets use Soft Object References to prevent memory bloat, the tank's BeginPlay logic runs a `For Each Loop` over the slot assignments, synchronously resolves the references into `PDA_AttachableActor_C` classes, and populates a `SocketsAndAttachables` Map. Once fully mapped, it calls `Parent: BeginPlay` (`BP_BaseTrackedVehicle`) to trigger the physical spawning and attachment of the components.
 
 ### Decoupled UI & Preview Architecture
 * **Dynamic Widget Population (`WBP_PartSelectionPanel`):** The customization UI is completely data-driven. When a player selects a vehicle slot (e.g., "Turret" or "Hull"), the panel iterates through the unlocked inventory and dynamically spawns `WBP_PartListItem` widgets. These list items bind to the underlying data asset properties to display stats and names, pushing updates back to the preview actor upon selection.
@@ -33,33 +33,46 @@ I architected a robust, persistent 3D tank customization hangar. To ensure the s
 graph TD
     %% Data Layer
     subgraph Data Layer [Persistent Data]
-        GI[BP_GameInstance_Main]
-        PDA[Primary Data Assets]
+        GI[BP_GameInstance_Main<br>Active Loadout]
+        PDA[Primary Data Assets<br>DA_Engine, DA_Cannon]
     end
 
     %% UI Layer
-    subgraph UI Layer [Screen Space]
+    subgraph Hangar UI [Screen Space]
         HUD[WBP_HangarHUD]
         Panel[WBP_PartSelectionPanel]
         Item[WBP_PartListItem]
     end
 
     %% 3D Layer
-    subgraph World Layer [3D Preview]
+    subgraph Hangar World [3D Preview]
         Pawn[BP_HangarPawn<br>Orbit Camera]
-        Preview[BP_HangarVehiclePreview<br>Modular Tank]
+        Preview[BP_HangarVehiclePreview<br>Mesh Swapper]
+    end
+    
+    %% In-Game Layer
+    subgraph Gameplay [In-Game Instantiation]
+        Sherman[BP_Sherman<br>Event BeginPlay]
+        BaseTank[BP_BaseTrackedVehicle<br>Parent Spawner]
     end
 
-    PDA -- "Defines Stats, Mesh, & Tag" --> GI
-    GI -- "Supplies Unlocked Parts" --> Panel
+    %% Hangar Flow
+    PDA -- "Defines Parts & Tags" --> GI
+    GI -- "Supplies Unlocked Inventory" --> Panel
     HUD -- "Player Selects Slot" --> Panel
     Panel -- "Spawns Dynamic List" --> Item
     
     Item -- "1. Saves to Persistent Loadout" --> GI
     Item -- "2. Passes Tag & Mesh" --> Preview
     Preview -- "3. SwapSlotMesh Routes by Tag" --> Preview
-    
     Pawn -- "Enhanced Input Interpolates View" --> Preview
+    
+    %% Game Flow
+    GI -- "Passes Active Loadout" --> Sherman
+    Sherman -- "4. Resolves Soft References" --> Sherman
+    Sherman -- "5. Populates SocketsAndAttachables Map" --> Sherman
+    Sherman -- "6. Calls Parent: BeginPlay" --> BaseTank
+    BaseTank -- "7. Spawns & Attaches Modules" --> BaseTank
 ```
 
 ### Enhanced Input & Camera Interpolation
