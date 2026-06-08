@@ -5,51 +5,11 @@ weight: 2
 thumbnail: "/assets/images/aecc34f9.jpg"
 hover_description: "• Unreal Engine 5 tank game.<br> • Built data-driven customization hangar with 3D previews & persistent loadouts.<br> • Engineered C++ geometry destruction optimization & modular destructibles.<br> • Programmed runtime debug & cheat menus."
 full_width: false
+about: "Tank Commander is an Unreal Engine 5 vehicle combat game. As the Systems & Tools Programmer, I engineered the core data architecture, built the dynamic vehicle customization systems, and developed C++ utilities to optimize performance during heavy Chaos destruction events."
+role: "Systems & Tools Programmer"
+team_size: 4
+engine: "Unreal Engine 5.7"
 ---
-
-<div class="project-info-grid">
-  <div class="about-section">
-    <h3>About</h3>
-    <p>Tank Commander is an Unreal Engine 5 vehicle combat game. As the Systems & Tools Programmer, I engineered the core data architecture, built the dynamic vehicle customization systems, and developed C++ utilities to optimize performance during heavy Chaos destruction events.</p>
-  </div>
-  <div class="info-section">
-    <h3>Project Info</h3>
-    <ul>
-      <li><strong>Role:</strong> Systems & Tools Programmer</li>
-      <li><strong>Team Size:</strong> 4</li>
-      <li><strong>Engine:</strong> Unreal Engine 5.7</li>
-    </ul>
-  </div>
-</div>
-
-<style>
-.project-info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  background-color: var(--bg-color-secondary, #2a2a2a);
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-}
-.project-info-grid h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-}
-.info-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.info-section li {
-  margin-bottom: 8px;
-}
-@media (max-width: 768px) {
-  .project-info-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
 
 ### Introduction
 

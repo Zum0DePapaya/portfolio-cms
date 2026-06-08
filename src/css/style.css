@@ -343,3 +343,144 @@ a:hover {
         justify-content: center;
     }
 }
+
+/* Project Layout Styles */
+.portfolio-header {
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.portfolio-close {
+    color: var(--text-title);
+    white-space: nowrap;
+    align-items: center;
+    font-size: 1.125rem;
+    text-decoration: none;
+    display: inline-flex;
+    transition: color 0.25s ease;
+}
+
+.portfolio-close:hover {
+    color: #fff;
+}
+
+.portfolio-top {
+    margin-bottom: 2rem;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    background-color: var(--border-color);
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.portfolio-top h2 {
+    color: var(--text-primary);
+    background-color: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    margin-top: -3rem; /* overlap the image */
+    padding: 1rem;
+    font-size: 2rem;
+    position: relative;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    margin-left: 1rem;
+}
+
+.experience {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.job-card {
+    background-color: rgba(35, 35, 35, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 300px;
+}
+
+.job-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-title);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.job-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.project-info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.project-info-list li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.project-info-list strong {
+    color: var(--text-title);
+    margin-right: 0.5rem;
+}
+
+.part {
+    margin-bottom: 2rem;
+}
+
+.part-header {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 2rem 0 1rem 0;
+}
+
+.part p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.videos_two {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.videos_two .content-placeholder {
+    flex: 1 1 calc(50% - 1rem);
+    min-width: 300px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--border-color);
+}
+
+.video-text {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+}
+
+@media (max-width: 768px) {
+    .portfolio-top h2 {
+        font-size: 1.5rem;
+        margin-top: -2rem;
+    }
+}

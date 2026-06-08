@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+---
+<div class="portfolio-header">
+  <a class="portfolio-close" href="{{ '/' | url }}">
+    <svg aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-chevron-left" style="width: 1em; margin-right: 8px;"><path fill="currentColor" d="M34.5 239L228.9 44.7c9.4-9.4 24.6-9.4 33.9 0l22.7 22.7c9.4 9.4 9.4 24.5 0 33.9L131.5 256l154 154.7c9.3 9.4 9.3 24.5 0 33.9l-22.7 22.7c-9.4 9.4-24.6 9.4-33.9 0L34.5 273c-9.4-9.4-9.4-24.6 0-33.9z"></path></svg>
+    <small>Go Back</small>
+  </a>
+</div>
+
+<div class="portfolio-top">
+  <div class="content-placeholder hero-image-placeholder">
+    {% if thumbnail %}
+      <img src="{{ thumbnail | url }}" alt="{{ title }} thumbnail" class="hero-image">
+    {% endif %}
+  </div>
+  <h2>{{ title }}</h2>
+</div>
+
+<div class="experience">
+  {% if about %}
+  <section class="job-card">
+    <h3>About</h3>
+    <p>{{ about }}</p>
+  </section>
+  {% endif %}
+
+  {% if role or team_size or time_frame or engine %}
+  <section class="job-card">
+    <h3>Project Info</h3>
+    <ul class="project-info-list">
+      {% if role %}<li><strong>Role:</strong> {{ role }}</li>{% endif %}
+      {% if team_size %}<li><strong>Team Size:</strong> {{ team_size }}</li>{% endif %}
+      {% if time_frame %}<li><strong>Time frame:</strong> {{ time_frame }}</li>{% endif %}
+      {% if engine %}<li><strong>Engine:</strong> {{ engine }}</li>{% endif %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+
+<div class="project-content part">
+    {{ content | safe }}
+</div>
