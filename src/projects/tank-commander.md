@@ -28,6 +28,40 @@ I architected a robust, persistent 3D tank customization hangar. To ensure the s
 * **Dynamic Widget Population (`WBP_PartSelectionPanel`):** The customization UI is completely data-driven. When a player selects a vehicle slot (e.g., "Turret" or "Hull"), the panel iterates through the unlocked inventory and dynamically spawns `WBP_PartListItem` widgets. These list items bind to the underlying data asset properties to display stats and names, pushing updates back to the preview actor upon selection.
 * **Tag-Based Mesh Routing (`SwapSlotMesh`):** The 3D preview actor (`BP_HangarVehiclePreview`) manages the physical representation. To prevent the UI from needing intimate knowledge of the actor's component hierarchy, I built a `SwapSlotMesh` function. It uses a **Switch on Gameplay Tag** node (matching tags like `Vehicle.Modules.Turret.Main` or `Vehicle.Modules.Hull.Base`) to securely route mesh updates to the correct target `StaticMeshComponent` (e.g., `SlotMesh_TurretMain`).
 
+**Hangar Architecture & Data Flow:**
+```mermaid
+graph TD
+    %% Data Layer
+    subgraph Data Layer [Persistent Data]
+        GI[BP_GameInstance_Main]
+        PDA[Primary Data Assets]
+    end
+
+    %% UI Layer
+    subgraph UI Layer [Screen Space]
+        HUD[WBP_HangarHUD]
+        Panel[WBP_PartSelectionPanel]
+        Item[WBP_PartListItem]
+    end
+
+    %% 3D Layer
+    subgraph World Layer [3D Preview]
+        Pawn[BP_HangarPawn<br>Orbit Camera]
+        Preview[BP_HangarVehiclePreview<br>Modular Tank]
+    end
+
+    PDA -- "Defines Stats, Mesh, & Tag" --> GI
+    GI -- "Supplies Unlocked Parts" --> Panel
+    HUD -- "Player Selects Slot" --> Panel
+    Panel -- "Spawns Dynamic List" --> Item
+    
+    Item -- "1. Saves to Persistent Loadout" --> GI
+    Item -- "2. Passes Tag & Mesh" --> Preview
+    Preview -- "3. SwapSlotMesh Routes by Tag" --> Preview
+    
+    Pawn -- "Enhanced Input Interpolates View" --> Preview
+```
+
 ### Enhanced Input & Camera Interpolation
 * **Framerate-Independent Orbit Camera (`BP_HangarPawn`):** To give the hangar a premium, tactile feel, I engineered a custom camera controller using Enhanced Input (`IA_HangarOrbit`, `IA_HangarZoom`). Instead of applying inputs directly to the camera's transform, inputs modify target variables (`TargetYaw`, `TargetPitch`, and `TargetZoom`).
 * **Smooth Interpolation & Idle Panning:** On `Event Tick`, the current `OrbitYaw`, `OrbitPitch`, and `ZoomDistance` smoothly seek their targets using `FInterpTo`. `TargetPitch` is strictly clamped between -60° and 10°, while zoom is bounded between 200 and 1200 units. Furthermore, a `TimeSinceLastInput` tracker detects when the player stops interacting, seamlessly blending into an automated cinematic idle rotation.
