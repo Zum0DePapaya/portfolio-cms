@@ -30,7 +30,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/wall-running-to-slide.gif" alt="Locomotion chaining: transitioning into a slide">
+    <img src="{{ '/assets/images/wall-running-to-slide.gif' | url }}" alt="Locomotion chaining: transitioning into a slide">
   </div>
 </div>
 <p class="video-text">Locomotion chain: slide physics and state-driven transitions.</p>
@@ -50,12 +50,12 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/momentum-grappling.gif" alt="Momentum-based grappling hook launch">
+    <img src="{{ '/assets/images/momentum-grappling.gif' | url }}" alt="Momentum-based grappling hook launch">
   </div>
 </div>
 <p class="video-text">Momentum Grappling: grappling to anchors to launch into air dashes.</p>
 
-<iframe src="https://blueprintue.com/render/iframe/6b5-_zht/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<iframe src="https://blueprintue.com/render/6b5-_zht/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
@@ -70,7 +70,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/spider-boss-combat.gif" alt="Spider Boss combat gameplay">
+    <img src="{{ '/assets/images/spider-boss-combat.gif' | url }}" alt="Spider Boss combat gameplay">
   </div>
 </div>
 <p class="video-text">Spider-Boss Combat: navigating vertical arenas while avoiding laser sweeps.</p>
@@ -90,7 +90,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="/assets/images/seamless-portal.gif" alt="Seamless visual portal loop">
+    <img src="{{ '/assets/images/seamless-portal.gif' | url }}" alt="Seamless visual portal loop">
   </div>
 </div>
 <p class="video-text">Seamless Portal: spatial transitions between environments.</p>
