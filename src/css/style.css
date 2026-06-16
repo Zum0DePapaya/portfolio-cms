@@ -510,6 +510,24 @@ p > code, li > code {
     object-fit: cover;
 }
 
+.blueprint-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(139, 197, 191, 0.1);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.blueprint-btn:hover {
+    background-color: rgba(139, 197, 191, 0.2);
+    transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
     .portfolio-top h2 {
         font-size: 1.5rem;
