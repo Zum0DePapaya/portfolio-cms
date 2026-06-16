@@ -35,7 +35,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 </div>
 <p class="video-text">Locomotion chain: slide physics and state-driven transitions.</p>
 
-<a href="https://blueprintue.com/render/PLACEHOLDER_BP_SLIDE_PHYSICS/" target="_blank" class="blueprint-btn">🔗 View BP_SlidePhysics Graph</a>
+<iframe src="https://blueprintue.com/render/PLACEHOLDER_BP_SLIDE_PHYSICS/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
@@ -55,7 +55,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 </div>
 <p class="video-text">Momentum Grappling: grappling to anchors to launch into air dashes.</p>
 
-<a href="https://blueprintue.com/render/6b5-_zht/" target="_blank" class="blueprint-btn">🔗 View Grappling Hook Launch Graph</a>
+<iframe src="https://blueprintue.com/render/6b5-_zht/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
@@ -75,7 +75,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 </div>
 <p class="video-text">Spider-Boss Combat: navigating vertical arenas while avoiding laser sweeps.</p>
 
-<a href="https://blueprintue.com/render/PLACEHOLDER_BP_SPIDERJUMP/" target="_blank" class="blueprint-btn">🔗 View BTTask_JumpStick Graph</a>
+<iframe src="https://blueprintue.com/render/PLACEHOLDER_BP_SPIDERJUMP/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
@@ -95,7 +95,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 </div>
 <p class="video-text">Seamless Portal: spatial transitions between environments.</p>
 
-<a href="https://blueprintue.com/render/PLACEHOLDER_BP_PORTAL/" target="_blank" class="blueprint-btn">🔗 View Portal Oblique Matrix Graph</a>
+<iframe src="https://blueprintue.com/render/PLACEHOLDER_BP_PORTAL/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
