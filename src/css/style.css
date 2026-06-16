@@ -502,6 +502,14 @@ p > code, li > code {
     color: rgba(255,255,255,0.6);
 }
 
+.content-placeholder img,
+.content-placeholder video {
+    width: 100%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .portfolio-top h2 {
         font-size: 1.5rem;
