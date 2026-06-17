@@ -38,15 +38,15 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <div class="videos_two">
   <div class="content-placeholder" style="background: transparent; border: none;">
     <iframe src="https://blueprintue.com/render/51yk4yfz/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
-    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>WallRunRotation:</strong> Calculates the character's tilt and alignment against the wall normal during a wall run.</p>
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>WallRunRotation:</strong> Calculates camera tilt relative to the wall normal to emphasize momentum.</p>
   </div>
   <div class="content-placeholder" style="background: transparent; border: none;">
     <iframe src="https://blueprintue.com/render/o3jtcnzx/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
-    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>AirDash:</strong> Applies a forward directional impulse while resetting aerial momentum to allow sharp mid-air redirects.</p>
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>AirDash:</strong> Applies directional impulse to dynamically correct trajectory mid-air.</p>
   </div>
 </div>
 <iframe src="https://blueprintue.com/render/wq9_b7ms/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetSlideVariables:</strong> Initializes friction, gravity, and ground acceleration parameters at the exact moment a slide begins.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetSlideVariables:</strong> Configures friction and slope acceleration thresholds based on physics materials.</p>
 
 ---
 
@@ -67,7 +67,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Momentum Grappling: grappling to anchors to launch into air dashes.</p>
 
 <iframe src="https://blueprintue.com/render/6b5-_zht/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetGrapplingVelocity:</strong> Dynamically adjusts the launch impulse based on the distance and elevation delta to the anchor point.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>CalculateGrappleTargetLocation:</strong> Uses double-raycast validation to dynamically adjust launch impulse using elevation deltas.</p>
 
 ---
 
@@ -88,7 +88,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Spider-Boss Combat: navigating vertical arenas while avoiding laser sweeps.</p>
 
 <iframe src="https://blueprintue.com/render/5im3ap-h/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>BTTask_JumpStick:</strong> Calculates surface normal vectors to dynamically launch the spider at walls or ceilings, altering its local gravity.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>BTTask_JumpStick:</strong> Behavior Tree task that calculates collision surface normals to dynamically launch the boss onto walls and ceilings.</p>
 
 ---
 
@@ -109,7 +109,7 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Seamless Portal: spatial transitions between environments.</p>
 
 <iframe src="https://blueprintue.com/render/j0np63es/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetClipPlanes:</strong> Calculates the custom oblique projection matrix for the SceneCaptureComponent2D to prevent geometry clipping behind the portal.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetClipPlanes:</strong> Uses the portal's forward vector to define an oblique near-clip plane on the SceneCaptureComponent to prevent geometry clipping.</p>
 
 ---
 
