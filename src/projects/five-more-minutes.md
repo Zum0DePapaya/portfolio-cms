@@ -33,11 +33,15 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
     <img src="{{ '/assets/images/wall-running-to-slide.gif' | url }}" alt="Locomotion chaining: transitioning into a slide">
   </div>
 </div>
-<p class="video-text">Locomotion chain: slide physics and state-driven transitions.</p>
+<p class="video-text">Locomotion chain: wall-running, air-dashing, and slide physics.</p>
 
 <div class="videos_two">
-  <iframe src="https://blueprintue.com/render/icjn6q6s/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
-  <iframe src="https://blueprintue.com/render/t50vr_91/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
+  <div class="content-placeholder" style="background: transparent; border: none;">
+    <iframe src="https://blueprintue.com/render/51yk4yfz/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none;">
+    <iframe src="https://blueprintue.com/render/o3jtcnzx/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
+  </div>
 </div>
 <iframe src="https://blueprintue.com/render/wq9_b7ms/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
