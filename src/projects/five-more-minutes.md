@@ -35,7 +35,11 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 </div>
 <p class="video-text">Locomotion chain: slide physics and state-driven transitions.</p>
 
-<iframe src="https://blueprintue.com/render/PLACEHOLDER_BP_SLIDE_PHYSICS/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<div class="videos_two">
+  <iframe src="https://blueprintue.com/render/icjn6q6s/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
+  <iframe src="https://blueprintue.com/render/t50vr_91/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
+</div>
+<iframe src="https://blueprintue.com/render/wq9_b7ms/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 
 ---
 
