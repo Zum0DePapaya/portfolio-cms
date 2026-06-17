@@ -118,14 +118,12 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 To ensure the game felt like a finished, performant product, I engineered the underlying framework for UI, audio, and asynchronous loading.
 
 *   **Extensive UI Framework:** Built the majority of the game's widget hierarchy (e.g., `WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) supporting full keyboard and gamepad navigation, coordinating transitions smoothly between the Main Menu and Settings submenus.
-*   **Material-Specific Audio System (`FootstepAnimNofify`):** Developed a custom AnimNotify that performs a bone-socket line trace on every footfall. Based on the returned physical material (grass, metal, stone), it spawns corresponding Niagara dust VFX and plays Sound Cues equipped with 5 unique, pitch/volume-modulated wave variants to eliminate acoustic fatigue.
+*   **Material-Specific Audio System (`FootstepAnimNofify`):** Developed a custom AnimNotify that performs a bone-socket line trace on every footfall. Based on the returned physical material (grass, metal, stone), it triggers corresponding Sound Cues equipped with 5 unique, pitch/volume-modulated wave variants to eliminate acoustic fatigue.
 *   **External Plugins Integration:** Leveraged `AsyncLoadingScreen` for smooth, background-thread level streaming without hitches, and `EpicLeaderboard` for dynamic live score uploads.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_IMG_UI_FLOW: Image or GIF of transition flow from Main Menu to Settings Menu]
-  </div>
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_FOOTSTEPS: GIF of dust VFX and footfall impacts across different surfaces]
+  <div class="content-placeholder">
+    <img src="{{ '/assets/images/menu-flow.gif' | url }}" alt="Main Menu to Settings transition flow">
   </div>
 </div>
+<p class="video-text">UI Flow: transitioning between Main Menu and Settings submenus.</p>
