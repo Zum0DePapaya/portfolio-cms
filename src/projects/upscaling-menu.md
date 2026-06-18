@@ -1,11 +1,94 @@
 ---
-title: "Upscaling Menu plugin - UE5.6 and 5.7 - Blueprints and C++"
-category: "tools"
-thumbnail: "/assets/images/22b8325b.jpg"
-hover_description: "Created and released a standalone UMG upscaling menu plugin for Unreal Engine 5 that supports all the popular upscaling technologies (DLSS, FSR, XeSS) alongside a small C++ script that gives us necessary information to check for compatiblity."
+title: "Upscaling Menu - Unreal Engine 5 Plugin"
+category: "plugins"
+weight: 4
+thumbnail: "/assets/images/upscaling-menu-thumbnail.jpg"
+hover_description: "• Standalone UE5 plugin for comprehensive graphics upscaling.<br> • Extracted and expanded from 'Five More Minutes'.<br> • Custom C++ Hardware Info Library for dynamic UI adaptation.<br> • Published asset on Fab."
 full_width: false
+about: "Originally developed for the speedrunner 'Five More Minutes', I extracted the upscaling UI into a robust, standalone Unreal Engine 5 plugin. It provides a complete widget-based upscaling menu system, backed by a custom C++ library that queries the user's hardware to dynamically enable or disable supported features (like DLSS 3 Frame Generation)."
+role: "Solo Developer"
+team_size: 1
+engine: "Unreal Engine 5"
 ---
 
-# Upscaling Menu Plugin
+# Upscaling Menu (UE5 Plugin)
 
-Documentation and code snippets for the Upscaling Menu Plugin.
+<div class="videos_two">
+  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
+    [PLACEHOLDER_IMG_FAB_LISTING: Image of the Upscaling Menu Fab listing or the UI itself]
+  </div>
+</div>
+
+### Introduction
+
+While building *Five More Minutes*, I realized that managing different upscalers (DLSS, FSR, XeSS) and their specific hardware requirements was a massive headache. After successfully building a clean UI for it, I decided to rip it out, polish it, and package it as a standalone plugin. It's now publicly available as a free asset on Fab!
+
+### Features
+
+- **Automatic GPU Detection:** A lightweight C++ helper function identifies the user's GPU vendor (NVIDIA, AMD, Intel) and model series.
+- **Dynamic UI:** The menu intelligently enables or disables options for DLSS, FSR, XeSS, and NIS based on real-time hardware and software support checks.
+- **Self-Contained Logic:** Contains its own logic for hardware and software detection and does not require any third-party plugins to compile.
+- **Easy Integration:** Implemented as a single UMG Widget (`WBP_SettingsUpscaling`) that can be dropped into any existing UI or added directly to the viewport.
+
+> [!WARNING] 
+> This plugin is a UI and management tool. It DOES NOT contain or redistribute the upscaling technologies themselves. You must download, install, and enable whichever technologies you want to use in your project (e.g., StreamlineCore, AMD FSR 4, Intel XeSS).
+
+---
+
+### Dynamic Hardware Querying (C++)
+
+The biggest challenge with upscaling menus is ensuring users don't try to activate features their hardware doesn't support. You don't want an AMD user trying to toggle NVIDIA's DLSS 3 Frame Generation. 
+
+To solve this, I wrote `UHardwareInfoLibrary`, a custom C++ Blueprint Function Library that bypasses basic engine checks to query the OS directly.
+
+<div class="videos_two">
+  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
+    [PLACEHOLDER_GIF_MENU_TOGGLE: GIF showing the UI graying out options based on hardware limitations]
+  </div>
+</div>
+<p class="video-text">Hardware Adaptation: The UI dynamically locks features based on the parsed C++ hardware details struct.</p>
+
+### Key C++ Features:
+
+- **GPU Series Parsing:** Uses regex to parse `FPlatformMisc::GetPrimaryGPUBrand()`, identifying the exact GPU series (e.g., 3000 vs 4000 series) to determine Frame Gen compatibility.
+- **Hardware-Accelerated GPU Scheduling:** Queries the Windows Registry (`HwSchMode`) to ensure Windows is actually configured to support Frame Generation.
+- **DLL & Plugin Validation:** Dynamically checks for the presence of `nvngx_dlss.dll` and parses the plugin descriptor JSONs to verify the underlying upscaler plugins are actively loaded in the build.
+
+```cpp
+// Snippet: Extracting the GPU Series Number via Regex
+static const FRegexPattern Pattern(TEXT("(\\d+)"), ERegexPatternFlags::CaseInsensitive);
+FRegexMatcher Matcher(Pattern, Info.FullGPUName);
+
+if (Matcher.FindNext())
+{
+    int32 FullNumber = FCString::Atoi(*Matcher.GetCaptureGroup(1));
+    if (FullNumber >= 1000)
+    {
+        Info.SeriesNumber = (FullNumber / 1000) * 1000;
+        Info.bFoundSeries = true;
+    }
+}
+```
+
+```cpp
+// Snippet: Checking Windows Registry for GPU Scheduling (Required for Frame Gen)
+#if PLATFORM_WINDOWS
+HKEY hKey = nullptr;
+const TCHAR* SubKey = TEXT("SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers");
+if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, SubKey, 0, KEY_READ, &hKey) == ERROR_SUCCESS)
+{
+    DWORD Value = 0, Size = sizeof(Value);
+    LSTATUS Status = RegQueryValueEx(hKey, TEXT("HwSchMode"), nullptr, nullptr, reinterpret_cast<LPBYTE>(&Value), &Size);
+    RegCloseKey(hKey);
+    return (Status == ERROR_SUCCESS && Value == 2);
+}
+#endif
+```
+
+---
+
+### The Standalone Extraction
+
+Decoupling the system from *Five More Minutes* meant ensuring the Blueprints had zero hard references to my specific game classes. 
+
+The resulting `WBP_SettingsUpscaling` relies entirely on the data struct generated by the C++ library to populate boolean flags (`DLSS-FG Supported`, `XeSS Supported`, etc.). Its `UpdateDependentUI` function then safely executes a `Switch on E_UpscalerType` to gray out options like AMD Anti-Lag 2 or DLSS Ray Reconstruction if the user's rig isn't up to the task, making it drag-and-drop ready for any UE5 project.
