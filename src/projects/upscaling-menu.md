@@ -11,7 +11,7 @@ team_size: 1
 engine: "Unreal Engine 5"
 ---
 
-# Upscaling Menu (UE5 Plugin)
+
 
 <a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">📦 Get the Upscaling Menu on Fab!</a>
 <div class="videos_two">
