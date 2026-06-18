@@ -57,6 +57,7 @@ private List<Vector3> GenerateSmoothedPoints(List<Vector2> points)
     return res;
 }
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Spline Smoothing:</strong> Uses Catmull-Rom algorithms to smooth the raw input points into a fluid visual curve.</p>
 
 ---
 
@@ -95,6 +96,7 @@ for (int i = 0; i < smoothingIterations; i++)
     animationPath = ChaikinSmooth(animationPath); 
 }
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Boolean Operations:</strong> Merges intersecting 2D shapes using Clipper2Lib and smooths the final contour via Chaikin iterations.</p>
 
 ---
 

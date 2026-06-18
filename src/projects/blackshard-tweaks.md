@@ -38,6 +38,7 @@ r.Shadow.Virtual.Enable=0
 r.AntiAliasingMethod=2
 r.Nanite=0
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Engine Config:</strong> Bypasses heavy rendering features by injecting CVar overrides directly into the engine's initialization pipeline.</p>
 
 By disabling **Nanite** and **Virtual Shadow Maps (VSM)**, the GPU overhead plummets, resulting in a massive **>2x performance increase** with surprisingly little loss to the game's overall aesthetic.
 

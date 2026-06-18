@@ -52,6 +52,7 @@ if (Matcher.FindNext())
     }
 }
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Regex Parsing:</strong> Extracts the exact GPU series number from the OS hardware string to validate Frame Generation compatibility.</p>
 
 ```cpp
 // Snippet: Checking Windows Registry for GPU Scheduling (Required for Frame Gen)
@@ -67,6 +68,7 @@ if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, SubKey, 0, KEY_READ, &hKey) == ERROR_SUCCES
 }
 #endif
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Registry Query:</strong> Directly queries the Windows Registry to ensure Hardware-Accelerated GPU Scheduling is enabled.</p>
 
 ---
 
