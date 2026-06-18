@@ -17,7 +17,7 @@ engine: "Unreal Engine 5.6"
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="{{ '/assets/images/blackshard-comparison.jpg' | url }}" alt="Blackshard Before and After FPS Comparison" style="width: 100%;">
+    <img src="{{ '/assets/images/blackshard-comparison.png' | url }}" alt="Blackshard Before and After FPS Comparison" style="width: 100%;">
   </div>
 </div>
 <p class="video-text">Performance comparison: The vanilla game runs at 65 FPS, while the modded version jumps to 135 FPS in the same scene.</p>
