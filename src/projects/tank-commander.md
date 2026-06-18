@@ -32,8 +32,8 @@ To provide a seamless customization experience, I built a dedicated Hangar GameM
 When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers a `SwapSlotMesh` function on the `BP_HangarVehiclePreview` actor. This provides instant 3D visual feedback without affecting the actual gameplay actor. Once the player confirms their loadout, the final configuration is written to the GameInstance.
 
 <div class="videos_two">
-  <div class="content-placeholder">
-    <img src="{{ '/assets/images/5035198e.gif' | url }}" alt="Hangar Customization Flow" style="width: 100%;">
+  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
+    [PLACEHOLDER_GIF_HANGAR_FLOW: GIF showing you swapping out tank parts in the UI]
   </div>
 </div>
 
@@ -41,32 +41,32 @@ When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers
 
 ```mermaid
 graph TD
-    subgraph Data ["Data Layer (Content Only)"]
-        Tags["DT_GameplayTags<br/>Slot.* & Part.*"]
-        PDA["PDA_AttachableActor<br/>(per part)"]
-        VDef["DA_VehicleDef_Sherman<br/>(per vehicle type)"]
+    subgraph Data Layer
+        Tags["DT_GameplayTags Slot.* & Part.*"]
+        PDA["PDA_AttachableActor (per part)"]
+        VDef["DA_VehicleDef_Sherman (per vehicle type)"]
         PDA -.->|"references"| Tags
         VDef -->|"AvailableParts[]"| PDA
         VDef -->|"DefaultLoadout[]"| DefaultSlots["SSlotAssignment[]"]
     end
-    subgraph Core ["Core (Persistent State)"]
+    subgraph Core Persistent State
         GI["BP_GameInstance_Main"]
-        GI -->|"holds"| Loadout["ActiveLoadout<br/>(SVehicleLoadout)"]
-        GI -->|"tracks"| Unlocked["UnlockedParts<br/>(GameplayTagContainer)"]
+        GI -->|"holds"| Loadout["ActiveLoadout (SVehicleLoadout)"]
+        GI -->|"tracks"| Unlocked["UnlockedParts (GameplayTagContainer)"]
     end
-    subgraph Hangar ["Hangar (Preview & UI)"]
+    subgraph Hangar Preview and UI
         GM_H["BP_HangarGameMode"] -->|"first-boot init"| GI
         Ctrl["BP_HangarController"] -->|"creates"| HUD["WBP_HangarHUD"]
-        Ctrl -->|"possesses"| Pawn["BP_HangarPawn<br/>(orbit camera)"]
+        Ctrl -->|"possesses"| Pawn["BP_HangarPawn (orbit camera)"]
         HUD -->|"OpenSlotPanel()"| Panel["WBP_PartSelectionPanel"]
         Panel -->|"ShowForSlot()"| Items["WBP_PartListItem × N"]
-        Items -->|"on click"| Preview["BP_HangarVehiclePreview<br/>(SwapSlotMesh)"]
+        Items -->|"on click"| Preview["BP_HangarVehiclePreview (SwapSlotMesh)"]
         Items -->|"on click"| GI
     end
-    subgraph Gameplay ["Gameplay (Spawning)"]
+    subgraph Gameplay Spawning
         Sherman["BP_Sherman"] -->|"BeginPlay"| GI
         Sherman -->|"populates"| SocketMap["SocketsAndAttachables Map"]
-        SocketMap -->|"Parent::BeginPlay"| Spawner["BP_BaseTrackedVehicle<br/>(AttachModules)"]
+        SocketMap -->|"Parent BeginPlay"| Spawner["BP_BaseTrackedVehicle (AttachModules)"]
     end
     VDef -.-> GI
 ```
@@ -80,8 +80,8 @@ Unreal's Chaos Destruction engine provides incredible visuals, but generating th
 To solve this, I engineered a **custom C++ component** (`GeometryCollectionDebrisComponent`) that tracks fractured geometry. When debris hits the ground below a certain impulse threshold, the component disables its physics proxy, visually hides the meshes, and replaces them with highly performant Niagara particle bursts.
 
 <div class="videos_two">
-  <div class="content-placeholder">
-    <img src="{{ '/assets/images/e43b32d8.gif' | url }}" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
+  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
+    [PLACEHOLDER_GIF_CHAOS_OPTIMIZATION: GIF showing a tank shooting a building and the chunks swapping to Niagara particles]
   </div>
 </div>
 
@@ -122,8 +122,8 @@ void UGeometryCollectionDebrisComponent::OnGCHit(
 Recognizing that rapid iteration is key to game design, I developed a suite of in-game tools to accelerate playtesting for the rest of the team. This included a custom Debug Pause Menu for hot-swapping graphic settings and keybinds, and a Cheat Console for testing physics and AI with infinite ammo and rapid-fire.
 
 <div class="videos_two">
-  <div class="content-placeholder">
-    <img src="{{ '/assets/images/dfba02ee.jpg' | url }}" alt="Debug Pause Menu" style="width: 100%;">
+  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
+    [PLACEHOLDER_IMG_DEBUG_MENU: Image of the custom developer menu]
   </div>
 </div>
 
