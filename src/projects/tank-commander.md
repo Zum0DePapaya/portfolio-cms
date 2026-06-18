@@ -37,9 +37,15 @@ When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers
   </div>
 </div>
 
-<div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-  [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR: iframe showing BP_HangarVehiclePreview -> SwapSlotMesh function]
-  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SwapSlotMesh:</strong> Routes the incoming GameplayTag through a switch to assign the correct StaticMesh to the corresponding component slot.</p>
+<div class="videos_two">
+  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+    [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR_UI: iframe showing WBP_PartSelectionPanel -> ShowForSlot function]
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ShowForSlot:</strong> Populates the UI grid with available parts matching the currently selected slot's GameplayTag.</p>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+    [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR: iframe showing BP_HangarVehiclePreview -> SwapSlotMesh function]
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SwapSlotMesh:</strong> Routes the incoming GameplayTag through a switch to assign the correct StaticMesh to the corresponding component slot.</p>
+  </div>
 </div>
 
 #### System Architecture
@@ -75,6 +81,7 @@ graph TD
     end
     VDef -.-> GI
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>System Architecture:</strong> Data assets define available parts, the GameInstance stores the persistent configuration, and the Hangar UI safely previews them.</p>
 
 
 
@@ -119,6 +126,7 @@ void UGeometryCollectionDebrisComponent::OnGCHit(
 	}
 }
 ```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>OnGCHit:</strong> Intercepts geometry debris impacts, disables their physics simulation, hides the meshes, and spawns performant Niagara particle bursts.</p>
 
 
 
@@ -133,8 +141,8 @@ Recognizing that rapid iteration is key to game design, I developed a suite of i
 </div>
 
 <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-  [PLACEHOLDER_IFRAME_BLUEPRINTUE_DEBUG: iframe showing the Debug Pause Menu hot-swapping graphic settings or cheat console logic]
-  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Debug Overrides:</strong> Applies runtime graphic settings or spawns objects dynamically for rapid playtesting.</p>
+  [PLACEHOLDER_IFRAME_BLUEPRINTUE_DEBUG: iframe showing WBP_DebugPauseMenu -> ChangeScalabilitySettings]
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ChangeScalabilitySettings:</strong> Routes an EScalabilityOptions enum through a switch to apply specific rendering quality configurations based on UI combobox selections.</p>
 </div>
 
 ### What I learned
