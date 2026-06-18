@@ -5,7 +5,7 @@ weight: 1
 thumbnail: "/assets/images/5035198e.gif"
 hover_description: "• 9 month long 4 person project in Unreal Engine 5. <br> • Time-attack action platformer with custom gravity mechanics. <br> • Engineered core locomotion, custom boss AI, user interface menus, and surface-specific footsteps. <br> • Managed level foliage design and external systems integration."
 full_width: false
-about: "Five More Minutes is a unique time-attack action platformer built in Unreal Engine 5. As the Lead Systems & Gameplay Programmer/Designer for our 4-person team, I engineered the 3C's (Character, Camera, Controls), custom gravity boss AI, user interface menus, dynamic footfall audio, level foliage layouts, and external system integrations over a 9-month development cycle."
+about: "Five More Minutes is a time-attack action platformer built in Unreal Engine 5. As the Lead Programmer/Designer on a 4-person team over 9 months, I built the core locomotion, a gravity-defying boss AI, seamless portal rendering, UI menus, and surface-specific footstep audio."
 role: "Lead Systems & Gameplay Programmer/Designer"
 team_size: 4
 engine: "Unreal Engine 5.5"
@@ -13,20 +13,17 @@ engine: "Unreal Engine 5.5"
 
 <iframe frameborder="0" src="https://itch.io/embed/3830437?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="552" height="167"><a href="https://sanpitopatogames.itch.io/five-more-minutes">Play Five More Minutes on itch.io</a></iframe>
 
-### 1. Introduction & Core Philosophy
+### Introduction
 
-For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Programmer/Designer was to engineer a responsive, high-speed action platformer. Rather than settling for basic platforming mechanics, I wanted to build a tightly integrated system where the 3C's (Character, Camera, Controls), movement, and collectibles fed directly into a high-pressure, momentum-driven experience.
+The core goal was to build a fast, momentum-driven platformer where every system — movement, combat, collectibles — feeds into one tight loop. I was responsible for the 3C's (Character, Camera, Controls) and most of the game's major systems.
 
 ---
 
-### 2. State-Driven Locomotion & Pickups
+### State-Driven Locomotion & Pickups
 
-**Design Rationale:** In a high-speed, momentum-based platformer, fluid movement transitions and uninterrupted collectible gathering are critical. I engineered a state-driven locomotion system (dashing and sliding) coordinated with magnetic pickups, ensuring players can chain movement options and gather items without losing speed.
+Everything runs through an enum-based state machine (`E_States`) that prevents conflicting physics between dashing, sliding, and aerial movement. The sliding system uses `FindCurrentFloorAngleAndDirection` to read the slope angle and accelerate the player downhill accordingly.
 
-**Technical Execution:**
-*   **State-Driven Foundation:** Coordinated all character locomotion through a robust, enum-based state machine (`E_States`), preventing buggy physics overlays between dashing, sliding, and aerial movement.
-*   **Slope-Aware Sliding:** Implemented `FindCurrentFloorAngleAndDirection` to calculate the slope vector of the terrain, dynamically applying forward velocity acceleration when sliding down steep inclines.
-*   **Magnetic Collectible System:** Programmed `BP_Coin` and `BP_Multiplier` actors to detect player proximity via sphere collision components, using frame-rate independent vector interpolation (`VInterp To`) to steer items smoothly into the character's collection volume.
+I also built magnetic collectibles (`BP_Coin`, `BP_Multiplier`) that detect the player via sphere collision and smoothly interpolate toward them with `VInterp To`, so picking up items never interrupts your momentum.
 
 <div class="videos_two">
   <div class="content-placeholder">
@@ -42,22 +39,19 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
   </div>
   <div class="content-placeholder" style="background: transparent; border: none;">
     <iframe src="https://blueprintue.com/render/o3jtcnzx/" width="100%" height="300" scrolling="no" allowfullscreen></iframe>
-    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>AirDash:</strong> Applies directional impulse to dynamically correct trajectory mid-air.</p>
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>AirDash:</strong> Applies a directional impulse to correct the player's trajectory mid-air.</p>
   </div>
 </div>
 <iframe src="https://blueprintue.com/render/wq9_b7ms/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetSlideVariables:</strong> Configures friction and slope acceleration thresholds based on physics materials.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetSlideVariables:</strong> Configures friction and slope acceleration based on the surface's physics material.</p>
 
 ---
 
-### 3. Momentum-Based Grappling System
+### Momentum-Based Grappling
 
-**Design Rationale:** In many games, a grappling hook acts as a linear teleport. I designed our grapple to function as a *momentum tool*. Players use it to gain height and speed, rewarding skillful chaining of grapple launches directly into air-dashes or sloped slides.
+Most grappling hooks just teleport you. Ours is a **momentum tool** — players use it to gain height and speed, then chain the launch into an air-dash or a sloped slide.
 
-**Technical Execution:**
-*   **Double-Raycast Validation:** Built `GetGrappleTargetInfo` to perform line-of-sight and clearance checks before allowing a grapple connection.
-*   **Kinetic Launch:** Calculated `TotalGrappleVelocity` using distance and elevation deltas to dynamically adjust launch impulse via `SetGrapplingVelocity`.
-*   **Spline Rendering:** Dynamically mapped a physical `BP_Cable` component to simulate the rope tension between the player and anchor point.
+The system validates targets with a double-raycast (`GetGrappleTargetInfo`) for line-of-sight and clearance, then calculates launch impulse from the distance and elevation delta. A `BP_Cable` spline component renders the rope in real-time.
 
 <div class="videos_two">
   <div class="content-placeholder">
@@ -67,18 +61,15 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Momentum Grappling: grappling to anchors to launch into air dashes.</p>
 
 <iframe src="https://blueprintue.com/render/6b5-_zht/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>CalculateGrappleTargetLocation:</strong> Uses double-raycast validation to dynamically adjust launch impulse using elevation deltas.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>CalculateGrappleTargetLocation:</strong> Double-raycast validation with launch impulse scaled by elevation delta.</p>
 
 ---
 
-### 4. Custom AI: The Spider Boss
+### Custom AI: The Spider Boss
 
-**Design Rationale:** A standard ground-based boss would be trivially bypassed by a player utilizing high locomotion speeds and aerial mobility. The Spider Boss was engineered to utilize the exact same vertical 3D space as the player, crawling on walls and ceilings to create a true spatial cat-and-mouse encounter.
+A ground-based boss would be trivial to outrun in a game with this much vertical mobility. The Spider Boss uses the **same 3D space as the player** — it crawls on walls and ceilings, turning the arena into a true spatial cat-and-mouse fight.
 
-**Technical Execution:**
-*   **AI Architecture:** Directed via the `BPAI_Spider` controller, hooking into a custom Behavior Tree (`BT_Spider`) and Blackboard data structure (`BB_Spider`).
-*   **Gravity-Bending Jumping:** Programmed the `BTTask_JumpStick` custom task. It utilizes collision surface normal vectors to dynamically launch the spider at walls/ceilings and uses a rotation matrix to align the mesh against the new axis of gravity.
-*   **Dynamic Laser Sweeps:** Coded the `BTTask_RangedAttack` and `BP_Laser` actors, managing interval-based firing thresholds and executing multi-line raycasts to simulate sweeping laser damage that physically impacts level geometry.
+It's driven by a custom Behavior Tree (`BT_Spider`) and Blackboard (`BB_Spider`). The key piece is `BTTask_JumpStick`: it reads collision surface normals to launch the spider onto walls/ceilings and uses a rotation matrix to align its mesh to the new gravity axis. For ranged attacks, `BTTask_RangedAttack` fires sweeping multi-line raycasts through `BP_Laser`.
 
 <div class="videos_two">
   <div class="content-placeholder">
@@ -88,18 +79,15 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Spider-Boss Combat: navigating vertical arenas while avoiding laser sweeps.</p>
 
 <iframe src="https://blueprintue.com/render/5im3ap-h/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>BTTask_JumpStick:</strong> Behavior Tree task that calculates collision surface normals to dynamically launch the boss onto walls and ceilings.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>BTTask_JumpStick:</strong> Reads collision normals to launch the boss onto walls and ceilings, then aligns its mesh to the new surface.</p>
 
 ---
 
-### 5. Design Iteration: The Seamless Portal Shop
+### Design Iteration: The Seamless Portal Shop
 
-**Design Rationale:** Early in development, the vision was to keep the player completely immersed. Killing specific enemies would spawn a portal, allowing players to walk seamlessly into a separate spatial dimension—a persistent shop area—to spend time on upgrades. While technically ambitious, playtesting revealed it broke the game's high-speed pacing. Demonstrating mature design judgment, I pivoted the game to a faster, mid-level elevator upgrade system.
+Early on, the plan was to keep the player fully immersed — killing certain enemies would spawn a portal into a separate shop dimension for upgrades. I built the full system: oblique clip-plane rendering via `SceneCaptureComponent2D`, momentum-preserving teleportation using dot products, and a modular shop built on `BPI_Interactable_C` interfaces.
 
-**Technical Execution:**
-*   **Oblique Clip Planes:** `BP_portal` utilizes custom oblique projection matrices to mirror the scene via a `SceneCaptureComponent2D` without geometry clipping.
-*   **Momentum Conservation:** The `TeleportCharacter` function computes the dot product of the player's movement and perfectly translates their spatial position and rotation matrix to the exit portal, preserving kinetic energy.
-*   **Modular Systems:** The `BP_Shop` utilized `BPI_Interactable_C` blueprint interfaces to create highly decoupled upgrade item spawners.
+It worked, but playtesting showed it broke the game's pacing. We pivoted to a faster mid-level elevator upgrade system instead — a good lesson in knowing when to cut a feature.
 
 <div class="videos_two">
   <div class="content-placeholder">
@@ -109,17 +97,17 @@ For our 9-month development cycle, my primary goal as Lead Systems & Gameplay Pr
 <p class="video-text">Seamless Portal: spatial transitions between environments.</p>
 
 <iframe src="https://blueprintue.com/render/j0np63es/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetClipPlanes:</strong> Uses the portal's forward vector to define an oblique near-clip plane on the SceneCaptureComponent to prevent geometry clipping.</p>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetClipPlanes:</strong> Defines an oblique near-clip plane on the SceneCaptureComponent using the portal's forward vector.</p>
 
 ---
 
-### 6. Polish: UI/UX & Dynamic Audio
+### Polish: UI/UX & Dynamic Audio
 
-To ensure the game felt like a finished, performant product, I engineered the underlying framework for UI, audio, and asynchronous loading.
+Beyond the core systems, I built the game's UI framework and audio pipeline to make it feel like a finished product.
 
-*   **Extensive UI Framework:** Built the majority of the game's widget hierarchy (e.g., `WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) supporting full keyboard and gamepad navigation, coordinating transitions smoothly between the Main Menu and Settings submenus.
-*   **Material-Specific Audio System (`FootstepAnimNofify`):** Developed a custom AnimNotify that performs a bone-socket line trace on every footfall. Based on the returned physical material (grass, metal, stone), it triggers corresponding Sound Cues equipped with 5 unique, pitch/volume-modulated wave variants to eliminate acoustic fatigue.
-*   **External Plugins Integration:** Leveraged `AsyncLoadingScreen` for smooth, background-thread level streaming without hitches, and `EpicLeaderboard` for dynamic live score uploads.
+*   **UI Framework:** Built most of the widget hierarchy (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) with full keyboard and gamepad navigation.
+*   **Footstep Audio (`FootstepAnimNotify`):** A custom AnimNotify that line-traces from the foot bone on each step. Based on the physical material hit (grass, metal, stone), it plays from a bank of 5 pitch/volume-modulated Sound Cue variants to avoid repetition.
+*   **External Plugins:** Integrated `AsyncLoadingScreen` for hitchless level streaming and `EpicLeaderboard` for live score uploads.
 
 <div class="videos_two">
   <div class="content-placeholder">
