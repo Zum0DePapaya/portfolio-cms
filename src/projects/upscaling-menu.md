@@ -1,6 +1,6 @@
 ---
 title: "Upscaling Menu - Unreal Engine 5 Plugin"
-category: "plugins"
+category: "tools"
 weight: 4
 thumbnail: "/assets/images/upscaling-menu-thumbnail.jpg"
 hover_description: "• Standalone UE5 plugin for comprehensive graphics upscaling.<br> • Extracted and expanded from 'Five More Minutes'.<br> • Custom C++ Hardware Info Library for dynamic UI adaptation.<br> • Published asset on Fab."
@@ -23,15 +23,7 @@ engine: "Unreal Engine 5"
 
 While building *Five More Minutes*, I realized that managing different upscalers (DLSS, FSR, XeSS) and their specific hardware requirements was a massive headache. After successfully building a clean UI for it, I decided to rip it out, polish it, and package it as a standalone plugin. It's now publicly available as a free asset on Fab!
 
-### Features
-
-- **Automatic GPU Detection:** A lightweight C++ helper function identifies the user's GPU vendor (NVIDIA, AMD, Intel) and model series.
-- **Dynamic UI:** The menu intelligently enables or disables options for DLSS, FSR, XeSS, and NIS based on real-time hardware and software support checks.
-- **Self-Contained Logic:** Contains its own logic for hardware and software detection and does not require any third-party plugins to compile.
-- **Easy Integration:** Implemented as a single UMG Widget (`WBP_SettingsUpscaling`) that can be dropped into any existing UI or added directly to the viewport.
-
-> [!WARNING] 
-> This plugin is a UI and management tool. It DOES NOT contain or redistribute the upscaling technologies themselves. You must download, install, and enable whichever technologies you want to use in your project (e.g., StreamlineCore, AMD FSR 4, Intel XeSS).
+It's essentially a single drag-and-drop UMG Widget (`WBP_SettingsUpscaling`) that automatically detects the user's GPU and dynamically enables or disables the right upscaling options (DLSS, FSR, XeSS, and NIS) based on what their hardware actually supports. It's totally self-contained, meaning the detection logic runs entirely on its own without needing the underlying upscaler plugins to compile—though you obviously still need to install the NVIDIA/AMD plugins for the upscaling to actually work in-game.
 
 ---
 
