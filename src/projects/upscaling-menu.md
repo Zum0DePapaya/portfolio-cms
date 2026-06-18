@@ -2,7 +2,7 @@
 title: "Upscaling Menu - Unreal Engine 5 Plugin"
 category: "tools"
 weight: 4
-thumbnail: "/assets/images/upscaling-menu-thumbnail.jpg"
+thumbnail: "/assets/images/22b8325b.jpg"
 hover_description: "• Standalone UE5 plugin for comprehensive graphics upscaling.<br> • Extracted and expanded from 'Five More Minutes'.<br> • Custom C++ Hardware Info Library for dynamic UI adaptation.<br> • Published asset on Fab."
 full_width: false
 about: "Originally developed for the speedrunner 'Five More Minutes', I extracted the upscaling UI into a robust, standalone Unreal Engine 5 plugin. It provides a complete widget-based upscaling menu system, backed by a custom C++ library that queries the user's hardware to dynamically enable or disable supported features (like DLSS 3 Frame Generation)."
