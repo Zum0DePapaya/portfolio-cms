@@ -13,6 +13,8 @@ engine: "Unreal Engine 5"
 
 # Upscaling Menu (UE5 Plugin)
 
+**[📦 Get the Upscaling Menu on Fab!](https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a)**
+
 <div class="videos_two">
   <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
     [PLACEHOLDER_IMG_FAB_LISTING: Image of the Upscaling Menu Fab listing or the UI itself]

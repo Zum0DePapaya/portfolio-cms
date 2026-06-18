@@ -8,4 +8,6 @@ full_width: false
 
 # Blackshard Optimized Tweaks
 
+**[🛠️ Download the mod on Nexus Mods!](https://www.nexusmods.com/blackshard/mods/1)**
+
 Notes about the performance improvements and techniques used.

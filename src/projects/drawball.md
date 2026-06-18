@@ -13,6 +13,8 @@ engine: "Unity"
 
 # Drawball
 
+**[🎮 Play Drawball on Itch.io!](https://zumodepapaya.itch.io/drawball)**
+
 <div class="videos_two">
   <div class="content-placeholder">
     <img src="{{ '/assets/images/e43b32d8.gif' | url }}" alt="Drawball Gameplay" style="width: 100%;">
