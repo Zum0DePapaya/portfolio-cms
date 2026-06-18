@@ -24,9 +24,7 @@ engine: "Unreal Engine 5.6"
 
 ### Introduction
 
-Sometimes, keeping it simple is the best approach. While experimenting with the Unreal Engine 5.6 game *Blackshard*, I noticed performance was struggling under the weight of UE5's newer rendering features. I tried dozens of different console commands and intricate tweaks, but most of them didn't make a dent. 
-
-Ultimately, the most effective solution was a surgical approach: disabling the heaviest hitters outright. 
+*Blackshard* was struggling under UE5's heavier rendering features. After testing dozens of console commands and config tweaks, I found the most effective fix was the simplest one — disabling the heaviest hitters outright for a >2x framerate increase.
 
 ---
 
@@ -50,3 +48,7 @@ Because disabling Temporal Super Resolution (TSR) can drastically change how the
 1. **TAA (Temporal Anti-Aliasing):** The standard option (shown in the `.ini` snippet above with `r.AntiAliasingMethod=2`). Provides smooth edges at a much lower performance cost than TSR.
 2. **FXAA:** An even lighter, fast-approximate pass for older hardware.
 3. **No AA:** For purists who prefer maximum sharpness and zero blurring, at the cost of aliasing.
+
+### What I Learned
+
+This was a good reminder that optimization isn't always about writing clever code. Profiling the game showed that Nanite and Virtual Shadow Maps were responsible for the vast majority of the GPU load, and simply toggling them off gave better results than any amount of fine-tuning. Knowing when to cut a feature rather than optimize it is just as important.

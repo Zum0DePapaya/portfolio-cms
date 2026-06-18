@@ -22,7 +22,7 @@ engine: "Unity"
 
 ### Introduction
 
-The original idea for the "Just Get Started" jam theme was that players would draw to procedurally generate a level. This quickly morphed into something much more immediate: the only way to control the character is by drawing physical ink lines to guide, bounce, and protect them. As I realized how fun it was to optimize paths, it naturally evolved into a time-based speedrunner.
+The core mechanic is simple: the only way to control the character is by drawing physical ink lines to guide, bounce, and protect them through obstacles. Once path optimization became the fun part, it naturally evolved into a time-based speedrunner.
 
 ---
 
@@ -121,3 +121,7 @@ Because the game performed so well in the jam, I started adapting it for mobile.
   </div>
 </div>
 <p class="video-text">Mobile Controls: Multi-touch pinch-to-zoom dynamically adjusting orthographic camera size.</p>
+
+### What I Learned
+
+Shipping a jam game in under 8 days taught me to scope aggressively — the drawing physics and level generation were the only two systems that truly mattered, and everything else (leaderboards, ink types) was layered on top once those were solid. Starting the mobile port also gave me firsthand experience with the gap between "works on desktop" and "feels right on touch."
