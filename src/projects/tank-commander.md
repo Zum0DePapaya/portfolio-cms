@@ -37,6 +37,11 @@ When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers
   </div>
 </div>
 
+<div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+  [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR: iframe showing BP_HangarVehiclePreview -> SwapSlotMesh function]
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SwapSlotMesh:</strong> Routes the incoming GameplayTag through a switch to assign the correct StaticMesh to the corresponding component slot.</p>
+</div>
+
 #### System Architecture
 
 ```mermaid
@@ -125,6 +130,11 @@ Recognizing that rapid iteration is key to game design, I developed a suite of i
   <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
     [PLACEHOLDER_IMG_DEBUG_MENU: Image of the custom developer menu]
   </div>
+</div>
+
+<div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+  [PLACEHOLDER_IFRAME_BLUEPRINTUE_DEBUG: iframe showing the Debug Pause Menu hot-swapping graphic settings or cheat console logic]
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Debug Overrides:</strong> Applies runtime graphic settings or spawns objects dynamically for rapid playtesting.</p>
 </div>
 
 ### What I learned
