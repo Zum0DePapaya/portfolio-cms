@@ -22,7 +22,7 @@ engine: "Unreal Engine 5"
 
 ### Introduction
 
-I originally built this system for *Five More Minutes* to manage DLSS, FSR, XeSS, and NIS from a single UI. I extracted it into a standalone plugin — a drag-and-drop UMG Widget (`WBP_SettingsUpscaling`) backed by a custom C++ library that detects the user's GPU and dynamically enables or disables upscaling options based on hardware support. It's self-contained and compiles independently of any upscaler plugins. Now available as a free asset on Fab.
+I originally built this system for *Five More Minutes* to manage DLSS, FSR, XeSS, and NIS from a single UI. I extracted it into a standalone plugin — a drag-and-drop UMG Widget (`WBP_SettingsUpscaling`) backed by a custom C++ library that detects the user's GPU and dynamically enables or disables upscaling options based on hardware support.
 
 ---
 

@@ -30,7 +30,7 @@ engine: "Unreal Engine 5.6"
 
 ### The Engine.ini Tweaks
 
-The mod is extremely lightweight, consisting of just a few crucial configuration overrides injected into the game's `Engine.ini` file.
+The mod consists of a few configuration overrides in the game's `Engine.ini` file.
 
 ```ini
 [/Script/Engine.RendererSettings]

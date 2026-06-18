@@ -28,7 +28,7 @@ The core mechanic is simple: the only way to control the character is by drawing
 
 ### Live Drawing Physics
 
-The drawing system had to feel perfectly smooth and responsive, no matter how fast the camera was moving. 
+Drawing and physics had to stay in sync without either one blocking the other, especially at high camera speeds.
 
 I built `DrawLine2D` to decouple the visual line updates from the physics calculations. Visuals update in `LateUpdate` using Catmull-Rom spline smoothing to keep the ink looking fluid, while physics update in `FixedUpdate` by dynamically generating an `EdgeCollider2D`. The player can swap between "Standard" and "Bouncy" ink types, each with their own PhysicsMaterial2D and ink consumption costs.
 
@@ -62,7 +62,7 @@ private List<Vector3> GenerateSmoothedPoints(List<Vector2> points)
 
 ### Procedural "Drawn-In" Level Geometry
 
-To match the doodle aesthetic, I wanted the actual level geometry to look like it was being drawn into existence when the level starts.
+The doodle aesthetic meant the level geometry itself needed to look hand-drawn — so I made it animate in like it was being sketched in real-time when the level starts.
 
 I engineered `LevelDrawer`, which uses the `Clipper2Lib` library to perform boolean unions on multiple overlapping 2D colliders (`DrawableLevelPiece`). It merges the shapes, extracts the outer contour paths, and applies Chaikin smoothing. Finally, a coroutine animates a `LineRenderer` along these paths over time, creating the visual effect of the level boundaries being sketched in real-time.
 
