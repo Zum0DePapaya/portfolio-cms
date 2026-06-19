@@ -43,7 +43,13 @@ title: Daniel Martínez Lozano - Portfolio
                     <img src="{{ project.data.thumbnail | url }}" alt="{{ project.data.title }} preview" class="thumbnail-image">
                 </div>
                 <div class="thumbnail-overlay">
-                    {{ project.data.hover_description | safe }}
+                    <ul class="hover-list">
+                    {% set items = project.data.hover_description.split('<br>') %}
+                    {% for item in items %}
+                        {% set clean_item = item | replace("•", "") | trim %}
+                        <li>{{ clean_item | safe }}</li>
+                    {% endfor %}
+                    </ul>
                 </div>
             </a>
         </div>
