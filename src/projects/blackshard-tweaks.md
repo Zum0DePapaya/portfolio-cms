@@ -3,9 +3,9 @@ title: "BLACKSHARD Optimized Tweaks - UE5.6 Mod - Performance Optimization - Sol
 category: "tools"
 weight: 5
 thumbnail: "/assets/images/dfba02ee.jpg"
-hover_description: "• Performance optimization mod for the UE5.6 game 'Blackshard'.<br> • More than 2x performance increase with minimal visual loss.<br> • Disables heavy rendering features like Nanite and VSM.<br> • Offers TAA, FXAA, and NoAA variants."
+hover_description: "• Performance optimization mod for the UE5.6 game 'BLACKSHARD'.<br> • More than 2x performance increase with minimal visual loss.<br> • Disables heavy rendering features like Nanite and VSM.<br> • Offers TAA, FXAA, and NoAA variants."
 full_width: false
-about: "Blackshard Optimized Tweaks is a performance optimization mod I created for the Unreal Engine 5.6 game 'Blackshard'. By stripping away some of the engine's heaviest rendering features like Nanite and Virtual Shadow Maps, the mod effectively doubles framerates (e.g., from 65 FPS to 135 FPS) without significantly degrading the visual experience."
+about: "BLACKSHARD Optimized Tweaks is a performance optimization mod I created for the Unreal Engine 5.6 game 'BLACKSHARD'. By stripping away some of the engine's heaviest rendering features like Nanite and Virtual Shadow Maps, the mod effectively doubles framerates (e.g., from 65 FPS to 135 FPS) without significantly degrading the visual experience."
 role: "Modder / Optimizer"
 team_size: 1
 engine: "Unreal Engine 5.6"
@@ -17,14 +17,14 @@ engine: "Unreal Engine 5.6"
 
 <div class="videos_two">
   <div class="content-placeholder">
-    <img src="{{ '/assets/images/blackshard-comparison.webp' | url }}" alt="Blackshard Before and After FPS Comparison" style="width: 100%;">
+    <img src="{{ '/assets/images/blackshard-comparison.webp' | url }}" alt="BLACKSHARD Before and After FPS Comparison" style="width: 100%;">
   </div>
 </div>
 <p class="video-text">Performance comparison: The vanilla game runs at 65 FPS, while the modded version jumps to 135 FPS in the same scene.</p>
 
 ### Introduction
 
-*Blackshard* was struggling under UE5's heavier rendering features. After testing dozens of console commands and config tweaks, I found the most effective fix was the simplest one — disabling the heaviest hitters outright for a >2x framerate increase.
+*BLACKSHARD* was struggling under UE5's heavier rendering features. After testing dozens of console commands and config tweaks, I found the most effective fix was the simplest one — disabling the heaviest hitters outright for a >2x framerate increase.
 
 ---
 
