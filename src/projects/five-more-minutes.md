@@ -115,3 +115,7 @@ Beyond the core systems, I built the game's UI framework and audio pipeline to m
   </div>
 </div>
 <p class="video-text">UI Flow: transitioning between Main Menu and Settings submenus.</p>
+
+### What I Learned
+
+Building *Five More Minutes* was a masterclass in wrestling with Unreal's physics engine. Implementing a momentum-driven grappling hook that felt satisfying required deep tuning of physics constraints and custom tracing logic. It also taught me a lot about feature scoping — we built an entirely functional seamless portal system for level transitions, but ended up scrapping it when playtesting revealed it broke the game's high-speed pacing. Learning when to cut impressive tech for the sake of the game's flow was a valuable takeaway.
