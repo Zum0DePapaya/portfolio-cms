@@ -181,18 +181,18 @@ a:hover {
 .project-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .project-tag {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-family: var(--font-mono);
     color: var(--text-primary);
     background-color: rgba(139, 197, 191, 0.1);
     border: 1px solid rgba(139, 197, 191, 0.3);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    line-height: 1;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.35rem;
+    line-height: 1.2;
 }
 
 .project-thumbnail {
