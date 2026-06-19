@@ -71,6 +71,8 @@ layout: layouts/base.njk
 
 {% if body_es %}
 <div class="project-content part lang-es">
-    {{ body_es | markdownify | safe }}
+    {% renderTemplate "njk,md" %}
+{{ body_es | safe }}
+    {% endrenderTemplate %}
 </div>
 {% endif %}

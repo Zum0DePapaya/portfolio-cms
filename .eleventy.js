@@ -4,6 +4,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
+  const { EleventyRenderPlugin } = require("@11ty/eleventy");
+  eleventyConfig.addPlugin(EleventyRenderPlugin);
+
   const md = require("markdown-it")({ html: true });
   eleventyConfig.addFilter("markdownify", (content) => {
     return md.render(content || "");
