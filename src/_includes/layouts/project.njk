@@ -15,9 +15,30 @@ layout: layouts/base.njk
       <img src="{{ thumbnail | url }}" alt="{{ title }} thumbnail" class="hero-image">
     {% endif %}
   </div>
-  <h2 class="lang-en">{{ title }}</h2>
+  {% set titleParts = title.split(' - ') %}
+  <div class="project-header-info lang-en" style="margin-top: 1.5rem; text-align: center;">
+    <h2 class="project-title-main" style="margin-bottom: 0.75rem;">{{ titleParts[0] }}</h2>
+    {% if titleParts.length > 1 %}
+    <div class="project-tags" style="justify-content: center;">
+        {% for i in range(1, titleParts.length) %}
+            <span class="project-tag">{{ titleParts[i] }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+
   {% if title_es %}
-  <h2 class="lang-es">{{ title_es }}</h2>
+  {% set titlePartsEs = title_es.split(' - ') %}
+  <div class="project-header-info lang-es" style="margin-top: 1.5rem; text-align: center;">
+    <h2 class="project-title-main" style="margin-bottom: 0.75rem;">{{ titlePartsEs[0] }}</h2>
+    {% if titlePartsEs.length > 1 %}
+    <div class="project-tags" style="justify-content: center;">
+        {% for i in range(1, titlePartsEs.length) %}
+            <span class="project-tag">{{ titlePartsEs[i] }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+  </div>
   {% endif %}
 </div>
 
