@@ -351,6 +351,22 @@ a:hover {
     .project-item {
         min-width: 100%;
     }
+    
+    /* Simulate zooming out on BlueprintUE iframes by making them 1.5x larger and scaling down */
+    .content-placeholder:has(iframe[src*="blueprintue"]) {
+        position: relative;
+        height: 350px;
+    }
+    
+    .content-placeholder iframe[src*="blueprintue"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 150% !important;
+        height: 525px !important;
+        transform: scale(0.666666);
+        transform-origin: 0 0;
+    }
 }
 
 /* Project Layout Styles */

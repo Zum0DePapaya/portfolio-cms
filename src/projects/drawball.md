@@ -13,7 +13,7 @@ engine: "Unity"
 
 
 
-<iframe frameborder="0" src="https://itch.io/embed/3738877?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="552" height="167"><a href="https://zumodepapaya.itch.io/drawball">Play Drawball on itch.io</a></iframe>
+<iframe frameborder="0" src="https://itch.io/embed/3738877?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="100%" style="max-width: 552px;" height="167"><a href="https://zumodepapaya.itch.io/drawball">Play Drawball on itch.io</a></iframe>
 
 ### Introduction
 
