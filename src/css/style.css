@@ -325,9 +325,9 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-    :root {
-        --padding-x: 1.5rem;
-        --padding-y: 1.5rem;
+    body {
+        font-size: 1rem;
+        line-height: 1.6;
     }
     
     .hero-content {
@@ -341,6 +341,15 @@ a:hover {
     
     .social-icons {
         justify-content: center;
+    }
+    
+    .inner-container {
+        gap: 2rem;
+        padding: 1rem;
+    }
+    
+    .project-item {
+        min-width: 100%;
     }
 }
 

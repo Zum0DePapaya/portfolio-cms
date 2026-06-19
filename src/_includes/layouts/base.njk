@@ -23,6 +23,13 @@
             --border-radius: {{ theme.border_radius | default('1.5rem') }};
             --border-color: {{ theme.border_color | default('rgba(61, 61, 61, 0.212)') }};
         }
+        @media (max-width: 768px) {
+            :root {
+                --padding-x: 1rem;
+                --padding-y: 1.5rem;
+                --gap-spacing: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
