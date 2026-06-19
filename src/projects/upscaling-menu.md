@@ -76,11 +76,11 @@ Furthermore, publishing to Fab presented a major architectural constraint: **Fab
 
 <div class="videos_two">
   <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-    [PLACEHOLDER_IFRAME_BLUEPRINTUE_UPSCALING_UI: iframe showing WBP_SettingsUpscaling -> UpdateDependentUI function]
+    <iframe src="https://blueprintue.com/render/i_p0bi42/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
     <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>UpdateDependentUI:</strong> Conditionally disables or enables specific UI elements based on the hardware support struct.</p>
   </div>
   <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-    [PLACEHOLDER_IFRAME_BLUEPRINTUE_BML_DLSS: iframe showing BML_DLSS -> Set DLSS/DLAA (auto)]
+    <iframe src="https://blueprintue.com/render/vw4o0a-y/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
     <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Reverse-Engineered Application:</strong> Custom macro logic that safely applies upscaler states without relying on official plugin dependencies.</p>
   </div>
 </div>
