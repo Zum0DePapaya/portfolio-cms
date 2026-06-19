@@ -1,6 +1,6 @@
 ---
-title: "BLACKSHARD Optimized Tweaks - UE5.6 Mod - Performance Optimization - Solo Developer"
-title_es: "BLACKSHARD Optimized Tweaks - Mod UE5.6 - Optimización de Rendimiento - Desarrollador en Solitario"
+title: "BLACKSHARD Optimized Tweaks - Mod - Performance Optimization - Solo Developer"
+title_es: "BLACKSHARD Optimized Tweaks - Mod - Optimización de Rendimiento - Desarrollador en Solitario"
 category: "tools"
 weight: 5
 thumbnail: "/assets/images/dfba02ee.jpg"

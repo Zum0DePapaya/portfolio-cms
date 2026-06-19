@@ -1,6 +1,6 @@
 ---
-title: "Upscaling Menu - UE5 Plugin - Blueprints & C++ - Solo Developer"
-title_es: "Menú de Escalado - Plugin de UE5 - Blueprints y C++ - Desarrollador Individual"
+title: "Upscaling Menu - UE5.6 - UE5.7 - Blueprints - C++ - Solo Developer"
+title_es: "Menú de Escalado - UE5.6 - UE5.7 - Blueprints - C++ - Desarrollador Individual"
 category: "tools"
 weight: 4
 thumbnail: "/assets/images/22b8325b.jpg"

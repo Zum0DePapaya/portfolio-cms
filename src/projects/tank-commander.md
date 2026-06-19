@@ -1,6 +1,6 @@
 ---
-title: "Tank Commander - UE5.7 - Blueprints and C++ - Systems & Tools Programming"
-title_es: "Tank Commander - UE5.7 - Programación de Sistemas y Herramientas (Blueprints y C++)"
+title: "Tank Commander - UE5.7 - Blueprints - C++ - Systems & Tools Programming"
+title_es: "Tank Commander - UE5.7 - Blueprints - C++ - Programación de Sistemas y Herramientas"
 category: "games"
 weight: 2
 thumbnail: "/assets/images/aecc34f9.jpg"

@@ -1,6 +1,6 @@
 ---
-title: "Five More Minutes - UE5.5 - Blueprints - Lead Programmer/Designer"
-title_es: "Five More Minutes - UE5.5 - Blueprints - Programador/Diseñador Principal"
+title: "Five More Minutes - UE5.5 - Blueprints - Lead Programmer - Lead Designer"
+title_es: "Five More Minutes - UE5.5 - Blueprints - Programador Principal - Diseñador Principal"
 category: "games"
 weight: 1
 thumbnail: "/assets/images/5035198e.gif"

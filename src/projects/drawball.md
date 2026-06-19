@@ -1,6 +1,6 @@
 ---
-title: "Drawball - Unity - C# - Solo Developer"
-title_es: "Drawball - Unity - C# - Desarrollador en solitario"
+title: "Drawball - Unity 6 - C# - Solo Developer"
+title_es: "Drawball - Unity 6 - C# - Desarrollador en solitario"
 category: "games"
 weight: 3
 thumbnail: "/assets/images/e43b32d8.gif"
