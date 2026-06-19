@@ -72,6 +72,19 @@ if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, SubKey, 0, KEY_READ, &hKey) == ERROR_SUCCES
 
 Decoupling the system from *Five More Minutes* meant ensuring zero hard references to game-specific classes. `WBP_SettingsUpscaling` relies entirely on the data struct from `UHardwareInfoLibrary` to populate boolean flags (`DLSS-FG Supported`, `XeSS Supported`, etc.). Its `UpdateDependentUI` function runs a `Switch on E_UpscalerType` to conditionally disable UI sections for unsupported features like Anti-Lag 2 or Ray Reconstruction.
 
+Furthermore, publishing to Fab presented a major architectural constraint: **Fab does not allow published plugins to depend on external plugins.** This meant I could not simply reference the official DLSS, FSR, or XeSS plugins to check if they were enabled or supported. To solve this, I had to write custom hardware and software detection scripts to manually reverse-engineer the conditions by which these technologies are normally enabled or disabled, creating custom logic to apply these rules accurately—a massive amount of work that ensures the plugin remains entirely standalone.
+
+<div class="videos_two">
+  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+    [PLACEHOLDER_IFRAME_BLUEPRINTUE_UPSCALING_UI: iframe showing WBP_SettingsUpscaling -> UpdateDependentUI function]
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>UpdateDependentUI:</strong> Conditionally disables or enables specific UI elements based on the hardware support struct.</p>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
+    [PLACEHOLDER_IFRAME_BLUEPRINTUE_BML_DLSS: iframe showing BML_DLSS -> Set DLSS/DLAA (auto)]
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Reverse-Engineered Application:</strong> Custom macro logic that safely applies upscaler states without relying on official plugin dependencies.</p>
+  </div>
+</div>
+
 ### What I Learned
 
 Building this as a reusable plugin forced me to think about API boundaries differently than building a game feature. Every function in the C++ library had to be useful without any context about the consuming project — no assumptions about game state, no references to specific blueprints. It was a good exercise in writing genuinely modular engine code.
