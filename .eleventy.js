@@ -4,6 +4,11 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
+  const md = require("markdown-it")({ html: true });
+  eleventyConfig.addFilter("markdownify", (content) => {
+    return md.render(content || "");
+  });
+
   // Create a single collection for all projects
   eleventyConfig.addCollection("allProjects", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/projects/*.md")

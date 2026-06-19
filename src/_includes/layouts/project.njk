@@ -14,10 +14,13 @@ layout: layouts/base.njk
       <img src="{{ thumbnail | url }}" alt="{{ title }} thumbnail" class="hero-image">
     {% endif %}
   </div>
-  <h2>{{ title }}</h2>
+  <h2 class="lang-en">{{ title }}</h2>
+  {% if title_es %}
+  <h2 class="lang-es">{{ title_es }}</h2>
+  {% endif %}
 </div>
 
-<div class="experience">
+<div class="experience lang-en">
   {% if about %}
   <section class="job-card">
     <h3>About</h3>
@@ -38,6 +41,35 @@ layout: layouts/base.njk
   {% endif %}
 </div>
 
-<div class="project-content part">
+{% if about_es or role_es %}
+<div class="experience lang-es">
+  {% if about_es %}
+  <section class="job-card">
+    <h3>Acerca de</h3>
+    <p>{{ about_es }}</p>
+  </section>
+  {% endif %}
+
+  {% if role_es or team_size or time_frame or engine %}
+  <section class="job-card">
+    <h3>Información</h3>
+    <ul class="project-info-list">
+      {% if role_es %}<li><strong>Rol:</strong> {{ role_es }}</li>{% endif %}
+      {% if team_size %}<li><strong>Equipo:</strong> {{ team_size }}</li>{% endif %}
+      {% if time_frame %}<li><strong>Duración:</strong> {{ time_frame }}</li>{% endif %}
+      {% if engine %}<li><strong>Motor:</strong> {{ engine }}</li>{% endif %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="project-content part lang-en">
     {{ content | safe }}
 </div>
+
+{% if body_es %}
+<div class="project-content part lang-es">
+    {{ body_es | markdownify | safe }}
+</div>
+{% endif %}

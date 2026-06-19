@@ -1,11 +1,12 @@
 {
   "name": "Daniel Martínez Lozano",
   "bio": "I am a game programmer and systems designer I've been making games for around 5 years. I excel in imagining intricate interconnected systems and bringing them to life.",
+  "bio_es": "Soy diseñador y programador de juegos y sistemas con aproximadamente 5 años de experiencia. Me encanta imaginar sistemas intrincados e interconectados y darles vida de forma eficaz.",
   "profile_image": "/assets/images/image01.jpg",
   "linkedin_url": "https://www.linkedin.com/in/daniel-martinez-lozano2/",
   "github_url": "https://github.com/Zum0DePapaya",
   "sections": [
-    { "title": "Games", "id": "games" },
-    { "title": "Tools", "id": "tools" }
+    { "title": "Games", "title_es": "Juegos", "id": "games" },
+    { "title": "Tools", "title_es": "Utilidades", "id": "tools" }
   ]
 }

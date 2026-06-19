@@ -584,3 +584,59 @@ p > code, li > code {
         margin-top: -2rem;
     }
 }
+
+/* Language Toggle */
+.lang-toggle-container {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 0.75rem;
+    z-index: 100;
+}
+
+.lang-btn {
+    background: transparent;
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0.4;
+    filter: grayscale(100%);
+}
+
+.lang-btn:hover {
+    opacity: 0.8;
+    filter: grayscale(50%);
+}
+
+.lang-btn svg {
+    display: block;
+    width: 32px;
+    height: 24px;
+    object-fit: cover;
+}
+
+:root[lang="en"] .lang-btn-en,
+:root[lang="es"] .lang-btn-es {
+    opacity: 1;
+    filter: grayscale(0%);
+    border-color: var(--text-title);
+    box-shadow: 0 0 10px rgba(226, 155, 168, 0.3);
+}
+
+/* Zero-Latency Language Toggling */
+:root[lang="en"] .lang-es { display: none !important; }
+:root[lang="es"] .lang-en { display: none !important; }
+
+@media (max-width: 768px) {
+    .lang-toggle-container {
+        top: 1rem;
+        right: 1rem;
+    }
+}

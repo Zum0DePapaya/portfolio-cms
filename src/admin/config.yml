@@ -16,6 +16,7 @@ collections:
         fields:
           - {label: "Name", name: "name", widget: "string"}
           - {label: "Bio", name: "bio", widget: "text"}
+          - {label: "Bio (Spanish)", name: "bio_es", widget: "text", required: false}
           - {label: "Profile Image", name: "profile_image", widget: "image"}
           - {label: "LinkedIn URL", name: "linkedin_url", widget: "string"}
           - {label: "GitHub URL", name: "github_url", widget: "string"}
@@ -24,6 +25,7 @@ collections:
             widget: "list"
             fields:
               - {label: "Section Title (e.g. Games)", name: "title", widget: "string"}
+              - {label: "Section Title (Spanish)", name: "title_es", widget: "string", required: false}
               - {label: "Section ID (no spaces, lowercase)", name: "id", widget: "string"}
 
       - label: "Theme Settings"
@@ -48,9 +50,12 @@ collections:
     slug: "{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title (Spanish)", name: "title_es", widget: "string", required: false}
       - {label: "Weight (Order)", name: "weight", widget: "number", value_type: "int", default: 10}
       - {label: "Category", name: "category", widget: "relation", collection: "settings", file: "landing", search_fields: ["sections.*.title"], display_fields: ["sections.*.title"], value_field: "sections.*.id"}
       - {label: "Thumbnail Image", name: "thumbnail", widget: "image"}
       - {label: "Hover Description (HTML allowed)", name: "hover_description", widget: "text"}
+      - {label: "Hover Description (Spanish)", name: "hover_description_es", widget: "text", required: false}
       - {label: "Full Width Card", name: "full_width", widget: "boolean", default: false, required: false}
       - {label: "Project Body", name: "body", widget: "markdown"}
+      - {label: "Project Body (Spanish)", name: "body_es", widget: "markdown", required: false}
