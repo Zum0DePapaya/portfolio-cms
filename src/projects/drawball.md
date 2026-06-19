@@ -14,11 +14,6 @@ engine: "Unity"
 
 
 <iframe frameborder="0" src="https://itch.io/embed/3738877?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="552" height="167"><a href="https://zumodepapaya.itch.io/drawball">Play Drawball on itch.io</a></iframe>
-<div class="videos_two">
-  <div class="content-placeholder">
-    <img src="{{ '/assets/images/e43b32d8.gif' | url }}" alt="Drawball Gameplay" style="width: 100%;">
-  </div>
-</div>
 
 ### Introduction
 
@@ -33,9 +28,7 @@ Drawing and physics had to stay in sync without either one blocking the other, e
 I built `DrawLine2D` to decouple the visual line updates from the physics calculations. Visuals update in `LateUpdate` using Catmull-Rom spline smoothing to keep the ink looking fluid, while physics update in `FixedUpdate` by dynamically generating an `EdgeCollider2D`. The player can swap between "Standard" and "Bouncy" ink types, each with their own PhysicsMaterial2D and ink consumption costs.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_DRAWING: GIF showing drawing standard and bouncy ink in action]
-  </div>
+  <img src="{{ '/assets/images/live-drawing-action.gif' | url }}" alt="Live Drawing Action" style="width: 100%;">
 </div>
 <p class="video-text">Live Drawing: Visuals dynamically smoothed using Catmull-Rom splines while physics generate EdgeCollider2Ds.</p>
 
@@ -68,9 +61,7 @@ The doodle aesthetic meant the level geometry itself needed to look hand-drawn �
 I engineered `LevelDrawer`, which uses the `Clipper2Lib` library to perform boolean unions on multiple overlapping 2D colliders (`DrawableLevelPiece`). It merges the shapes, extracts the outer contour paths, and applies Chaikin smoothing. Finally, a coroutine animates a `LineRenderer` along these paths over time, creating the visual effect of the level boundaries being sketched in real-time.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_LEVEL_DRAWING: GIF showing the level boundaries being drawn in when the level starts]
-  </div>
+  <img src="{{ '/assets/images/level-drawing-effect.gif' | url }}" alt="Level Drawing Effect" style="width: 100%;">
 </div>
 <p class="video-text">Drawn-In Geometry: Overlapping 2D colliders are merged using Clipper2Lib and their contours are animated over time.</p>
 
@@ -105,25 +96,12 @@ for (int i = 0; i < smoothingIterations; i++)
 Since speedrunning became the core loop, I needed a robust backend to track completion times. I integrated the **LootLocker SDK** to handle guest sessions and score submissions. The `DisplayLeaderboard` system automatically queries leaderboards dynamically generated per-level (`level_1_times`, `level_2_times`), paginates the data, and formats the raw millisecond scores into clean `mm:ss.fff` readouts.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_IMG_LEADERBOARD: Screenshot of the paginated LootLocker leaderboard UI]
-  </div>
+  <img src="{{ '/assets/images/lootlocker-leaderboard.png' | url }}" alt="LootLocker Leaderboards" style="width: 100%;">
 </div>
 <p class="video-text">Leaderboards: Live server integration formatting millisecond precision times.</p>
 
----
 
-### The Mobile Port
-
-Because the game performed so well in the jam, I started adapting it for mobile. I rewrote the camera systems (`CameraZoomController`) to support multi-touch pinch-to-zoom using Unity's new Input System, calculating the magnitude difference between two active touches to dynamically adjust the orthographic size. While I never officially released the mobile port, building these touch-first control schemes was a great learning experience.
-
-<div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_MOBILE_ZOOM: GIF or video demonstrating pinch-to-zoom on a mobile device]
-  </div>
-</div>
-<p class="video-text">Mobile Controls: Multi-touch pinch-to-zoom dynamically adjusting orthographic camera size.</p>
 
 ### What I Learned
 
-Shipping a jam game in under 8 days taught me to scope aggressively — the drawing physics and level generation were the only two systems that truly mattered, and everything else (leaderboards, ink types) was layered on top once those were solid. Starting the mobile port also gave me firsthand experience with the gap between "works on desktop" and "feels right on touch."
+Shipping a jam game in under 8 days taught me to scope aggressively — the drawing physics and level generation were the only two systems that truly mattered, and everything else (leaderboards, ink types) was layered on top once those were solid.

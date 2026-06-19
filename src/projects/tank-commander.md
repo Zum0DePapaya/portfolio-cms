@@ -32,21 +32,11 @@ To provide a seamless customization experience, I built a dedicated Hangar GameM
 When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers a `SwapSlotMesh` function on the `BP_HangarVehiclePreview` actor. This provides instant 3D visual feedback without affecting the actual gameplay actor. Once the player confirms their loadout, the final configuration is written to the GameInstance.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_HANGAR_FLOW: GIF showing you swapping out tank parts in the UI]
-  </div>
+  <img src="{{ '/assets/images/hangar-customization-flow.gif' | url }}" alt="Hangar Customization Flow" style="width: 100%;">
 </div>
 
-<div class="videos_two">
-  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-    [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR_UI: iframe showing WBP_PartSelectionPanel -> ShowForSlot function]
-    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ShowForSlot:</strong> Populates the UI grid with available parts matching the currently selected slot's GameplayTag.</p>
-  </div>
-  <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-    [PLACEHOLDER_IFRAME_BLUEPRINTUE_HANGAR: iframe showing BP_HangarVehiclePreview -> SwapSlotMesh function]
-    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SwapSlotMesh:</strong> Routes the incoming GameplayTag through a switch to assign the correct StaticMesh to the corresponding component slot.</p>
-  </div>
-</div>
+<iframe src="https://blueprintue.com/render/2qhgqz-2/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ShowForSlot:</strong> Populates the UI grid with available parts matching the currently selected slot's GameplayTag.</p>
 
 #### System Architecture
 
@@ -92,9 +82,7 @@ Unreal's Chaos Destruction engine provides incredible visuals, but generating th
 To solve this, I engineered a **custom C++ component** (`GeometryCollectionDebrisComponent`) that tracks fractured geometry. When debris hits the ground below a certain impulse threshold, the component disables its physics proxy, visually hides the meshes, and replaces them with highly performant Niagara particle bursts.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_CHAOS_OPTIMIZATION: GIF showing a tank shooting a building and the chunks swapping to Niagara particles]
-  </div>
+  <img src="{{ '/assets/images/chaos-destruction-optimization.gif' | url }}" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
 </div>
 
 ```cpp
@@ -135,15 +123,11 @@ void UGeometryCollectionDebrisComponent::OnGCHit(
 Recognizing that rapid iteration is key to game design, I developed a suite of in-game tools to accelerate playtesting for the rest of the team. This included a custom Debug Pause Menu for hot-swapping graphic settings and keybinds, and a Cheat Console for testing physics and AI with infinite ammo and rapid-fire.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_IMG_DEBUG_MENU: Image of the custom developer menu]
-  </div>
+  <img src="{{ '/assets/images/debug-pause-menu.png' | url }}" alt="Debug Pause Menu" style="width: 100%;">
 </div>
 
-<div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
-  [PLACEHOLDER_IFRAME_BLUEPRINTUE_DEBUG: iframe showing WBP_DebugPauseMenu -> ChangeScalabilitySettings]
-  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ChangeScalabilitySettings:</strong> Routes an EScalabilityOptions enum through a switch to apply specific rendering quality configurations based on UI combobox selections.</p>
-</div>
+<iframe src="https://blueprintue.com/render/b_6a6e-f/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ChangeScalabilitySettings:</strong> Routes an EScalabilityOptions enum through a switch to apply specific rendering quality configurations based on UI combobox selections.</p>
 
 ### What I learned
 

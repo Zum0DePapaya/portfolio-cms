@@ -15,9 +15,7 @@ engine: "Unreal Engine 5"
 
 <a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">📦 Get the Upscaling Menu on Fab!</a>
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_IMG_FAB_LISTING: Image of the Upscaling Menu Fab listing or the UI itself]
-  </div>
+  <img src="{{ '/assets/images/fab-listing.png' | url }}" alt="Fab Listing" style="width: 100%;">
 </div>
 
 ### Introduction
@@ -31,11 +29,9 @@ I originally built this system for *Five More Minutes* to manage DLSS, FSR, XeSS
 The core problem is preventing users from activating features their hardware doesn't support. I wrote `UHardwareInfoLibrary`, a C++ Blueprint Function Library that queries the OS directly — parsing the GPU brand string with regex to identify the exact series (3000 vs 4000 for Frame Gen compatibility), checking the Windows Registry for Hardware-Accelerated GPU Scheduling (`HwSchMode`), and validating DLL presence (`nvngx_dlss.dll`) alongside plugin descriptor JSONs.
 
 <div class="videos_two">
-  <div class="content-placeholder" style="aspect-ratio: 16/9; background: #222; border: 1px dashed #555; display: flex; align-items: center; justify-content: center; color: #888;">
-    [PLACEHOLDER_GIF_MENU_TOGGLE: GIF showing the UI graying out options based on hardware limitations]
-  </div>
+  <img src="{{ '/assets/images/automatic-hardware-detection.png' | url }}" alt="Automatic Hardware Detection" style="width: 100%;">
 </div>
-<p class="video-text">Hardware Adaptation: The UI dynamically locks features based on the parsed C++ hardware details struct.</p>
+<p class="video-text">Automatic Hardware Detection: The UI dynamically detects the GPU (e.g. Intel ARC) and locks unsupported features based on the parsed C++ hardware details struct.</p>
 
 ```cpp
 // Snippet: Extracting the GPU Series Number via Regex
