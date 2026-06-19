@@ -1,6 +1,6 @@
 ---
 title: "Drawball - Unity 6 - C# - Solo Developer"
-title_es: "Drawball - Unity 6 - C# - Desarrollador en solitario"
+title_es: "Drawball - Unity 6 - C# - Desarrollador en Solitario"
 category: "games"
 weight: 3
 thumbnail: "/assets/images/e43b32d8.gif"
@@ -10,7 +10,7 @@ full_width: false
 about: "Drawball was a solo project built in under 8 days for the Inbound Shovel Jam (Theme: 'Just Get Started'). It placed in the top 9% out of 1,144 entries. The core mechanic limits player control entirely to drawing physical lines on the screen to guide a ball through obstacles, naturally evolving into a fast-paced speedrunning platformer."
 about_es: "Drawball fue un proyecto en solitario desarrollado en menos de 8 días para la Inbound Shovel Jam (Tema: 'Just Get Started'). Quedó en el 9% superior de las 1.144 entradas. La mecánica principal limita el control del jugador únicamente a dibujar líneas físicas en la pantalla para guiar una bola a través de obstáculos, evolucionando naturalmente hacia un juego de plataformas de velocidad rápida."
 role: "Solo Developer"
-role_es: "Desarrollador en solitario"
+role_es: "Desarrollador en Solitario"
 team_size: 1
 engine: "Unity"
 body_es: |

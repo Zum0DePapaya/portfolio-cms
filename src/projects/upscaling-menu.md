@@ -1,6 +1,6 @@
 ---
 title: "Upscaling Menu - UE5.6 - UE5.7 - Blueprints - C++ - Solo Developer"
-title_es: "Menú de Escalado - UE5.6 - UE5.7 - Blueprints - C++ - Desarrollador Individual"
+title_es: "Menú de Escalado - UE5.6 - UE5.7 - Blueprints - C++ - Desarrollador en Solitario"
 category: "tools"
 weight: 4
 thumbnail: "/assets/images/22b8325b.jpg"
@@ -10,7 +10,7 @@ full_width: false
 about: "Originally developed for the speedrunner 'Five More Minutes', I extracted the upscaling UI into a robust, standalone Unreal Engine 5 plugin. It provides a complete widget-based upscaling menu system, backed by a custom C++ library that queries the user's hardware to dynamically enable or disable supported features (like DLSS 3 Frame Generation)."
 about_es: "Originalmente desarrollado para el 'speedrunner' 'Five More Minutes', extraje la interfaz de usuario de escalado en un plugin robusto e independiente para Unreal Engine 5. Ofrece un sistema completo de menú de escalado basado en widgets, respaldado por una librería personalizada en C++ que consulta el hardware del usuario para habilitar o deshabilitar dinámicamente las características soportadas (como DLSS 3 Frame Generation)."
 role: "Solo Developer"
-role_es: "Desarrollador Individual"
+role_es: "Desarrollador en Solitario"
 team_size: 1
 engine: "Unreal Engine 5"
 body_es: |
