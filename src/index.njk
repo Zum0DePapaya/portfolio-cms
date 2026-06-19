@@ -37,7 +37,17 @@ title: Daniel Martínez Lozano - Portfolio
     <div class="projects-grid games-grid">
         {% endif %}
         <div class="project-item {% if project.data.full_width %}full-width{% endif %}">
-            <p class="text-body project-title"><strong>{{ project.data.title }}</strong></p>
+            {% set titleParts = project.data.title.split(' - ') %}
+            <div class="project-header-info">
+                <h3 class="project-title-main">{{ titleParts[0] }}</h3>
+                {% if titleParts.length > 1 %}
+                <div class="project-tags">
+                    {% for i in range(1, titleParts.length) %}
+                        <span class="project-tag">{{ titleParts[i] }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
             <a href="{{ project.url | url }}" class="project-thumbnail">
                 <div class="thumbnail-wrapper">
                     <img src="{{ project.data.thumbnail | url }}" alt="{{ project.data.title }} preview" class="thumbnail-image">

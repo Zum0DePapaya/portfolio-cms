@@ -163,8 +163,36 @@ a:hover {
     flex: 1 1 100%;
 }
 
-.project-title {
-    margin-bottom: 0.75rem;
+.project-header-info {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-title-main {
+    font-size: 1.25rem;
+    color: var(--text-title);
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tag {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    background-color: rgba(139, 197, 191, 0.1);
+    border: 1px solid rgba(139, 197, 191, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    line-height: 1;
 }
 
 .project-thumbnail {
