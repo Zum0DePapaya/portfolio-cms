@@ -12,6 +12,15 @@ module.exports = function(eleventyConfig) {
     return md.render(content || "");
   });
 
+  const nunjucks = require("nunjucks");
+  let njkEnv = new nunjucks.Environment();
+  njkEnv.addFilter("url", function(url) {
+    return "/portfolio-cms" + url;
+  });
+  eleventyConfig.addFilter("renderNjk", function(content) {
+    return njkEnv.renderString(content || "", this.ctx);
+  });
+
   // Create a single collection for all projects
   eleventyConfig.addCollection("allProjects", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/projects/*.md")
