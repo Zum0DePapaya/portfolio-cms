@@ -13,7 +13,7 @@ role: "Lead Systems & Gameplay Programmer/Designer"
 role_es: "Programador/Diseñador Principal de Sistemas y Jugabilidad"
 team_size: 4
 engine: "Unreal Engine 5.5"
-body_es: >
+body_es: |
   <iframe frameborder="0" src="https://itch.io/embed/3830437?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="100%" style="max-width: 552px;" height="167"><a href="https://sanpitopatogames.itch.io/five-more-minutes">Play Five More Minutes on itch.io</a></iframe>
   
   ### Introducción

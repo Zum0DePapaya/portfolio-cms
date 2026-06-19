@@ -13,7 +13,7 @@ role: "Solo Developer"
 role_es: "Desarrollador en solitario"
 team_size: 1
 engine: "Unity"
-body_es: >
+body_es: |
   <iframe frameborder="0" src="https://itch.io/embed/3738877?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="100%" style="max-width: 552px;" height="167"><a href="https://zumodepapaya.itch.io/drawball">Jugar a Drawball en itch.io</a></iframe>
   
   ### Introducción

@@ -13,7 +13,7 @@ role: "Modder / Optimizer"
 role_es: "Modder / Optimizador"
 team_size: 1
 engine: "Unreal Engine 5.6"
-body_es: >
+body_es: |
   <a href="https://www.nexusmods.com/blackshard/mods/1" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">🛠️ ¡Descarga el mod en Nexus Mods!</a>
   
   <div class="videos_two">

@@ -13,7 +13,7 @@ role: "Systems & Tools Programmer"
 role_es: "Programador de Sistemas y Herramientas"
 team_size: 4
 engine: "Unreal Engine 5.7"
-body_es: >
+body_es: |
   ### Introducción
   
   Mi objetivo principal en este proyecto fue la creación del **sistema de personalización basado en datos** que permite a los diseñadores intercambiar piezas de tanques fácilmente, así como optimizar el **rendimiento** del juego al lidiar con una gran destrucción de Chaos.
