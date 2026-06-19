@@ -1,5 +1,5 @@
 ---
-title: "Upscaling Menu - Unreal Engine 5 Plugin"
+title: "Upscaling Menu - UE5 Plugin - Blueprints & C++ - Solo Developer"
 category: "tools"
 weight: 4
 thumbnail: "/assets/images/22b8325b.jpg"

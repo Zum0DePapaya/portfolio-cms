@@ -1,5 +1,5 @@
 ---
-title: "Blackshard Optimized Tweaks - UE5.6 Mod"
+title: "BLACKSHARD Optimized Tweaks - UE5.6 Mod - Performance Optimization - Solo Developer"
 category: "tools"
 weight: 5
 thumbnail: "/assets/images/dfba02ee.jpg"
