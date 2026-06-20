@@ -3,6 +3,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
+  eleventyConfig.addPassthroughCopy("src/CNAME");
 
   const { EleventyRenderPlugin } = require("@11ty/eleventy");
   eleventyConfig.addPlugin(EleventyRenderPlugin);
@@ -15,7 +16,7 @@ module.exports = function(eleventyConfig) {
   const nunjucks = require("nunjucks");
   let njkEnv = new nunjucks.Environment();
   njkEnv.addFilter("url", function(url) {
-    return "/portfolio-cms" + url;
+    return url;
   });
   eleventyConfig.addFilter("renderNjk", function(content) {
     return njkEnv.renderString(content || "", this.ctx);
@@ -34,7 +35,6 @@ module.exports = function(eleventyConfig) {
   });
 
   return {
-    pathPrefix: "/portfolio-cms/",
     dir: {
       input: "src",
       output: "_site",
