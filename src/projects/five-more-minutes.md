@@ -121,7 +121,9 @@ body_es: |
   
   ### Lo que Aprendí
   
-  Desarrollar *Five More Minutes* fue una clase magistral sobre cómo lidiar con el motor de física de Unreal. Implementar un gancho de agarre basado en el impulso que resultara satisfactorio requirió una profunda afinación de las restricciones físicas y una lógica de trazado personalizada. También me enseñó mucho sobre el alcance de las características: construimos un sistema de portal sin fisuras completamente funcional para las transiciones de nivel, pero terminamos descartándolo cuando las pruebas de juego revelaron que rompía el ritmo de alta velocidad del juego. Aprender cuándo desechar tecnología impresionante en favor del flujo del juego fue una lección valiosa.
+  Desarrollar *Five More Minutes* fue una gran experiencia de aprendizaje en liderazgo, gestión de alcance y comunicación técnica. Trabajar con un equipo con menos experiencia en el desarrollo de juegos significó que tuve que aprender a comunicar eficazmente las limitaciones técnicas y a orientar las reuniones de diseño lejos de características imposibles hacia mecánicas divertidas y viables.
+
+  Para cumplir con los ajustados plazos de las fases alfa y beta, tuve que asumir casi todos los roles posibles dentro de Unreal Engine. Más allá de programar las físicas centrales y la IA, asumí la responsabilidad de revisar, depurar e integrar el trabajo de mis compañeros para asegurar que todo cumpliera con los estrictos estándares de entrega. Me enseñó que lanzar un juego no se trata solo de escribir buen código; se trata de mantener una visión clara, gestionar las capacidades del equipo y asumir la responsabilidad de la calidad general del proyecto de principio a fin.
 ---
 
 <iframe frameborder="0" src="https://itch.io/embed/3830437?bg_color=222222&amp;fg_color=eeeeee&amp;link_color=fa5c5c&amp;border_color=363636" width="100%" style="max-width: 552px;" height="167"><a href="https://sanpitopatogames.itch.io/five-more-minutes">Play Five More Minutes on itch.io</a></iframe>
@@ -231,4 +233,6 @@ Beyond the core systems, I built the game's UI framework and audio pipeline to m
 
 ### What I Learned
 
-Building *Five More Minutes* was a masterclass in wrestling with Unreal's physics engine. Implementing a momentum-driven grappling hook that felt satisfying required deep tuning of physics constraints and custom tracing logic. It also taught me a lot about feature scoping. We built an entirely functional seamless portal system for level transitions, but ended up scrapping it when playtesting revealed it broke the game's high-speed pacing. Learning when to cut impressive tech for the sake of the game's flow was a valuable takeaway.
+Building *Five More Minutes* was a massive learning experience in leadership, scope management, and technical communication. Working with a team newer to game development meant I had to learn how to effectively communicate technical constraints and steer design meetings away from impossible features toward achievable, fun mechanics. 
+
+To meet tight alpha and beta milestone deadlines, I had to wear almost every hat possible within Unreal Engine. Beyond engineering the core physics and AI, I took on the responsibility of reviewing, debugging, and integrating my teammates' work to ensure everything met strict delivery standards. It taught me that shipping a game isn't just about writing good code; it's about maintaining a clear vision, managing team capabilities, and taking ownership of the project's overall quality from start to finish.
