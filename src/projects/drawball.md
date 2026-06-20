@@ -16,7 +16,7 @@ body_es: |-
 
   ***
 
-  ### Física de Dibujo en Tiempo Real
+  ### Físicas de Dibujo en Tiempo Real
 
   El dibujo y las físicas tenían que mantenerse sincronizados sin que ninguno de los dos bloqueara al otro, especialmente a altas velocidades de cámara.
 
@@ -99,7 +99,7 @@ body_es: |-
 
   ### Lo Que Aprendí
 
-  Crear un juego en menos de 8 días me enseñó a limitar agresivamente el alcance: la física del dibujo y la generación de niveles fueron los únicos dos sistemas que realmente importaron, y todo lo demás (clasificaciones, tipos de tinta) fue evolucionando naturalmente una vez que esos sistemas estuvieron sólidos.
+  Crear un juego en menos de 8 días me enseñó a limitar agresivamente el alcance: las físicas del dibujo y la generación de niveles fueron los únicos dos sistemas que realmente importaron, y todo lo demás (clasificaciones, tipos de tinta) fue evolucionando naturalmente una vez que esos sistemas estuvieron sólidos.
 engine: Unity
 about_es: "Drawball fue un proyecto en solitario desarrollado en menos de 8 días para la Inbound Shovel Jam (Tema: 'Just Get Started'). Quedó en el 9% superior de las 1.144 entradas. La mecánica principal limita el control del jugador únicamente a dibujar líneas físicas en la pantalla para guiar una bola a través de obstáculos, evolucionando naturalmente hacia un juego de plataformas de velocidad rápida."
 about: "Drawball was a solo project built in under 8 days for the Inbound Shovel Jam (Theme: 'Just Get Started'). It placed in the top 9% out of 1,144 entries. The core mechanic limits player control entirely to drawing physical lines on the screen to guide a ball through obstacles, naturally evolving into a fast-paced speedrunning platformer."
@@ -152,7 +152,7 @@ private List<Vector3> GenerateSmoothedPoints(List<Vector2> points)
 
 ### Procedural "Drawn-In" Level Geometry
 
-The doodle aesthetic meant the level geometry itself needed to look hand-drawn - so I made it animate in like it was being sketched in real-time when the level starts.
+The doodle aesthetic meant the level geometry itself needed to look hand-drawn — so I made it animate in like it was being sketched in real-time when the level starts.
 
 I engineered `LevelDrawer`, which uses the `Clipper2Lib` library to perform boolean unions on multiple overlapping 2D colliders (`DrawableLevelPiece`). It merges the shapes, extracts the outer contour paths, and applies Chaikin smoothing. Finally, a coroutine animates a `LineRenderer` along these paths over time, creating the visual effect of the level boundaries being sketched in real-time.
 
