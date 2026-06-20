@@ -68,7 +68,7 @@ team_size: 1
 
 ### Introduction
 
-_BLACKSHARD_ was struggling under UE5's heavier rendering features and rather sloppy optimization. After testing dozens of console commands and config tweaks, I found the most effective fix was the simplest one — disabling the heaviest hitters outright for a >2x framerate increase.
+_BLACKSHARD_ was struggling under UE5's heavier rendering features and rather sloppy optimization. After testing dozens of console commands and config tweaks, I found the most effective fix was the simplest one - disabling the heaviest hitters outright for a >2x framerate increase.
 
 ***
 
