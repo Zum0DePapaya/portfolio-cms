@@ -120,7 +120,9 @@ body_es: |-
 
   ### Lo Que Aprendí
 
-  Crear un juego en menos de 8 días me enseñó a limitar agresivamente el alcance: las físicas del dibujo y la generación de niveles fueron los únicos dos sistemas que realmente importaron, y todo lo demás (clasificaciones, tipos de tinta) fue evolucionando naturalmente una vez que esos sistemas estuvieron sólidos.
+  Este proyecto fue una clase magistral sobre pivotar y encontrar la "diversión" central de un juego. A mitad de la jam, descarté mi idea original (un god-game en Unreal Engine 5 con un alcance desproporcionado) tras darme cuenta de que UE5 carecía de exportación web, lo que limitaría drásticamente la audiencia del juego. Tomar la difícil decisión de pivotar valió completamente la pena.
+
+  Una vez que transicioné a este concepto de dibujo y físicas, todo encajó. Me centré en hacer que las mecánicas de dibujo fueran satisfactorias y las combiné con un personaje sin fricción y potenciadores de velocidad. El juego evolucionó naturalmente hacia un *speedrunner*, lo que dictó el resto de las características: tablas de clasificación, reinicios rápidos y una cámara más alejada para manejar la velocidad. Encontrar este núcleo también hizo que el diseño de niveles fuera increíblemente intuitivo; aprendí a estructurar los niveles comenzando lento, aumentando drásticamente la velocidad y culminando en un final rapidísimo que pone a prueba los reflejos.
 engine: Unity
 about_es: "Drawball fue un proyecto en solitario desarrollado en menos de 8 días para la Inbound Shovel Jam (Tema: 'Just Get Started'). Quedó en el 9% superior de las 1.144 entradas. La mecánica principal limita el control del jugador únicamente a dibujar líneas físicas en la pantalla para guiar una bola a través de obstáculos, evolucionando naturalmente hacia un juego de plataformas de velocidad rápida."
 about: "Drawball was a solo project built in under 8 days for the Inbound Shovel Jam (Theme: 'Just Get Started'). It placed in the top 9% out of 1,144 entries. The core mechanic limits player control entirely to drawing physical lines on the screen to guide a ball through obstacles, naturally evolving into a fast-paced speedrunning platformer."
@@ -241,4 +243,6 @@ public static string GenerateChecksum(string rawScoreString)
 
 ### What I Learned
 
-Shipping a game in under 8 days taught me to scope aggressively, the drawing physics and level generation were the only two systems that truly mattered, and everything else (leaderboards, ink types) evolved naturally once those were solid.
+This project was a masterclass in pivoting and finding the core "fun" of a game. Halfway through the jam, I scrapped my original idea—a massively over-scoped Unreal Engine 5 god-game—after realizing UE5 lacked web export, which would severely hurt the game's reach. Making the difficult call to pivot paid off immensely. 
+
+Once I transitioned to this physics-drawing concept, everything clicked. I focused on making the drawing mechanics satisfying, combining them with a frictionless character and speed pickups. The game naturally evolved into a speedrunner, which dictated the rest of the feature set: leaderboards, quick-reset buttons, and a zoomed-out camera to handle the speed. Finding the core loop also made level design incredibly intuitive; I learned to structure levels by starting slow, ramping up the velocity, and culminating in a lightning-fast reflex skill-check finale.
