@@ -101,7 +101,7 @@ body_es: |-
 
   ```csharp
   // ScoreValidator.cs: SHA256 Anti-Cheat Validation
-  private const string SecretKey = "J8f#z!2&pL@9xQvM4$bN7^tW1;c*AeKdG%oR3sYmP+qX5uV";
+  private const string SecretKey = "[REDACTED_SECRET_KEY]";
 
   public static string GenerateChecksum(string rawScoreString)
   {
@@ -222,7 +222,7 @@ To prevent fake times from being submitted via network manipulation, I implement
 
 ```csharp
 // ScoreValidator.cs: SHA256 Anti-Cheat Validation
-private const string SecretKey = "J8f#z!2&pL@9xQvM4$bN7^tW1;c*AeKdG%oR3sYmP+qX5uV";
+private const string SecretKey = "[REDACTED_SECRET_KEY]";
 
 public static string GenerateChecksum(string rawScoreString)
 {
