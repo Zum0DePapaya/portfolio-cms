@@ -8,7 +8,7 @@ hover_description: • Performance optimization mod for the UE5.6 game 'BLACKSHA
 hover_description_es: • Mod de optimización de rendimiento para el juego 'BLACKSHARD' de UE5.6.<br> • Más del doble de rendimiento con una pérdida visual mínima.<br> • Deshabilita características de renderizado pesadas como Nanite y VSM.<br> • Ofrece variantes TAA, FXAA y NoAA.
 full_width: false
 body_es: |-
-  <a href="https://www.nexusmods.com/blackshard/mods/1" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">🛠️ ¡Descarga el mod en Nexus Mods!</a>
+  <a href="https://www.nexusmods.com/blackshard/mods/1" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">¡Descarga el mod en Nexus Mods!</a>
 
   <div class="videos_two">
     <div class="content-placeholder">
@@ -57,7 +57,7 @@ role_es: Modder / Optimizador
 team_size: 1
 ---
 
-<a href="https://www.nexusmods.com/blackshard/mods/1" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">🛠️ Download the mod on Nexus Mods!</a>
+<a href="https://www.nexusmods.com/blackshard/mods/1" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">Download the mod on Nexus Mods!</a>
 
 <div class="videos_two">
   <div class="content-placeholder">

@@ -1,6 +1,6 @@
 ---
 title: "Upscaling Menu - UE5.6 - UE5.7 - Blueprints - C++ - Solo Developer"
-title_es: "Menú de Escalado - UE5.6 - UE5.7 - Blueprints - C++ - Desarrollador en Solitario"
+title_es: "Upscaling Menu - UE5.6 - UE5.7 - Blueprints - C++ - Desarrollador en Solitario"
 category: "tools"
 weight: 4
 thumbnail: "/assets/images/22b8325b.jpg"
@@ -14,10 +14,11 @@ role_es: "Desarrollador en Solitario"
 team_size: 1
 engine: "Unreal Engine 5"
 body_es: |
-  <a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">📦 ¡Consigue el Menú de Escalado en Fab!</a>
+  <a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">¡Consigue Upscaling Menu en Fab!</a>
   <div class="videos_two">
     <img src="{{ '/assets/images/fab-listing.png' | url }}" alt="Listado de Fab" style="width: 100%;">
   </div>
+  <p class="video-text">Publicado en Fab: El plugin fue aceptado y publicado como un activo de Unreal Engine en el mercado oficial de Fab.</p>
   
   ### Introducción
   
@@ -93,10 +94,11 @@ body_es: |
 
 
 
-<a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">📦 Get the Upscaling Menu on Fab!</a>
+<a href="https://www.fab.com/listings/690d9082-35b6-4a22-b388-4c44bf7c0e4a" target="_blank" style="display: inline-block; padding: 12px 24px; background-color: #fa5c5c; color: #fff; text-decoration: none; border-radius: 5px; margin-bottom: 20px; font-weight: bold; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">Get the Upscaling Menu on Fab!</a>
 <div class="videos_two">
   <img src="{{ '/assets/images/fab-listing.png' | url }}" alt="Fab Listing" style="width: 100%;">
 </div>
+<p class="video-text">Published on Fab: The plugin was successfully accepted and published as an Unreal Engine asset on the official Fab marketplace.</p>
 
 ### Introduction
 

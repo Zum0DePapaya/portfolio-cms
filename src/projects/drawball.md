@@ -97,6 +97,27 @@ body_es: |-
   </div>
   <p class="video-text">Clasificaciones: Integración de servidor en vivo que formatea tiempos con precisión de milisegundos.</p>
 
+  Para evitar que se envíen tiempos falsos mediante solicitudes de red manipuladas, implementé un `ScoreValidator` del lado del cliente. Este sistema genera un hash SHA256 combinando la puntuación bruta con una frase secreta (Salt) y lo envía en los metadatos de LootLocker. Al recuperar la clasificación, el cliente vuelve a calcular el hash y, si no coincide, oculta la puntuación de la interfaz de usuario, invalidando efectivamente los intentos de trampa.
+
+  ```csharp
+  // ScoreValidator.cs: SHA256 Anti-Cheat Validation
+  private const string SecretKey = "J8f#z!2&pL@9xQvM4$bN7^tW1;c*AeKdG%oR3sYmP+qX5uV";
+
+  public static string GenerateChecksum(string rawScoreString)
+  {
+      string rawData = SecretKey + rawScoreString;
+      using (SHA256 sha256 = SHA256.Create())
+      {
+          byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+          StringBuilder builder = new StringBuilder();
+          for (int i = 0; i < bytes.Length; i++)
+              builder.Append(bytes[i].ToString("x2"));
+          return builder.ToString();
+      }
+  }
+  ```
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Suma de Verificación de Metadatos:</strong> Autentica las puntuaciones recuperadas recalculando el hash en el cliente con una Salt oculta, ignorando así las puntuaciones enviadas a través de API ilegítimas.</p>
+
   ### Lo Que Aprendí
 
   Crear un juego en menos de 8 días me enseñó a limitar agresivamente el alcance: las físicas del dibujo y la generación de niveles fueron los únicos dos sistemas que realmente importaron, y todo lo demás (clasificaciones, tipos de tinta) fue evolucionando naturalmente una vez que esos sistemas estuvieron sólidos.
@@ -196,6 +217,27 @@ Since speedrunning became the core loop, I needed a robust backend to track comp
   <img src="{{ '/assets/images/lootlocker-leaderboard.png' | url }}" alt="LootLocker Leaderboards" style="width: 100%;">
 </div>
 <p class="video-text">Leaderboards: Live server integration formatting millisecond precision times.</p>
+
+To prevent fake times from being submitted via network manipulation, I implemented a client-sided `ScoreValidator`. It generates a SHA256 hash by combining the raw score with a secret Salt phrase and submits it into the LootLocker metadata. When fetching the leaderboard, the client recalculates the hash and, if it doesn't match, hides the score from the UI, effectively voiding cheating attempts.
+
+```csharp
+// ScoreValidator.cs: SHA256 Anti-Cheat Validation
+private const string SecretKey = "J8f#z!2&pL@9xQvM4$bN7^tW1;c*AeKdG%oR3sYmP+qX5uV";
+
+public static string GenerateChecksum(string rawScoreString)
+{
+    string rawData = SecretKey + rawScoreString;
+    using (SHA256 sha256 = SHA256.Create())
+    {
+        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < bytes.Length; i++)
+            builder.Append(bytes[i].ToString("x2"));
+        return builder.ToString();
+    }
+}
+```
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Metadata Checksum:</strong> Authenticates fetched scores by recalculating the hash on the client with a hidden Salt, silently ignoring scores submitted via illegitimate API requests.</p>
 
 ### What I Learned
 

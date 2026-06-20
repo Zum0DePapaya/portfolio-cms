@@ -37,6 +37,7 @@ body_es: |
   <div class="videos_two">
     <img src="{{ '/assets/images/hangar-customization-flow.gif' | url }}" alt="Hangar Customization Flow" style="width: 100%;">
   </div>
+  <p class="video-text">Flujo de Personalización del Hangar: Los jugadores interactúan con la interfaz de usuario en tiempo real para visualizar cómo quedan las piezas antes de aplicar la configuración final.</p>
   
   <iframe src="https://blueprintue.com/render/2qhgqz-2/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
   <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ShowForSlot:</strong> Rellena la cuadrícula de la interfaz de usuario con las piezas disponibles que coinciden con la GameplayTag de la ranura actualmente seleccionada.</p>
@@ -86,6 +87,7 @@ body_es: |
   <div class="videos_two">
     <img src="{{ '/assets/images/chaos-destruction-optimization.gif' | url }}" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
   </div>
+  <p class="video-text">Optimización de Chaos a Niagara: Los escombros de geometría masivos se reemplazan silenciosamente por explosiones de partículas de Niagara al impactar contra el suelo, lo que ahorra un tiempo de cálculo de física masivo.</p>
   
   ```cpp
   void UGeometryCollectionDebrisComponent::OnGCHit(
@@ -125,6 +127,7 @@ body_es: |
   <div class="videos_two">
     <img src="{{ '/assets/images/debug-pause-menu.png' | url }}" alt="Debug Pause Menu" style="width: 100%;">
   </div>
+  <p class="video-text">Menú de Pausa de Depuración: Un conjunto de herramientas diseñado a medida para que los desarrolladores y probadores intercambien la calidad gráfica y las configuraciones sobre la marcha.</p>
   
   <iframe src="https://blueprintue.com/render/b_6a6e-f/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
   <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ChangeScalabilitySettings:</strong> Dirige un enumerador EScalabilityOptions a través de un switch para aplicar configuraciones específicas de calidad de renderizado basadas en las selecciones de un combobox de la interfaz de usuario.</p>
@@ -159,6 +162,7 @@ When navigating the UI, clicking a part in the `WBP_PartSelectionPanel` triggers
 <div class="videos_two">
   <img src="{{ '/assets/images/hangar-customization-flow.gif' | url }}" alt="Hangar Customization Flow" style="width: 100%;">
 </div>
+<p class="video-text">Hangar Customization Flow: Players interact with the real-time UI to preview how parts fit together before locking in their final loadout.</p>
 
 <iframe src="https://blueprintue.com/render/2qhgqz-2/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ShowForSlot:</strong> Populates the UI grid with available parts matching the currently selected slot's GameplayTag.</p>
@@ -209,6 +213,7 @@ To solve this, I engineered a **custom C++ component** (`GeometryCollectionDebri
 <div class="videos_two">
   <img src="{{ '/assets/images/chaos-destruction-optimization.gif' | url }}" alt="Chaos Destruction to Niagara Optimization" style="width: 100%;">
 </div>
+<p class="video-text">Chaos to Niagara Optimization: Massive geometry debris is silently swapped for performant Niagara bursts upon ground impact, saving massive physics calculation time.</p>
 
 ```cpp
 void UGeometryCollectionDebrisComponent::OnGCHit(
@@ -250,6 +255,7 @@ Recognizing that rapid iteration is key to game design, I developed a suite of i
 <div class="videos_two">
   <img src="{{ '/assets/images/debug-pause-menu.png' | url }}" alt="Debug Pause Menu" style="width: 100%;">
 </div>
+<p class="video-text">Debug Pause Menu: A custom-built toolset for developers and playtesters to swap graphical quality and configurations on the fly.</p>
 
 <iframe src="https://blueprintue.com/render/b_6a6e-f/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>ChangeScalabilitySettings:</strong> Routes an EScalabilityOptions enum through a switch to apply specific rendering quality configurations based on UI combobox selections.</p>
