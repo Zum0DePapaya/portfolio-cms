@@ -18,7 +18,7 @@ body_es: |
   
   ### Introducción
   
-  El objetivo principal era construir un juego de plataformas rápido y basado en el impulso, donde cada sistema - movimiento, combate, coleccionables - se integrara en un bucle cohesivo. Fui responsable de las 3C (Personaje, Cámara, Controles) y de la mayoría de los sistemas principales del juego.
+  El objetivo principal era construir un juego de plataformas rápido y basado en el impulso, donde cada sistema (movimiento, combate, coleccionables) se integrara en un bucle cohesivo. Fui responsable de las 3C (Personaje, Cámara, Controles) y de la mayoría de los sistemas principales del juego.
   
   ---
   
@@ -90,7 +90,7 @@ body_es: |
   
   Al principio, el plan era mantener al jugador completamente inmerso: matar a ciertos enemigos generaría un portal a una dimensión de tienda separada para mejoras. Construí el sistema completo: renderizado de plano de recorte oblicuo a través de `SceneCaptureComponent2D`, teletransportación que conserva el impulso utilizando productos escalares, y una tienda modular construida sobre interfaces `BPI_Interactable_C`.
   
-  Funcionó, pero las pruebas de juego demostraron que rompía el ritmo del juego. En su lugar, pivotamos a un sistema de mejora de elevador más rápido a mitad de nivel - una buena lección sobre cuándo es necesario eliminar una característica.
+  Funcionó, pero las pruebas de juego demostraron que rompía el ritmo del juego. En su lugar, pivotamos a un sistema de mejora de elevador más rápido a mitad de nivel, lo cual fue una buena lección sobre cuándo es necesario eliminar una característica.
   
   <div class="videos_two">
     <div class="content-placeholder">
@@ -128,7 +128,7 @@ body_es: |
 
 ### Introduction
 
-The core goal was to build a fast, momentum-driven platformer where every system - movement, combat, collectibles - feeds into one tight loop. I was responsible for the 3C's (Character, Camera, Controls) and most of the game's major systems.
+The core goal was to build a fast, momentum-driven platformer where every system, including movement, combat, and collectibles, feeds into one tight loop. I was responsible for the 3C's (Character, Camera, Controls) and most of the game's major systems.
 
 ---
 
@@ -162,7 +162,7 @@ I also built magnetic collectibles (`BP_Coin`, `BP_Multiplier`) that detect the 
 
 ### Momentum-Based Grappling
 
-Most grappling hooks just teleport you. Ours is a **momentum tool** - players use it to gain height and speed, then chain the launch into an air-dash or a sloped slide.
+Most grappling hooks just teleport you, but ours is a **momentum tool**. Players use it to gain height and speed, then chain the launch into an air-dash or a sloped slide.
 
 The system validates targets with a double-raycast (`GetGrappleTargetInfo`) for line-of-sight and clearance, then calculates launch impulse from the distance and elevation delta. A `BP_Cable` spline component renders the rope in real-time.
 
@@ -180,7 +180,7 @@ The system validates targets with a double-raycast (`GetGrappleTargetInfo`) for 
 
 ### Custom AI: The Spider Boss
 
-A ground-based boss would be trivial to outrun in a game with this much vertical mobility. The Spider Boss uses the **same 3D space as the player** - it crawls on walls and ceilings, turning the arena into a true spatial cat-and-mouse fight.
+A ground-based boss would be trivial to outrun in a game with this much vertical mobility. To prevent this, the Spider Boss uses the **same 3D space as the player**, crawling on walls and ceilings to turn the arena into a true spatial cat-and-mouse fight.
 
 It's driven by a custom Behavior Tree (`BT_Spider`) and Blackboard (`BB_Spider`). The key piece is `BTTask_JumpStick`: it reads collision surface normals to launch the spider onto walls/ceilings and uses a rotation matrix to align its mesh to the new gravity axis. For ranged attacks, `BTTask_RangedAttack` fires sweeping multi-line raycasts through `BP_Laser`.
 
@@ -198,9 +198,9 @@ It's driven by a custom Behavior Tree (`BT_Spider`) and Blackboard (`BB_Spider`)
 
 ### Design Iteration: The Seamless Portal Shop
 
-Early on, the plan was to keep the player fully immersed - killing certain enemies would spawn a portal into a separate shop dimension for upgrades. I built the full system: oblique clip-plane rendering via `SceneCaptureComponent2D`, momentum-preserving teleportation using dot products, and a modular shop built on `BPI_Interactable_C` interfaces.
+Early on, the plan was to keep the player fully immersed by making sure that killing certain enemies would spawn a portal into a separate shop dimension for upgrades. I built the full system: oblique clip-plane rendering via `SceneCaptureComponent2D`, momentum-preserving teleportation using dot products, and a modular shop built on `BPI_Interactable_C` interfaces.
 
-It worked, but playtesting showed it broke the game's pacing. We pivoted to a faster mid-level elevator upgrade system instead - a good lesson in knowing when to cut a feature.
+It worked, but playtesting showed it broke the game's pacing. We pivoted to a faster mid-level elevator upgrade system instead, which served as a good lesson in knowing when to cut a feature.
 
 <div class="videos_two">
   <div class="content-placeholder">
@@ -231,4 +231,4 @@ Beyond the core systems, I built the game's UI framework and audio pipeline to m
 
 ### What I Learned
 
-Building *Five More Minutes* was a masterclass in wrestling with Unreal's physics engine. Implementing a momentum-driven grappling hook that felt satisfying required deep tuning of physics constraints and custom tracing logic. It also taught me a lot about feature scoping - we built an entirely functional seamless portal system for level transitions, but ended up scrapping it when playtesting revealed it broke the game's high-speed pacing. Learning when to cut impressive tech for the sake of the game's flow was a valuable takeaway.
+Building *Five More Minutes* was a masterclass in wrestling with Unreal's physics engine. Implementing a momentum-driven grappling hook that felt satisfying required deep tuning of physics constraints and custom tracing logic. It also taught me a lot about feature scoping. We built an entirely functional seamless portal system for level transitions, but ended up scrapping it when playtesting revealed it broke the game's high-speed pacing. Learning when to cut impressive tech for the sake of the game's flow was a valuable takeaway.

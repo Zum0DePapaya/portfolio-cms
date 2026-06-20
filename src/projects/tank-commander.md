@@ -148,7 +148,7 @@ The system is built on a simple idea: **Gameplay Tags are the universal key for 
 
 Every customization slot on a vehicle (turret, barrel, hull front, etc.) has a Gameplay Tag. Every attachable part also has a Gameplay Tag. When a player picks a part in the hangar UI, the system writes a `{SlotTag → PartTag}` mapping into a persistent struct on the GameInstance. When they deploy to gameplay, the tank reads that struct and spawns the correct meshes into the correct sockets.
 
-Because everything is driven by tag lookups and data assets, you can add new parts or even new slots without touching blueprint logic - just create data assets and register them.
+Because everything is driven by tag lookups and data assets, you can add new parts or even new slots without touching blueprint logic. You just need to create data assets and register them.
 
 #### Hangar Interface & Preview
 

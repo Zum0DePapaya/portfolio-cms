@@ -21,13 +21,13 @@ body_es: |
   
   ### Introducción
   
-  Originalmente, construí este sistema para *Five More Minutes* para gestionar DLSS, FSR, XeSS y NIS desde una única interfaz de usuario. Lo extraje en un plugin independiente — un Widget UMG de arrastrar y soltar (`WBP_SettingsUpscaling`) respaldado por una librería personalizada en C++ que detecta la GPU del usuario y habilita o deshabilita dinámicamente las opciones de escalado según la compatibilidad del hardware.
+  Originalmente, construí este sistema para *Five More Minutes* para gestionar DLSS, FSR, XeSS y NIS desde una única interfaz de usuario. Lo extraje en un plugin independiente, creando un Widget UMG de arrastrar y soltar (`WBP_SettingsUpscaling`) respaldado por una librería personalizada en C++ que detecta la GPU del usuario y habilita o deshabilita dinámicamente las opciones de escalado según la compatibilidad del hardware.
   
   ---
   
   ### Consulta Dinámica de Hardware (C++)
   
-  El problema principal es evitar que los usuarios activen funciones que su hardware no soporta. Escribí `UHardwareInfoLibrary`, una Librería de Funciones Blueprint en C++ que consulta directamente el sistema operativo — analizando la cadena de marca de la GPU con expresiones regulares para identificar la serie exacta (3000 frente a 4000 para compatibilidad con Frame Gen), comprobando el Registro de Windows para la Programación de GPU Acelerada por Hardware (`HwSchMode`), y validando la presencia de DLL (`nvngx_dlss.dll`) junto con los JSON de descriptores de plugins.
+  El problema principal es evitar que los usuarios activen funciones que su hardware no soporta. Escribí `UHardwareInfoLibrary`, una Librería de Funciones Blueprint en C++ que consulta directamente el sistema operativo mediante el análisis de la cadena de marca de la GPU con expresiones regulares para identificar la serie exacta (3000 frente a 4000 para compatibilidad con Frame Gen), comprobando el Registro de Windows para la Programación de GPU Acelerada por Hardware (`HwSchMode`), y validando la presencia de DLL (`nvngx_dlss.dll`) junto con los JSON de descriptores de plugins.
   
   <div class="videos_two">
     <img src="{{ '/assets/images/automatic-hardware-detection.png' | url }}" alt="Detección Automática de Hardware" style="width: 100%;">
@@ -73,7 +73,7 @@ body_es: |
   
   Desacoplar el sistema de *Five More Minutes* implicó asegurar cero referencias directas a clases específicas del juego. `WBP_SettingsUpscaling` se basa completamente en la estructura de datos de `UHardwareInfoLibrary` para rellenar los indicadores booleanos (`DLSS-FG Soportado`, `XeSS Soportado`, etc.). Su función `UpdateDependentUI` ejecuta un `Switch on E_UpscalerType` para deshabilitar condicionalmente secciones de la interfaz de usuario para características no soportadas como Anti-Lag 2 o Ray Reconstruction.
   
-  Además, la publicación en Fab presentó una importante restricción arquitectónica: **Fab no permite que los plugins publicados dependan de plugins externos.** Esto significaba que no podía simplemente referenciar los plugins oficiales de DLSS, FSR o XeSS para comprobar si estaban habilitados o soportados. Para resolver esto, tuve que escribir scripts personalizados de detección de hardware y software para realizar ingeniería inversa manual de las condiciones por las cuales estas tecnologías se habilitan o deshabilitan normalmente, creando una lógica personalizada para aplicar estas reglas con precisión —una cantidad ingente de trabajo que asegura que el plugin permanezca completamente independiente.
+  Además, la publicación en Fab presentó una importante restricción arquitectónica: **Fab no permite que los plugins publicados dependan de plugins externos.** Esto significaba que no podía simplemente referenciar los plugins oficiales de DLSS, FSR o XeSS para comprobar si estaban habilitados o soportados. Para resolver esto, tuve que escribir scripts personalizados de detección de hardware y software para realizar ingeniería inversa manual de las condiciones por las cuales estas tecnologías se habilitan o deshabilitan normalmente, creando una lógica personalizada para aplicar estas reglas con precisión. Esto requirió una cantidad ingente de trabajo, pero asegura que el plugin permanezca completamente independiente.
   
   <div class="videos_two">
     <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
@@ -88,7 +88,7 @@ body_es: |
   
   ### Lo que Aprendí
   
-  Construir esto como un plugin reutilizable me obligó a pensar en los límites de la API de manera diferente a como lo haría al construir una característica de juego. Cada función en la librería de C++ tenía que ser útil sin ningún contexto sobre el proyecto consumidor — sin suposiciones sobre el estado del juego, sin referencias a blueprints específicos. Fue un buen ejercicio para escribir código de motor verdaderamente modular.
+  Construir esto como un plugin reutilizable me obligó a pensar en los límites de la API de manera diferente a como lo haría al construir una característica de juego. Cada función en la librería de C++ tenía que ser útil sin ningún contexto sobre el proyecto consumidor. Esto significaba no hacer suposiciones sobre el estado del juego ni requerir referencias a blueprints específicos. Fue un buen ejercicio para escribir código de motor verdaderamente modular.
 ---
 
 
@@ -100,13 +100,13 @@ body_es: |
 
 ### Introduction
 
-I originally built this system for *Five More Minutes* to manage DLSS, FSR, XeSS, and NIS from a single UI. I extracted it into a standalone plugin — a drag-and-drop UMG Widget (`WBP_SettingsUpscaling`) backed by a custom C++ library that detects the user's GPU and dynamically enables or disables upscaling options based on hardware support.
+I originally built this system for *Five More Minutes* to manage DLSS, FSR, XeSS, and NIS from a single UI. I extracted it into a standalone plugin, building a drag-and-drop UMG Widget (`WBP_SettingsUpscaling`) backed by a custom C++ library that detects the user's GPU and dynamically enables or disables upscaling options based on hardware support.
 
 ---
 
 ### Dynamic Hardware Querying (C++)
 
-The core problem is preventing users from activating features their hardware doesn't support. I wrote `UHardwareInfoLibrary`, a C++ Blueprint Function Library that queries the OS directly — parsing the GPU brand string with regex to identify the exact series (3000 vs 4000 for Frame Gen compatibility), checking the Windows Registry for Hardware-Accelerated GPU Scheduling (`HwSchMode`), and validating DLL presence (`nvngx_dlss.dll`) alongside plugin descriptor JSONs.
+The core problem is preventing users from activating features their hardware doesn't support. I wrote `UHardwareInfoLibrary`, a C++ Blueprint Function Library that queries the OS directly by parsing the GPU brand string with regex to identify the exact series (3000 vs 4000 for Frame Gen compatibility), checking the Windows Registry for Hardware-Accelerated GPU Scheduling (`HwSchMode`), and validating DLL presence (`nvngx_dlss.dll`) alongside plugin descriptor JSONs.
 
 <div class="videos_two">
   <img src="{{ '/assets/images/automatic-hardware-detection.png' | url }}" alt="Automatic Hardware Detection" style="width: 100%;">
@@ -152,7 +152,7 @@ if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, SubKey, 0, KEY_READ, &hKey) == ERROR_SUCCES
 
 Decoupling the system from *Five More Minutes* meant ensuring zero hard references to game-specific classes. `WBP_SettingsUpscaling` relies entirely on the data struct from `UHardwareInfoLibrary` to populate boolean flags (`DLSS-FG Supported`, `XeSS Supported`, etc.). Its `UpdateDependentUI` function runs a `Switch on E_UpscalerType` to conditionally disable UI sections for unsupported features like Anti-Lag 2 or Ray Reconstruction.
 
-Furthermore, publishing to Fab presented a major architectural constraint: **Fab does not allow published plugins to depend on external plugins.** This meant I could not simply reference the official DLSS, FSR, or XeSS plugins to check if they were enabled or supported. To solve this, I had to write custom hardware and software detection scripts to manually reverse-engineer the conditions by which these technologies are normally enabled or disabled, creating custom logic to apply these rules accurately—a massive amount of work that ensures the plugin remains entirely standalone.
+Furthermore, publishing to Fab presented a major architectural constraint: **Fab does not allow published plugins to depend on external plugins.** This meant I could not simply reference the official DLSS, FSR, or XeSS plugins to check if they were enabled or supported. To solve this, I had to write custom hardware and software detection scripts to manually reverse-engineer the conditions by which these technologies are normally enabled or disabled, creating custom logic to apply these rules accurately. This required a massive amount of work, but it ensures the plugin remains entirely standalone.
 
 <div class="videos_two">
   <div class="content-placeholder" style="background: transparent; border: none; margin-top: 1rem;">
@@ -167,4 +167,4 @@ Furthermore, publishing to Fab presented a major architectural constraint: **Fab
 
 ### What I Learned
 
-Building this as a reusable plugin forced me to think about API boundaries differently than building a game feature. Every function in the C++ library had to be useful without any context about the consuming project — no assumptions about game state, no references to specific blueprints. It was a good exercise in writing genuinely modular engine code.
+Building this as a reusable plugin forced me to think about API boundaries differently than building a game feature. Every function in the C++ library had to be useful without any context about the consuming project, meaning no assumptions about game state and no references to specific blueprints. It was a good exercise in writing genuinely modular engine code.
