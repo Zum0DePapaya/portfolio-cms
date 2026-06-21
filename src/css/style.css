@@ -277,12 +277,13 @@ a:hover {
 .credits {
     text-align: center;
     margin-top: 2rem;
-}
-
-.credits a {
     color: rgba(226, 155, 168, 0.5);
     font-size: 0.75rem;
     font-family: Arial, sans-serif;
+}
+
+.credits a {
+    color: inherit;
     text-decoration: none;
     transition: color 0.25s ease;
 }
