@@ -1,0 +1,14 @@
+{
+    "name": "Daniel Martínez Lozano",
+    "short_name": "Daniel ML",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#121212",
+    "background_color": "#121212",
+    "display": "standalone"
+}
