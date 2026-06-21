@@ -1,7 +1,7 @@
 {
   "bg_color": "#121212",
-  "text_primary": "#a674e3",
-  "text_title": "#e3e263",
+  "text_primary": "#b794e3",
+  "text_title": "#e3e283",
   "font_mono": "'IBM Plex Mono', monospace",
   "max_width": "75rem",
   "padding_x": "4rem",
