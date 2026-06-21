@@ -277,8 +277,7 @@ a:hover {
 .credits {
     text-align: center;
     margin-top: 2rem;
-    color: var(--text-color);
-    opacity: 0.5;
+    color: color-mix(in srgb, var(--text-title) 50%, transparent);
     font-size: 0.75rem;
     font-family: Arial, sans-serif;
 }
@@ -290,7 +289,7 @@ a:hover {
 }
 
 .credits a:hover {
-    color: white;
+    color: var(--text-primary);
 }
 
 /* Lightbox Modal */
