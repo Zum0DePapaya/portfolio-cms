@@ -277,7 +277,8 @@ a:hover {
 .credits {
     text-align: center;
     margin-top: 2rem;
-    color: rgba(226, 155, 168, 0.5);
+    color: var(--text-color);
+    opacity: 0.5;
     font-size: 0.75rem;
     font-family: Arial, sans-serif;
 }
