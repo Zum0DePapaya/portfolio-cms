@@ -1,22 +1,22 @@
 ---
-title: "Industrial Sorting Simulator - VR & Systems Programming"
-title_es: "Simulador de Clasificación Industrial - RV y Programación de Sistemas"
+title: "Industrial Sorting Simulator - UE5.5 - VR - Blueprints - Solo Developer"
+title_es: "Industrial Sorting Simulator - UE5.5 - RV - Blueprints - Desarrollador Solitario"
 category: "games"
 weight: 3
-thumbnail: "/assets/images/vr-thumbnail-placeholder.jpg"
+thumbnail: "/assets/images/industrial-sorting-thumbnail.gif"
 hover_description: "• Unreal Engine 5 VR Simulation.<br> • Built data-driven package generation systems using Structs & Enums.<br> • Programmed dynamic conveyor belt physics and delivery validation.<br> • Optimized rendering for Intel ARC GPUs."
 hover_description_es: "• Simulación de RV en Unreal Engine 5.<br> • Sistemas de generación de paquetes basados en datos usando Structs y Enums.<br> • Programación de físicas dinámicas para cintas transportadoras y validación de entregas.<br> • Renderizado optimizado para GPUs Intel ARC."
 full_width: false
-about: "ProyectoVR is an immersive industrial warehouse simulation built from the ground up for Virtual Reality in Unreal Engine 5. I engineered the core gameplay systems entirely in Blueprints, focusing on data-driven physical interactions, dynamic spawning, and maintaining high VR framerates."
-about_es: "ProyectoVR es una simulación inmersiva de un almacén industrial construida desde cero para Realidad Virtual en Unreal Engine 5. Diseñé los sistemas de juego principales completamente en Blueprints, centrándome en interacciones físicas basadas en datos, generación dinámica y mantenimiento de altas tasas de fotogramas en RV."
+about: "Industrial Sorting Simulator is an immersive industrial warehouse simulation built from the ground up for Virtual Reality in Unreal Engine 5. I engineered the core gameplay systems entirely in Blueprints, focusing on data-driven physical interactions, dynamic spawning, and maintaining high VR framerates."
+about_es: "Industrial Sorting Simulator es una simulación inmersiva de un almacén industrial construida desde cero para Realidad Virtual en Unreal Engine 5. Diseñé los sistemas de juego principales completamente en Blueprints, centrándome en interacciones físicas basadas en datos, generación dinámica y mantenimiento de altas tasas de fotogramas en RV."
 role: "Gameplay Systems & VR Programmer"
 role_es: "Programador de Sistemas de Juego y RV"
-team_size: 3
+team_size: 1
 engine: "Unreal Engine 5.5"
 body_es: |
   ### Introducción
   
-  **ProyectoVR** fue diseñado desde el primer día para ser una experiencia de realidad virtual interactiva y con físicas precisas. Mi responsabilidad principal fue la arquitectura e implementación de todos los sistemas lógicos y de juego utilizando **Blueprints** en Unreal Engine 5.
+  **Industrial Sorting Simulator** fue diseñado desde el primer día para ser una experiencia de realidad virtual interactiva y con físicas precisas. Mi responsabilidad principal fue la arquitectura e implementación de todos los sistemas lógicos y de juego utilizando **Blueprints** en Unreal Engine 5.
   
   En lugar de depender de animaciones pregrabadas, construí un entorno de almacén verdaderamente dinámico donde los paquetes se generan, se mueven físicamente en cintas transportadoras y son procesados por el jugador utilizando las manos virtuales.
   
@@ -55,7 +55,7 @@ body_es: |
 
 ### Introduction
 
-**ProyectoVR** was designed from day one to be an interactive, physically accurate virtual reality experience. My primary responsibility was the architecture and implementation of all gameplay and logic systems using **Blueprints** in Unreal Engine 5.
+**Industrial Sorting Simulator** was designed from day one to be an interactive, physically accurate virtual reality experience. My primary responsibility was the architecture and implementation of all gameplay and logic systems using **Blueprints** in Unreal Engine 5.
 
 Rather than relying on canned animations, I built a truly dynamic warehouse environment where packages spawn, move physically on conveyor belts, and are processed by the player using their virtual hands.
 
