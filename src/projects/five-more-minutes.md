@@ -98,6 +98,55 @@ body_es: |-
 
   ***
 
+  ### Sistema de Combate con Guantes
+
+  Construí el sistema de combate completo desde cero: un par de guantes de boxeo flotantes que orbitan al jugador y atacan de forma autónoma. El núcleo es `BP_GloveBase`, una clase padre de la que heredan `BP_GloveElectric`, `BP_GloveSpeed` y `BP_GloveVamp`, cada una con su propio ataque especial y comportamiento único.
+
+  #### Comportamiento de Flotación y Seguimiento
+
+  Cada guante tiene un `SphereComponent` llamado `AssignedHome` que actúa como su punto de órbita. Un evento personalizado (`DistanceCheck`) se dispara cada 3 segundos vía `Set Timer by Event`; si el guante se aleja más de 370 unidades de su home y no está atacando, `InstantReturnGloves` lo teletransporta de vuelta al instante poniendo su velocidad física a cero. Cuando no hay objetivo, el guante rota suavemente interpolando su cuaternión de rotación hacia la rotación de la cámara usando `Slerp (Quat)` con `Alpha = 30.0 * DeltaSeconds`, lo que le da ese movimiento flotante y orgánico.
+
+  <div class="videos_two">
+    <div class="content-placeholder">
+      <!-- [INSERTAR GIF: guantes flotando alrededor del jugador en idle] -->
+    </div>
+  </div>
+  <p class="video-text">El guante orbita al jugador y se reorienta suavemente hacia la cámara cuando está inactivo.</p>
+
+  #### Puñetazos y Sistema de Objetivo
+
+  Los ataques ligeros alternan entre el guante izquierdo y el derecho a través de un booleano `IsLeftPunchNext` en `BP_ThirdPersonCharacter`. Al atacar, el guante deshabilita su física, cambia su tipo de colisión a `ECC_Destructible` y una `Timeline` lo interpola vía `Lerp` desde su posición actual hasta la posición del objetivo. Un nodo `Do Once` en `OnComponentBeginOverlap` garantiza que el daño se aplique una sola vez por golpe antes de que el guante regrese. Después del retorno, la física se reactiva y la colisión vuelve a su estado original.
+
+  Para el objetivo, el personaje mantiene un array `DetectedEnemies`, una referencia `ClosestEnemy` y una variable `CurrentTarget`, con dos modos distintos: `TargetLocked` (bloqueo duro) y `TargetSoftLocked` (bloqueo suave). Cuando se activa el bloqueo, el guante calcula `Find Look at Rotation` con una corrección de -90° en el pitch cada tick para apuntar siempre directamente al enemigo.
+
+  <div class="videos_two">
+    <div class="content-placeholder" style="background: transparent; border: none;">
+      <!-- [INSERTAR IFRAME: Blueprint del evento LightAttack en BP_GloveBase] -->
+    </div>
+  </div>
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Deshabilita física, cambia colisión, lanza la Timeline de golpe y aplica daño con un Do Once.</p>
+
+  #### Ataque Cargado y Sistema Heavy
+
+  Mantener el botón de ataque pesado activa `ChargingHeavyAttack?` en el personaje, lo que reduce `MaxWalkSpeed` por un factor `HeavyChargeSlowFactor` para simular el esfuerzo de cargar. Al soltar, el guante se lanza hacia un punto `LungeSpot` y el personaje recibe un impulso de `HeavyAttackLungeForce`. Para evitar que el daño se aplique múltiples veces en el mismo enemigo durante el arco del golpe, se usa un array `ChargeAlreadyHitEnemies` que se limpia al iniciar cada heavy y se rellena con `Add Unique` en cada colisión, con comprobación previa de si el enemigo ya está en la lista.
+
+  #### Ataques Especiales y Enfriamiento Visual
+
+  Los especiales se activan cuando `ModifierOn` está activo en el personaje y el `SpecialCooldown` del guante llega a 0. Ese cooldown baja cada tick con `DeltaSeconds`. Al activarse, se ejecuta uno de tres sub-grafos según el tipo de guante: `ElectricPunch` (daño de área eléctrica, recibe el array `LevelGeometry` para filtrar colisiones con el entorno), `SpeedPunch` (ráfaga de velocidad) o `VampGlove` (lifesteal usando `VampTarget`). El cooldown restante se visualiza en tiempo real en un `CooldownIndicator` StaticMeshComponent: su material recibe un escalar `"Percent"` calculado como `1.0 - (SpecialCooldown / DefaultCooldown)`, y el componente rota cada tick para mirar siempre hacia la cámara.
+
+  #### Hitstop
+
+  En cada golpe exitoso se llama a `StartHitstop` en el guante. En golpes ligeros, el guante se desancla del jugador con `Detach From Actor (KeepWorld)` para enfatizar el impacto visualmente. En golpes pesados, además se llama a `StartHitstop(Duration: 0.1)` en el propio `BP_ThirdPersonCharacter`, que aplica una dilatación temporal global para dar peso y satisfacción al golpe.
+
+  <div class="videos_two">
+    <div class="content-placeholder">
+      <!-- [INSERTAR GIF: combate con guantes, ataque especial o hitstop visible] -->
+    </div>
+  </div>
+  <p class="video-text">Combate con guantes: golpes ligeros alternados, ataque cargado y especiales con enfriamiento visual.</p>
+
+  ***
+
   ### Pulido: UI/UX y Audio Dinámico
 
   Más allá de los sistemas centrales, construí el framework de interfaz de usuario y la pipeline de audio del juego para que se sintiera como un producto terminado.
@@ -213,6 +262,55 @@ It worked, but playtesting showed it broke the game's pacing. We pivoted to a fa
 
 <iframe src="https://blueprintue.com/render/j0np63es/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
 <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>SetClipPlanes:</strong> Defines an oblique near-clip plane on the SceneCaptureComponent using the portal's forward vector.</p>
+
+***
+
+### The Glove Combat System
+
+I built the entire combat system from scratch: a pair of floating boxing gloves that orbit the player and attack autonomously. The core is `BP_GloveBase`, a parent class inherited by `BP_GloveElectric`, `BP_GloveSpeed`, and `BP_GloveVamp`, each with their own special attack and unique behavior.
+
+#### Hover and Follow Behavior
+
+Each glove has a `SphereComponent` called `AssignedHome` that acts as its orbit point. A `DistanceCheck` custom event fires every 3 seconds via `Set Timer by Event`; if the glove drifts more than 370 units from its home while not attacking, `InstantReturnGloves` instantly teleports it back by zeroing its physics velocity. When idle with no target, the glove smoothly rotates toward the camera using `Slerp (Quat)` interpolation with `Alpha = 30.0 * DeltaSeconds`, which gives it that organic, living feel.
+
+<div class="videos_two">
+  <div class="content-placeholder">
+    <!-- [INSERT GIF: gloves floating around player in idle] -->
+  </div>
+</div>
+<p class="video-text">The glove orbits the player and smoothly reorients toward the camera while idle.</p>
+
+#### Punching and Targeting
+
+Light attacks alternate between left and right gloves via an `IsLeftPunchNext` boolean on `BP_ThirdPersonCharacter`. When attacking, the glove disables its physics, switches its collision type to `ECC_Destructible`, and a `Timeline` lerps it from its current position to the target's location. A `Do Once` node on `OnComponentBeginOverlap` guarantees damage fires exactly once per swing before the glove returns. On return, physics re-enables and collision resets.
+
+For targeting, the character maintains a `DetectedEnemies` array, a `ClosestEnemy` reference, and a `CurrentTarget`, with two distinct modes: `TargetLocked` (hard lock) and `TargetSoftLocked` (soft lock). When locked on, the glove recalculates `Find Look at Rotation` with a -90 degree pitch correction every tick to always aim directly at the enemy.
+
+<div class="videos_two">
+  <div class="content-placeholder" style="background: transparent; border: none;">
+    <!-- [INSERT IFRAME: Blueprint of LightAttack event in BP_GloveBase] -->
+  </div>
+</div>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Disables physics, switches collision, fires the strike Timeline, and applies damage through a Do Once.</p>
+
+#### Charged Heavy Attack
+
+Holding the heavy attack input sets `ChargingHeavyAttack?` on the character and reduces `MaxWalkSpeed` by a `HeavyChargeSlowFactor` multiplier to simulate the effort of winding up. On release, the glove launches toward a `LungeSpot` and the character gets a forward `HeavyAttackLungeForce` impulse. To prevent a single enemy from being hit multiple times during the swing arc, there's a `ChargeAlreadyHitEnemies` array that clears at the start of each heavy attack and fills up with `Add Unique` on each collision, with a pre-check so no enemy takes damage twice.
+
+#### Special Attacks and Visual Cooldown
+
+Specials fire when `ModifierOn` is active on the character and the glove's `SpecialCooldown` ticks down to zero, decrementing each frame with `DeltaSeconds`. On trigger, one of three sub-graphs runs depending on glove type: `ElectricPunch` (area electric damage, receives the `LevelGeometry` array to filter environmental collisions), `SpeedPunch` (speed burst), or `VampGlove` (lifesteal via `VampTarget`). The remaining cooldown is visualized in real-time on a `CooldownIndicator` StaticMeshComponent, with a `"Percent"` scalar material parameter set to `1.0 - (SpecialCooldown / DefaultCooldown)` and the component billboard-rotating each tick to always face the camera.
+
+#### Hitstop
+
+Every successful hit calls `StartHitstop` on the glove. For light hits, the glove detaches from the player via `Detach From Actor (KeepWorld)` to sell the impact visually. For heavy hits, it also calls `StartHitstop(Duration: 0.1)` on `BP_ThirdPersonCharacter` itself, which applies a brief global time dilation to make heavy strikes feel properly weighty.
+
+<div class="videos_two">
+  <div class="content-placeholder">
+    <!-- [INSERT GIF: glove combat showing special attack or hitstop] -->
+  </div>
+</div>
+<p class="video-text">Glove combat: alternating light punches, charged heavy attack, and special with visual cooldown.</p>
 
 ***
 
