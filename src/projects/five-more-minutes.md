@@ -111,7 +111,7 @@ body_es: |-
       <!-- [INSERTAR GIF: guantes flotando alrededor del jugador en idle] -->
     </div>
   </div>
-  <p class="video-text">El guante orbita al jugador y se reorienta suavemente hacia la cámara cuando está inactivo.</p>
+  <!-- <p class="video-text">El guante orbita al jugador y se reorienta suavemente hacia la cámara cuando está inactivo.</p> -->
 
   #### Puñetazos y Sistema de Objetivo
 
@@ -124,7 +124,7 @@ body_es: |-
       <!-- [INSERTAR IFRAME: Blueprint del evento LightAttack en BP_GloveBase] -->
     </div>
   </div>
-  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Deshabilita física, cambia colisión, lanza la Timeline de golpe y aplica daño con un Do Once.</p>
+  <!-- <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Deshabilita física, cambia colisión, lanza la Timeline de golpe y aplica daño con un Do Once.</p> -->
 
   #### Ataque Cargado y Sistema Heavy
 
@@ -143,7 +143,7 @@ body_es: |-
       <!-- [INSERTAR GIF: combate con guantes, ataque especial o hitstop visible] -->
     </div>
   </div>
-  <p class="video-text">Combate con guantes: golpes ligeros alternados, ataque cargado y especiales con enfriamiento visual.</p>
+  <!-- <p class="video-text">Combate con guantes: golpes ligeros alternados, ataque cargado y especiales con enfriamiento visual.</p> -->
 
   ***
 
@@ -278,7 +278,7 @@ Each glove has a `SphereComponent` called `AssignedHome` that acts as its orbit 
     <!-- [INSERT GIF: gloves floating around player in idle] -->
   </div>
 </div>
-<p class="video-text">The glove orbits the player and smoothly reorients toward the camera while idle.</p>
+<!-- <p class="video-text">The glove orbits the player and smoothly reorients toward the camera while idle.</p> -->
 
 #### Punching and Targeting
 
@@ -291,7 +291,7 @@ For targeting, the character maintains a `DetectedEnemies` array, a `ClosestEnem
     <!-- [INSERT IFRAME: Blueprint of LightAttack event in BP_GloveBase] -->
   </div>
 </div>
-<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Disables physics, switches collision, fires the strike Timeline, and applies damage through a Do Once.</p>
+<!-- <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Disables physics, switches collision, fires the strike Timeline, and applies damage through a Do Once.</p> -->
 
 #### Charged Heavy Attack
 
@@ -310,7 +310,7 @@ Every successful hit calls `StartHitstop` on the glove. For light hits, the glov
     <!-- [INSERT GIF: glove combat showing special attack or hitstop] -->
   </div>
 </div>
-<p class="video-text">Glove combat: alternating light punches, charged heavy attack, and special with visual cooldown.</p>
+<!-- <p class="video-text">Glove combat: alternating light punches, charged heavy attack, and special with visual cooldown.</p> -->
 
 ***
 
