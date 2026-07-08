@@ -102,16 +102,22 @@ body_es: |-
 
   Construí el sistema de combate completo desde cero: un par de guantes de boxeo flotantes que orbitan al jugador y atacan de forma autónoma. El núcleo es `BP_GloveBase`, una clase padre de la que heredan `BP_GloveElectric`, `BP_GloveSpeed` y `BP_GloveVamp`, cada una con su propio ataque especial y comportamiento único.
 
-  #### Comportamiento de Flotación y Seguimiento
-
-  Cada guante tiene un `SphereComponent` llamado `AssignedHome` que actúa como su punto de órbita. Un evento personalizado (`DistanceCheck`) se dispara cada 3 segundos vía `Set Timer by Event`; si el guante se aleja más de 370 unidades de su home y no está atacando, `InstantReturnGloves` lo teletransporta de vuelta al instante poniendo su velocidad física a cero. Cuando no hay objetivo, el guante rota suavemente interpolando su cuaternión de rotación hacia la rotación de la cámara usando `Slerp (Quat)` con `Alpha = 30.0 * DeltaSeconds`, lo que le da ese movimiento flotante y orgánico.
-
-  <div class="videos_two">
-    <div class="content-placeholder">
-      <!-- [INSERTAR GIF: guantes flotando alrededor del jugador en idle] -->
+  <div class="videos_two" style="margin-top: 1rem;">
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/FloatingGloveAndGrabGlove.gif' | url }}" alt="Guantes flotando y jugador recogiendo uno nuevo" style="border-radius: var(--border-radius); width: 100%;">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; text-align: center;"><strong>Flotación y Recolección:</strong> El jugador recoge un guante adicional, que se une al array. Los guantes inactivos orbitan y se reorientan hacia la cámara de forma orgánica.</p>
+    </div>
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/GloveCombat.gif' | url }}" alt="Combate y Hitstop" style="border-radius: var(--border-radius); width: 100%;">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; text-align: center;"><strong>Hitstop y Combate:</strong> Demostración de golpes ligeros alternados, ataques pesados y los sutiles efectos de dilatación temporal.</p>
     </div>
   </div>
-  <!-- <p class="video-text">El guante orbita al jugador y se reorienta suavemente hacia la cámara cuando está inactivo.</p> -->
+
+  #### Comportamiento de Flotación y Seguimiento
+
+  El jugador puede recoger guantes adicionales por el mapa, los cuales se añaden automáticamente al array de guantes que orbitan a su alrededor.
+
+  Cada guante tiene un `SphereComponent` llamado `AssignedHome` que actúa como su punto de órbita. Un evento personalizado (`DistanceCheck`) se dispara cada 3 segundos vía `Set Timer by Event`; si el guante se aleja más de 370 unidades de su home y no está atacando, `InstantReturnGloves` lo teletransporta de vuelta al instante poniendo su velocidad física a cero. Cuando no hay objetivo, el guante rota suavemente interpolando su cuaternión de rotación hacia la rotación de la cámara usando `Slerp (Quat)` con `Alpha = 30.0 * DeltaSeconds`, lo que le da ese movimiento flotante y orgánico.
 
   #### Puñetazos y Sistema de Objetivo
 
@@ -119,12 +125,8 @@ body_es: |-
 
   Para el objetivo, el personaje mantiene un array `DetectedEnemies`, una referencia `ClosestEnemy` y una variable `CurrentTarget`, con dos modos distintos: `TargetLocked` (bloqueo duro) y `TargetSoftLocked` (bloqueo suave). Cuando se activa el bloqueo, el guante calcula `Find Look at Rotation` con una corrección de -90° en el pitch cada tick para apuntar siempre directamente al enemigo.
 
-  <div class="videos_two">
-    <div class="content-placeholder" style="background: transparent; border: none;">
-      <!-- [INSERTAR IFRAME: Blueprint del evento LightAttack en BP_GloveBase] -->
-    </div>
-  </div>
-  <!-- <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Deshabilita física, cambia colisión, lanza la Timeline de golpe y aplica daño con un Do Once.</p> -->
+  <iframe src="https://blueprintue.com/render/6284aroq/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>LightAttack (Blueprint):</strong> Deshabilita físicas, cambia colisión, ejecuta una Timeline para el golpe y aplica daño con un nodo Do Once.</p>
 
   #### Ataque Cargado y Sistema Heavy
 
@@ -134,16 +136,75 @@ body_es: |-
 
   Los especiales se activan cuando `ModifierOn` está activo en el personaje y el `SpecialCooldown` del guante llega a 0. Ese cooldown baja cada tick con `DeltaSeconds`. Al activarse, se ejecuta uno de tres sub-grafos según el tipo de guante: `ElectricPunch` (daño de área eléctrica, recibe el array `LevelGeometry` para filtrar colisiones con el entorno), `SpeedPunch` (ráfaga de velocidad) o `VampGlove` (lifesteal usando `VampTarget`). El cooldown restante se visualiza en tiempo real en un `CooldownIndicator` StaticMeshComponent: su material recibe un escalar `"Percent"` calculado como `1.0 - (SpecialCooldown / DefaultCooldown)`, y el componente rota cada tick para mirar siempre hacia la cámara.
 
+  <div style="margin-bottom: 0;">
+    <img src="{{ '/assets/images/ElectricPunchAndCooldown.gif' | url }}" alt="Ataque especial Electric Punch y cooldown visual" style="border-radius: var(--border-radius); width: 100%;">
+  </div>
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Ataque Especial y Cooldown:</strong> El guante eléctrico impacta con daño de área, y el indicador visual de cooldown circular se actualiza en tiempo real.</p>
+
   #### Hitstop
 
   En cada golpe exitoso se llama a `StartHitstop` en el guante. En golpes ligeros, el guante se desancla del jugador con `Detach From Actor (KeepWorld)` para enfatizar el impacto visualmente. En golpes pesados, además se llama a `StartHitstop(Duration: 0.1)` en el propio `BP_ThirdPersonCharacter`, que aplica una dilatación temporal global para dar peso y satisfacción al golpe.
 
+  ***
+
+  ### Diseño de Niveles, Iluminación y Entornos
+
+  Cada miembro del equipo tenía asignado crear al menos un mapa, pero a medida que el proyecto avanzaba las responsabilidades se fueron adaptando según las necesidades. Yo me encargué de construir el **Nivel 1** por completo desde cero, con el enfoque puesto en mantener el bucle de impulso del juego. La inspiración inicial vino de secuencias de *Ghostrunner*, pero con el tiempo el diseño evolucionó bastante para encajar con nuestras propias mecánicas.
+
+  A continuación se muestra la progresión del Nivel 1, desde el *blockout* inicial hasta el resultado final:
+
   <div class="videos_two">
-    <div class="content-placeholder">
-      <!-- [INSERTAR GIF: combate con guantes, ataque especial o hitstop visible] -->
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/Blockout.png' | url }}" alt="Blockout temprano del Nivel 1" style="border-radius: var(--border-radius);">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Blockout:</strong> Geometría básica y flujo de plataformas.</p>
+    </div>
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/Alpha.png' | url }}" alt="Layout Alpha con rutas completas" style="border-radius: var(--border-radius);">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Alpha:</strong> Diseño refinado con el recorrido completo.</p>
     </div>
   </div>
-  <!-- <p class="video-text">Combate con guantes: golpes ligeros alternados, ataque cargado y especiales con enfriamiento visual.</p> -->
+  <div class="videos_two">
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/beta.png' | url }}" alt="Versión Beta con rutas bifurcadas y estilo básico" style="border-radius: var(--border-radius);">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Beta:</strong> Rutas bifurcadas y el primer estilo visual.</p>
+    </div>
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/Final1.png' | url }}" alt="Nivel final pulido" style="border-radius: var(--border-radius);">
+      <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Final:</strong> Kitbashing e iluminación pulidos.</p>
+    </div>
+  </div>
+  <div class="videos_two">
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/Final2.png' | url }}" alt="Nivel final, ángulo alternativo" style="border-radius: var(--border-radius);">
+    </div>
+    <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+      <img src="{{ '/assets/images/Final3.png' | url }}" alt="Nivel final, ángulo alternativo" style="border-radius: var(--border-radius);">
+    </div>
+  </div>
+
+  #### Iluminación con Lumen y Materiales Emisivos
+
+  Usamos **Lumen** para la iluminación global. En un principio la idea era soportar tanto Lumen como iluminación bakeada tradicional, pero por falta de tiempo el soporte para bakeado se descartó. Aun así, nos aseguramos de optimizar Lumen todo lo posible para que corriera bien.
+
+  En el Nivel 1, las luces se usaron con moderación. Además de iluminar las zonas, las luces también servían como guía para dirigir al jugador hacia puntos de interés. Y como Lumen responde a emisivos, los aprovechamos mucho: el pozo tóxico en la parte baja del nivel aporta la mayor parte de la iluminación verde que le da al nivel esa atmósfera de cueva tóxica. Lo mismo con los hongos brillantes y otros elementos decorativos.
+
+  Para poblar el mundo de forma eficiente usé técnicas de *kitbashing*, combinando recursos gratuitos de Sketchfab, FAB y otras bibliotecas. El desafío fue hacer que todos estos assets tan distintos se sintieran cohesivos, y lo conseguí mediante ajustes de materiales, configuraciones de iluminación unificadas y colocación estratégica.
+
+  #### Nivel Hub: Follaje y Optimización
+
+  También ayudé bastante con el **Nivel Hub**, sobre todo con la implementación y optimización del follaje. El nivel tiene más de 50.000 tallos de hierba individuales con animación, y aun así corre sin problemas. Esto se logró configurando una distancia de *culling* agresiva para la hierba, deshabilitando las sombras, y poniendo una distancia baja para el *World Position Offset Disable Distance* que corta la animación de los tallos pronto, algo que apenas se nota porque el nivel es bastante oscuro. También se habilitaron *Density Scaling* y *Cull Distance Scaling* para ayudar al rendimiento.
+
+  <img src="{{ '/assets/images/FoliageScreenshot.png' | url }}" alt="Captura del Nivel Hub mostrando el follaje optimizado" style="border-radius: var(--border-radius); width: 100%;">
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Optimización del Nivel Hub:</strong> Follaje denso con distancias de renderizado agresivas para mantener el rendimiento.</p>
+
+  Aparte de estos niveles, me encargué de ajustes menores y optimización de flujo en la mayoría de los otros mapas, modificando geometría y rutas de monedas para que el impulso del jugador no se rompiera.
+
+  #### Nivel Secreto: Mecánicas Experimentales en 2D
+
+  Como reto experimental, también construí un **nivel extra secreto**. Inspirándome en las secciones 2D de *Epic Mickey*, logré adaptar todas nuestras mecánicas de locomoción y combate en 3D para que funcionaran en una perspectiva estricta de desplazamiento lateral en 2D. Esto requirió restricciones de cámara personalizadas y adaptaciones de los controles para que se sintiera natural.
+
+  <img src="{{ '/assets/images/2DLevel.gif' | url }}" alt="Gameplay del nivel secreto en 2D" style="border-radius: var(--border-radius); width: 100%;">
+  <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Nivel Secreto:</strong> Demostración de las mecánicas 3D adaptadas a una perspectiva estricta de 2D.</p>
 
   ***
 
@@ -269,16 +330,24 @@ It worked, but playtesting showed it broke the game's pacing. We pivoted to a fa
 
 I built the entire combat system from scratch: a pair of floating boxing gloves that orbit the player and attack autonomously. The core is `BP_GloveBase`, a parent class inherited by `BP_GloveElectric`, `BP_GloveSpeed`, and `BP_GloveVamp`, each with their own special attack and unique behavior.
 
-#### Hover and Follow Behavior
-
-Each glove has a `SphereComponent` called `AssignedHome` that acts as its orbit point. A `DistanceCheck` custom event fires every 3 seconds via `Set Timer by Event`; if the glove drifts more than 370 units from its home while not attacking, `InstantReturnGloves` instantly teleports it back by zeroing its physics velocity. When idle with no target, the glove smoothly rotates toward the camera using `Slerp (Quat)` interpolation with `Alpha = 30.0 * DeltaSeconds`, which gives it that organic, living feel.
-
-<div class="videos_two">
-  <div class="content-placeholder">
-    <!-- [INSERT GIF: gloves floating around player in idle] -->
+<div class="videos_two" style="margin-top: 1rem;">
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/FloatingGloveAndGrabGlove.gif' | url }}" alt="Gloves floating and player grabbing a new one" style="border-radius: var(--border-radius); width: 100%;">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; text-align: center;"><strong>Hover &amp; Collection:</strong> The player grabs an additional glove, adding it to the array. Idle gloves orbit and smoothly reorient toward the camera.</p>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/GloveCombat.gif' | url }}" alt="Glove Combat and Hitstop" style="border-radius: var(--border-radius); width: 100%;">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; text-align: center;"><strong>Combat &amp; Hitstop:</strong> Alternating light punches, a heavy charged attack, and the subtle global time dilation effects that emphasize each impact.</p>
   </div>
 </div>
-<!-- <p class="video-text">The glove orbits the player and smoothly reorients toward the camera while idle.</p> -->
+
+#### Hover and Follow Behavior
+
+The player can pick up additional gloves scattered throughout the level, which are automatically added to the array of gloves orbiting around them.
+
+Each glove has a `SphereComponent` called `AssignedHome` that acts as its orbit point. A `DistanceCheck` custom event fires every 3 seconds via `Set Timer by Event`; if the glove drifts more than 370 units from its home while not attacking, `InstantReturnGloves` instantly teleports it back by zeroing its physics velocity. When idle with no target, the glove smoothly rotates toward the camera using `Slerp (Quat)` interpolation with `Alpha = 30.0 * DeltaSeconds`, giving it an organic, living feel.
+
+<div style="clear: both;"></div>
 
 #### Punching and Targeting
 
@@ -286,12 +355,8 @@ Light attacks alternate between left and right gloves via an `IsLeftPunchNext` b
 
 For targeting, the character maintains a `DetectedEnemies` array, a `ClosestEnemy` reference, and a `CurrentTarget`, with two distinct modes: `TargetLocked` (hard lock) and `TargetSoftLocked` (soft lock). When locked on, the glove recalculates `Find Look at Rotation` with a -90 degree pitch correction every tick to always aim directly at the enemy.
 
-<div class="videos_two">
-  <div class="content-placeholder" style="background: transparent; border: none;">
-    <!-- [INSERT IFRAME: Blueprint of LightAttack event in BP_GloveBase] -->
-  </div>
-</div>
-<!-- <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>LightAttack:</strong> Disables physics, switches collision, fires the strike Timeline, and applies damage through a Do Once.</p> -->
+<iframe src="https://blueprintue.com/render/6284aroq/" width="100%" height="400" scrolling="no" allowfullscreen></iframe>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>LightAttack:</strong> Disables physics, switches collision, fires the strike Timeline, and applies damage through a Do Once.</p>
 
 #### Charged Heavy Attack
 
@@ -301,16 +366,75 @@ Holding the heavy attack input sets `ChargingHeavyAttack?` on the character and 
 
 Specials fire when `ModifierOn` is active on the character and the glove's `SpecialCooldown` ticks down to zero, decrementing each frame with `DeltaSeconds`. On trigger, one of three sub-graphs runs depending on glove type: `ElectricPunch` (area electric damage, receives the `LevelGeometry` array to filter environmental collisions), `SpeedPunch` (speed burst), or `VampGlove` (lifesteal via `VampTarget`). The remaining cooldown is visualized in real-time on a `CooldownIndicator` StaticMeshComponent, with a `"Percent"` scalar material parameter set to `1.0 - (SpecialCooldown / DefaultCooldown)` and the component billboard-rotating each tick to always face the camera.
 
+<div style="margin-bottom: 0;">
+  <img src="{{ '/assets/images/ElectricPunchAndCooldown.gif' | url }}" alt="Electric Punch special attack and visual cooldown" style="border-radius: var(--border-radius); width: 100%;">
+</div>
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Special Attack &amp; Cooldown:</strong> The electric glove strikes with AoE damage, and the circular visual cooldown indicator updates in real-time.</p>
+
 #### Hitstop
 
 Every successful hit calls `StartHitstop` on the glove. For light hits, the glove detaches from the player via `Detach From Actor (KeepWorld)` to sell the impact visually. For heavy hits, it also calls `StartHitstop(Duration: 0.1)` on `BP_ThirdPersonCharacter` itself, which applies a brief global time dilation to make heavy strikes feel properly weighty.
 
+***
+
+### Level Design, Lighting & Environment Art
+
+Each team member was initially assigned to create at least one map, but as the project evolved, responsibilities shifted based on what the game needed. I built **Level 1** entirely from scratch, focusing on maintaining the game's momentum-based core loop. The initial inspiration came from *Ghostrunner*, but over time the layout evolved quite a bit to fit our own mechanics.
+
+Here's the progression of Level 1, from early blockout to the final result:
+
 <div class="videos_two">
-  <div class="content-placeholder">
-    <!-- [INSERT GIF: glove combat showing special attack or hitstop] -->
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/Blockout.png' | url }}" alt="Early blockout of Level 1" style="border-radius: var(--border-radius);">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Blockout:</strong> Basic geometry and platforming flow.</p>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/Alpha.png' | url }}" alt="Alpha layout with complete pathing" style="border-radius: var(--border-radius);">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Alpha:</strong> Refined layout with complete pathing.</p>
   </div>
 </div>
-<!-- <p class="video-text">Glove combat: alternating light punches, charged heavy attack, and special with visual cooldown.</p> -->
+<div class="videos_two">
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/beta.png' | url }}" alt="Beta version with bifurcating path and basic lighting" style="border-radius: var(--border-radius);">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Beta:</strong> Bifurcating paths and basic visual style.</p>
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/Final1.png' | url }}" alt="Final polished level" style="border-radius: var(--border-radius);">
+    <p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1rem;"><strong>Final:</strong> Polished kitbashing and lighting.</p>
+  </div>
+</div>
+<div class="videos_two">
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/Final2.png' | url }}" alt="Final level alternative angle" style="border-radius: var(--border-radius);">
+  </div>
+  <div class="content-placeholder" style="background: transparent; border: none; padding: 0; overflow: visible;">
+    <img src="{{ '/assets/images/Final3.png' | url }}" alt="Final level alternative angle" style="border-radius: var(--border-radius);">
+  </div>
+</div>
+
+#### Lumen Lighting & Emissive Materials
+
+We used **Lumen** for global illumination. Originally the plan was to support both Lumen and traditional baked lighting, but due to time constraints we ended up dropping baked lighting support. Even so, we made sure to optimize Lumen as much as possible so it would run smoothly.
+
+In Level 1, lights were used sparingly. Beyond just lighting up areas, they also served as guides to direct the player toward points of interest. Since Lumen responds to emissive materials, we leaned into that heavily: the toxic pit at the bottom of the level provides most of the green lighting that gives it that toxic cave vibe, and the same goes for glowing mushrooms and other decorative elements throughout.
+
+To populate the world efficiently, I used kitbashing techniques, combining free assets from Sketchfab, FAB, and other libraries. The real challenge was making all these different assets feel cohesive, which I achieved through careful material tweaks, unified lighting setups, and strategic placement.
+
+#### Hub Level: Foliage & Optimization
+
+I also helped out a lot with the **Hub Level**, especially when it came to foliage implementation and optimization. The level has over 50,000 individual grass strands with animation, and it still runs smoothly. This was done by setting an aggressive cull distance for the grass, disabling shadow casting, and configuring a low World Position Offset Disable Distance to cut the grass animation early. These optimizations are barely noticeable to the player since the level is predominantly dark. Density Scaling and Cull Distance Scaling were also enabled to help with performance.
+
+<img src="{{ '/assets/images/FoliageScreenshot.png' | url }}" alt="Hub Level capture showing optimized foliage" style="border-radius: var(--border-radius); width: 100%;">
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Hub Level Optimization:</strong> Dense foliage with aggressive cull distances to maintain performance.</p>
+
+Beyond these levels, I handled general layout adjustments and flow optimization across most of the other maps, tweaking geometry and coin paths to make sure the player's momentum never got accidentally broken.
+
+#### Secret Level: Experimental 2D Mechanics
+
+As an experimental challenge, I also built a **secret bonus level**. Drawing inspiration from the 2D sections in *Epic Mickey*, I adapted all of our 3D locomotion and combat mechanics to work in a strict 2D side-scrolling perspective. This required custom camera constraints and input adaptations to make it feel natural.
+
+<img src="{{ '/assets/images/2DLevel.gif' | url }}" alt="Secret level gameplay showing 2D side-scrolling mechanics" style="border-radius: var(--border-radius); width: 100%;">
+<p class="video-text" style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 1.5rem;"><strong>Secret Level:</strong> Demonstration of 3D mechanics adapted to a strict 2D side-scrolling perspective.</p>
 
 ***
 

@@ -553,6 +553,7 @@ p > code, li > code {
     flex-wrap: wrap;
     gap: 1rem;
     margin: 2rem 0;
+    clear: both;
 }
 
 .videos_two .content-placeholder {
@@ -640,4 +641,39 @@ p > code, li > code {
         top: 1rem;
         right: 1rem;
     }
+}
+
+/* Companion Game Canvas & Interactions */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    image-rendering: pixelated;
+    pointer-events: none;
+}
+
+#interactive-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+.site-wrapper {
+    position: relative;
+    z-index: 10;
+    pointer-events: none; /* Let empty space clicks hit interactive layer */
+}
+
+.inner-container {
+    pointer-events: auto; /* Re-enable clicks for actual portfolio content */
+}
+
+.lang-toggle-container {
+    pointer-events: auto; /* Re-enable clicks for language buttons */
 }
