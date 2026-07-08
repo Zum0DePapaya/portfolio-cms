@@ -215,6 +215,7 @@ body_es: |-
   *   **Framework de UI:** Construí la mayor parte de la jerarquía de widgets (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) con navegación completa por teclado y gamepad.
   *   **Audio de Pisadas (`FootstepAnimNotify`):** Un AnimNotify personalizado que realiza un line-trace desde el hueso del pie en cada paso. Basándose en el material físico impactado (hierba, metal, piedra), reproduce una de 5 variantes de Sound Cue moduladas en tono/volumen para evitar la repetición.
   *   **Plugins Externos:** Integré `AsyncLoadingScreen` para la carga de niveles sin interrupciones y `EpicLeaderboard` para la subida de puntuaciones en vivo.
+  *   **Perfilado y Optimización:** Realicé un perfilado ligero y optimización general de rendimiento en todo el proyecto para asegurar una tasa de cuadros fluida, identificando cuellos de botella en los blueprints.
 
   <div class="videos_two">
     <div class="content-placeholder">
@@ -445,6 +446,7 @@ Beyond the core systems, I built the game's UI framework and audio pipeline to m
 *   **UI Framework:** Built most of the widget hierarchy (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) with full keyboard and gamepad navigation.
 *   **Footstep Audio (`FootstepAnimNotify`):** A custom AnimNotify that line-traces from the foot bone on each step. Based on the physical material hit (grass, metal, stone), it plays from a bank of 5 pitch/volume-modulated Sound Cue variants to avoid repetition.
 *   **External Plugins:** Integrated `AsyncLoadingScreen` for hitchless level streaming and `EpicLeaderboard` for live score uploads.
+*   **Profiling & Optimization:** Conducted light profiling and general performance optimization across the entire project to ensure a smooth frame rate, identifying bottlenecks in blueprints.
 
 <div class="videos_two">
   <div class="content-placeholder">
