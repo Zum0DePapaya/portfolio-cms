@@ -18,7 +18,7 @@ body_es: |-
 
   ### Locomoción Basada en Estados y Pickups
 
-  Todo funciona a través de una máquina de estados basada en enumeradores (`E_States`) que evita conflictos de física entre el dash, el deslizamiento y el movimiento aéreo. El sistema de deslizamiento utiliza `FindCurrentFloorAngleAndDirection` para leer el ángulo de la pendiente y acelerar al jugador cuesta abajo en consecuencia.
+  Todo funciona a través de una máquina de estados basada en enumeradores (`E_States`) que evita conflictos de física entre el dash, el deslizamiento y el movimiento aéreo. El sistema de deslizamiento utiliza `FindCurrentFloorAngleAndDirection` para leer el ángulo de la pendiente y acelerar al jugador cuesta abajo en consecuencia. También implementé "coyote time" mediante detección de suelo con raycast para asegurar un plataformeo fluido, y programé dashes aéreos direccionales activados al pulsar dos veces las teclas de movimiento.
 
   También construí coleccionables magnéticos (`BP_Coin`, `BP_Multiplier`) que detectan al jugador mediante una colisión esférica y se interpolan suavemente hacia él con `VInterp To`, de modo que recoger objetos nunca interrumpe tu impulso.
 
@@ -149,7 +149,7 @@ body_es: |-
 
   ### Diseño de Niveles, Iluminación y Entornos
 
-  Cada miembro del equipo tenía asignado crear al menos un mapa, pero a medida que el proyecto avanzaba las responsabilidades se fueron adaptando según las necesidades. Yo me encargué de construir el **Nivel 1** por completo desde cero, con el enfoque puesto en mantener el bucle de impulso del juego. La inspiración inicial vino de secuencias de *Ghostrunner*, pero con el tiempo el diseño evolucionó bastante para encajar con nuestras propias mecánicas.
+  Cada miembro del equipo tenía asignado crear al menos un mapa, pero a medida que el proyecto avanzaba las responsabilidades se fueron adaptando según las necesidades. Yo me encargué de construir el **Nivel 1** por completo desde cero—manejando geometría, colocación de enemigos y ritmo—con el enfoque puesto en mantener el bucle de impulso del juego. La inspiración inicial vino de secuencias de *Ghostrunner*, pero con el tiempo el diseño evolucionó bastante para encajar con nuestras propias mecánicas.
 
   A continuación se muestra la progresión del Nivel 1, desde el *blockout* inicial hasta el resultado final:
 
@@ -212,9 +212,10 @@ body_es: |-
 
   Más allá de los sistemas centrales, construí el framework de interfaz de usuario y la pipeline de audio del juego para que se sintiera como un producto terminado.
 
-  *   **Framework de UI:** Construí la mayor parte de la jerarquía de widgets (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) con navegación completa por teclado y gamepad.
+  *   **Framework de UI y Mejoras:** Construí la mayor parte de la jerarquía de widgets (`WBP_Menu`, `WBP_BossHP`, `WBP_Tutorial`), incluyendo ajustes de reescalado y números de daño flotantes adaptativos que escalan dinámicamente al impactar. La pantalla de mejoras (`WBP_UpgradeScreen`) cuenta con tarjetas basadas en datos con animaciones fluidas, navegable con teclado y gamepad.
+  *   **Streaming de Niveles Persistente:** Implementé una arquitectura de nivel persistente que almacena los 5 niveles principales, utilizando carga dinámica a través de un sistema de ascensores y el plugin `AsyncLoadingScreen` para transiciones sin interrupciones.
   *   **Audio de Pisadas (`FootstepAnimNotify`):** Un AnimNotify personalizado que realiza un line-trace desde el hueso del pie en cada paso. Basándose en el material físico impactado (hierba, metal, piedra), reproduce una de 5 variantes de Sound Cue moduladas en tono/volumen para evitar la repetición.
-  *   **Plugins Externos:** Integré `AsyncLoadingScreen` para la carga de niveles sin interrupciones y `EpicLeaderboard` para la subida de puntuaciones en vivo.
+  *   **Leaderboards en Vivo:** Integré `EpicLeaderboard` para la subida de puntuaciones en vivo.
   *   **Profiling y Optimización:** Realicé profiling ligero y optimización general de rendimiento en todo el proyecto para asegurar una tasa de cuadros fluida, identificando cuellos de botella en los blueprints.
 
   <div class="videos_two">
@@ -247,7 +248,7 @@ The core goal was to build a fast, momentum-driven platformer where every system
 
 ### State-Driven Locomotion & Pickups
 
-Everything runs through an enum-based state machine (`E_States`) that prevents conflicting physics between dashing, sliding, and aerial movement. The sliding system uses `FindCurrentFloorAngleAndDirection` to read the slope angle and accelerate the player downhill accordingly.
+Everything runs through an enum-based state machine (`E_States`) that prevents conflicting physics between dashing, sliding, and aerial movement. The sliding system uses `FindCurrentFloorAngleAndDirection` to read the slope angle and accelerate the player downhill accordingly. I also implemented "coyote time" via raycast ground detection to ensure forgiving, fluid platforming, and programmed directional air dashes triggered by double-tapping movement keys.
 
 I also built magnetic collectibles (`BP_Coin`, `BP_Multiplier`) that detect the player via sphere collision and smoothly interpolate toward them with `VInterp To`, so picking up items never interrupts your momentum.
 
@@ -380,7 +381,7 @@ Every successful hit calls `StartHitstop` on the glove. For light hits, the glov
 
 ### Level Design, Lighting & Environment Art
 
-Each team member was initially assigned to create at least one map, but as the project evolved, responsibilities shifted based on what the game needed. I built **Level 1** entirely from scratch, focusing on maintaining the game's momentum-based core loop. The initial inspiration came from *Ghostrunner*, but over time the layout evolved quite a bit to fit our own mechanics.
+Each team member was initially assigned to create at least one map, but as the project evolved, responsibilities shifted based on what the game needed. I built **Level 1** entirely from scratch—handling geometry, enemy placements, and pacing—focusing on maintaining the game's momentum-based core loop. The initial inspiration came from *Ghostrunner*, but over time the layout evolved quite a bit to fit our own mechanics.
 
 Here's the progression of Level 1, from early blockout to the final result:
 
@@ -443,9 +444,10 @@ As an experimental challenge, I also built a **secret bonus level**. Drawing ins
 
 Beyond the core systems, I built the game's UI framework and audio pipeline to make it feel like a finished product.
 
-*   **UI Framework:** Built most of the widget hierarchy (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) with full keyboard and gamepad navigation.
+*   **UI Framework & Upgrades:** Built most of the widget hierarchy (`WBP_Menu`, `WBP_BossHP`, `WBP_Tutorial`), including responsive upscaling settings and adaptive floating damage numbers that scale dynamically on strike. The `WBP_UpgradeScreen` features data-driven cards with smooth in/out animations, fully navigable via keyboard and gamepad.
+*   **Persistent Level Streaming:** Implemented a performant persistent level architecture holding the 5 main levels, utilizing dynamic loading via an elevator system and the `AsyncLoadingScreen` plugin for hitchless transitions.
 *   **Footstep Audio (`FootstepAnimNotify`):** A custom AnimNotify that line-traces from the foot bone on each step. Based on the physical material hit (grass, metal, stone), it plays from a bank of 5 pitch/volume-modulated Sound Cue variants to avoid repetition.
-*   **External Plugins:** Integrated `AsyncLoadingScreen` for hitchless level streaming and `EpicLeaderboard` for live score uploads.
+*   **Live Leaderboards:** Integrated `EpicLeaderboard` for live score uploads.
 *   **Profiling & Optimization:** Conducted light profiling and general performance optimization across the entire project to ensure a smooth frame rate, identifying bottlenecks in blueprints.
 
 <div class="videos_two">
