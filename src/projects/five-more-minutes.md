@@ -12,7 +12,7 @@ body_es: |-
 
   ### Introducción
 
-  El objetivo principal era construir un juego de plataformas rápido y basado en el impulso, donde cada sistema (movimiento, combate, coleccionables) se integrara en un bucle cohesivo. Fui responsable de las 3C (Personaje, Cámara, Controles) y de la mayoría de los sistemas principales del juego.
+  El objetivo principal era construir un juego de plataformas rápido y basado en el impulso, donde cada sistema (movimiento, combate, coleccionables) se integrara en un bucle cohesivo. El bucle de juego principal reemplaza la salud tradicional del jugador con un temporizador de 5 minutos: recibir daño resta tiempo, mientras que recoger objetos añade tiempo. Fui responsable de las 3C (Personaje, Cámara, Controles) y de la mayoría de los sistemas principales del juego.
 
   ***
 
@@ -228,7 +228,7 @@ body_es: |-
 
   Desarrollar _Five More Minutes_ fue una gran experiencia de aprendizaje en liderazgo, gestión de alcance y comunicación técnica. Trabajar con un equipo con menos experiencia en el desarrollo de juegos significó que tuve que aprender a comunicar eficazmente las limitaciones técnicas y a orientar las reuniones de diseño lejos de características imposibles hacia mecánicas divertidas y viables.
 
-  Para cumplir con los ajustados plazos de las fases alfa y beta, tuve que asumir casi todos los roles posibles dentro de Unreal Engine. Más allá de programar las físicas centrales y la IA, asumí la responsabilidad de revisar, hacer debugging, e integrar el trabajo de mis compañeros para asegurar que todo cumpliera con los estrictos estándares de entrega. Me enseñó que lanzar un juego no se trata solo de escribir buen código; se trata de mantener una visión clara, gestionar las capacidades del equipo y asumir la responsabilidad de la calidad general del proyecto de principio a fin.
+  Para cumplir con los ajustados plazos de las fases alfa y beta, tuve que asumir casi todos los roles posibles dentro de Unreal Engine. Más allá de programar las físicas centrales y la IA, asumí la responsabilidad de revisar, hacer debugging, e integrar el trabajo de mis compañeros para asegurar que todo cumpliera con los estrictos estándares de entrega. Me enseñó que lanzar un juego no se trata solo de escribir buen código; se trata de mantener una visión clara, gestionar las capacidades del equipo y asumir la responsabilidad de la calidad general del proyecto de principio a fin. Además, adquirí una valiosa experiencia en la producción de documentación formal de diseño de juegos, creando de forma independiente el Documento de Diseño de Juego (GDD), el ten-pager y el one-sheet necesarios para definir y presentar el alcance del proyecto.
 engine: Unreal Engine 5.5
 about_es: Five More Minutes es un juego de plataformas de acción contrarreloj desarrollado en Unreal Engine 5. Como Programador/Diseñador Principal en un equipo de 4 personas durante 9 meses, construí la locomoción central, una IA de jefe que desafía la gravedad, renderizado de portales sin interrupciones, menús de interfaz de usuario y audio de pisadas específico para cada superficie.
 about: Five More Minutes is a time-attack action platformer built in Unreal Engine 5. As the Lead Programmer/Designer on a 4-person team over 9 months, I built the core locomotion, a gravity-defying boss AI, seamless portal rendering, UI menus, and surface-specific footstep audio.
@@ -241,7 +241,7 @@ team_size: 4
 
 ### Introduction
 
-The core goal was to build a fast, momentum-driven platformer where every system, including movement, combat, and collectibles, feeds into one tight loop. I was responsible for the 3C's (Character, Camera, Controls) and most of the game's major systems.
+The core goal was to build a fast, momentum-driven platformer where every system, including movement, combat, and collectibles, feeds into one tight loop. The primary game loop replaces traditional player health with a 5-minute timer: taking damage subtracts time, while collecting pickups adds time. I was responsible for the 3C's (Character, Camera, Controls) and most of the game's major systems.
 
 ***
 
@@ -459,4 +459,4 @@ Beyond the core systems, I built the game's UI framework and audio pipeline to m
 
 Building _Five More Minutes_ was a massive learning experience in leadership, scope management, and technical communication. Working with a team newer to game development meant I had to learn how to effectively communicate technical constraints and steer design meetings away from impossible features toward achievable, fun mechanics. 
 
-To meet tight alpha and beta milestone deadlines, I had to wear almost every hat possible within Unreal Engine. Beyond engineering the core physics and AI, I took on the responsibility of reviewing, debugging, and integrating my teammates' work to ensure everything met strict delivery standards. It taught me that shipping a game isn't just about writing good code; it's about maintaining a clear vision, managing team capabilities, and taking ownership of the project's overall quality from start to finish.
+To meet tight alpha and beta milestone deadlines, I had to wear almost every hat possible within Unreal Engine. Beyond engineering the core physics and AI, I took on the responsibility of reviewing, debugging, and integrating my teammates' work to ensure everything met strict delivery standards. It taught me that shipping a game isn't just about writing good code; it's about maintaining a clear vision, managing team capabilities, and taking ownership of the project's overall quality from start to finish. Additionally, I gained valuable experience producing formal game design documentation, independently creating the Game Design Document (GDD), ten-pager, and one-sheet needed to define and pitch the project's scope.
