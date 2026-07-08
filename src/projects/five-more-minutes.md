@@ -208,14 +208,14 @@ body_es: |-
 
   ***
 
-  ### Pulido: UI/UX y Audio Dinámico
+  ### Pulido: UI/UX, Audio Dinámico y Profiling
 
   Más allá de los sistemas centrales, construí el framework de interfaz de usuario y la pipeline de audio del juego para que se sintiera como un producto terminado.
 
   *   **Framework de UI:** Construí la mayor parte de la jerarquía de widgets (`WBP_Menu`, `WBP_BossHP`, `WBP_UpgradeScreen`, `WBP_Tutorial`) con navegación completa por teclado y gamepad.
   *   **Audio de Pisadas (`FootstepAnimNotify`):** Un AnimNotify personalizado que realiza un line-trace desde el hueso del pie en cada paso. Basándose en el material físico impactado (hierba, metal, piedra), reproduce una de 5 variantes de Sound Cue moduladas en tono/volumen para evitar la repetición.
   *   **Plugins Externos:** Integré `AsyncLoadingScreen` para la carga de niveles sin interrupciones y `EpicLeaderboard` para la subida de puntuaciones en vivo.
-  *   **Perfilado y Optimización:** Realicé un perfilado ligero y optimización general de rendimiento en todo el proyecto para asegurar una tasa de cuadros fluida, identificando cuellos de botella en los blueprints.
+  *   **Profiling y Optimización:** Realicé profiling ligero y optimización general de rendimiento en todo el proyecto para asegurar una tasa de cuadros fluida, identificando cuellos de botella en los blueprints.
 
   <div class="videos_two">
     <div class="content-placeholder">
@@ -439,7 +439,7 @@ As an experimental challenge, I also built a **secret bonus level**. Drawing ins
 
 ***
 
-### Polish: UI/UX & Dynamic Audio
+### Polish: UI/UX, Dynamic Audio & Profiling
 
 Beyond the core systems, I built the game's UI framework and audio pipeline to make it feel like a finished product.
 
