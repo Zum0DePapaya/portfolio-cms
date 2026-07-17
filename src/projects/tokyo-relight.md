@@ -23,7 +23,7 @@ team_size: 1
 <div class="lang-en">
 
 ### Overview and Aesthetic
-The goal was to take a stylized Tokyo/cyberpunk environment and relight it to feel like something out of *Alan Wake 2* — moody, neo-noir, and leaning hard into psychological thriller territory. The whole thing is built around extreme contrast: very dark shadows against punchy, saturated light sources. Instead of the typical "bright cyberpunk" look, the palette is dominated by deep greens and harsh reds to create something that feels more uneasy than flashy. I also added an `ExponentialHeightFog` with a yellow-greenish color (`#C3FF36FF`) and a very small Extinction Scale (`0.1`) to lightly tint the background without washing out the shadows.
+The goal was to take a stylized Tokyo/cyberpunk environment and relight it to feel like something out of *Alan Wake 2*: moody, neo-noir, and leaning hard into psychological thriller territory. The whole thing is built around extreme contrast: very dark shadows against punchy, saturated light sources. Instead of the typical "bright cyberpunk" look, the palette is dominated by deep greens and harsh reds to create something that feels more uneasy than flashy. I also added an `ExponentialHeightFog` with a yellow-greenish color (`#C3FF36FF`) and a very small Extinction Scale (`0.1`) to lightly tint the background without washing out the shadows.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/overview_aesthetic.png" alt="Overview Aesthetic" style="width: 100%; border-radius: 8px;">
@@ -31,7 +31,7 @@ The goal was to take a stylized Tokyo/cyberpunk environment and relight it to fe
 <p class="video-text">Wide shot demonstrating the extreme contrast, oppressive shadows, and the subtle yellow-greenish fog bathing the background.</p>
 
 ### Pre-Production & Reference Gathering
-Before touching any lights, I studied the "Dark Place" sections of *Alan Wake 2*, especially the New York street areas. From my references, I knew the level needed a warm green-yellowish base tone, broken up by deep, blood-red neon. Reflective puddles, hard contrasts, very dark shadows, and a hazy atmosphere were all key elements I wanted to hit. (Rain and fog are a big part of the game's actual look, but I kept them out of scope since this is purely a relighting exercise). Getting the colors right was the hardest part — the reds had to feel like blood, and the greens needed that decaying, rotten quality.
+Before touching any lights, I studied the "Dark Place" sections of *Alan Wake 2*, especially the New York street areas. From my references, I knew the level needed a warm green-yellowish base tone, broken up by deep, blood-red neon. Reflective puddles, hard contrasts, very dark shadows, and a hazy atmosphere were all key elements I wanted to hit. (Rain and fog are a big part of the game's actual look, but I kept them out of scope since this is purely a relighting exercise). Getting the colors right was the hardest part. The reds had to feel like blood, and the greens needed that decaying, rotten quality.
 
 <div style="display: flex; gap: 1rem; margin: 1rem 0; align-items: stretch;">
   <div style="flex: 1; display: flex; flex-direction: column;">
@@ -105,7 +105,7 @@ Post-processing does a lot of the heavy lifting here. To make the neon really po
 <p class="video-text">Comparison showing the impact of the aggressive Post-Process Volume, highlighting the Convolution Bloom and heavy shadow contrast.</p>
 
 #### Cinematic Sequencing & Problem Solving
-The entire cinematic was put together in UE5's Sequencer — camera, audio, everything. I used custom spline paths for the camera to get smooth, deliberate tracking shots that build tension throughout.
+The entire cinematic was put together in UE5's Sequencer, covering camera, audio, and everything in between. I used custom spline paths for the camera to get smooth, deliberate tracking shots that build tension throughout.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/cinematic_spline.gif" alt="Cinematic Spline Setup" style="width: 100%; border-radius: 8px;">
@@ -119,7 +119,7 @@ The entire cinematic was put together in UE5's Sequencer — camera, audio, ever
 </div>
 <p class="video-text">Flickering light test showcasing the erratic behavior that was difficult to synchronize consistently within Sequencer.</p>
 
-- **The Object Swap Trick:** For the climax, I needed certain lights to snap to bright red on a specific frame. The problem was that emissive materials wouldn't activate at the exact frame I needed in Sequencer. My workaround was an "object swap" — at the precise moment, the unlit objects get instantly replaced with identical copies that already have the emissive materials active. It's completely seamless on playback.
+- **The Object Swap Trick:** For the climax, I needed certain lights to snap to bright red on a specific frame. The problem was that emissive materials wouldn't activate at the exact frame I needed in Sequencer. My workaround was an "object swap": at the precise moment, the unlit objects get instantly replaced with identical copies that already have the emissive materials active. It's completely seamless on playback.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/object_swap.gif" alt="Object Swap Trick" style="width: 100%; border-radius: 8px;">
@@ -131,7 +131,7 @@ The entire cinematic was put together in UE5's Sequencer — camera, audio, ever
 <div class="lang-es">
 
 ### Resumen y Estética
-El objetivo era tomar un entorno estilizado de Tokio/cyberpunk y reiluminarlo para que se sintiera como algo sacado de *Alan Wake 2* — oscuro, neo-noir, con mucho thriller psicológico. Todo gira en torno al contraste extremo: sombras muy oscuras contra fuentes de luz saturadas y potentes. En vez del típico look "cyberpunk brillante", la paleta está dominada por verdes profundos y rojos duros para crear algo que se siente más inquietante que llamativo. También añadí un `ExponentialHeightFog` con un color verde amarillento (`#C3FF36FF`) y una Escala de Extinción muy pequeña (`0.1`) para teñir ligeramente el fondo sin desvanecer las sombras.
+El objetivo era tomar un entorno estilizado de Tokio/cyberpunk y reiluminarlo para que se sintiera como algo sacado de *Alan Wake 2*: oscuro, neo-noir, con mucho thriller psicológico. Todo gira en torno al contraste extremo: sombras muy oscuras contra fuentes de luz saturadas y potentes. En vez del típico look "cyberpunk brillante", la paleta está dominada por verdes profundos y rojos duros para crear algo que se siente más inquietante que llamativo. También añadí un `ExponentialHeightFog` con un color verde amarillento (`#C3FF36FF`) y una Escala de Extinción muy pequeña (`0.1`) para teñir ligeramente el fondo sin desvanecer las sombras.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/overview_aesthetic.png" alt="Estética General" style="width: 100%; border-radius: 8px;">
@@ -139,7 +139,7 @@ El objetivo era tomar un entorno estilizado de Tokio/cyberpunk y reiluminarlo pa
 <p class="video-text">Toma amplia que demuestra el contraste extremo, las sombras opresivas y la sutil niebla verde amarillenta que baña el fondo.</p>
 
 ### Preproducción y Búsqueda de Referencias
-Antes de tocar ninguna luz, estudié las secciones del "Lugar Oscuro" de *Alan Wake 2*, especialmente las calles de Nueva York. Por mis referencias, sabía que el nivel necesitaba un tono base verde amarillento cálido, roto por luces de neón de un rojo sangre profundo. Charcos reflectantes, contrastes duros, sombras muy oscuras y una atmósfera brumosa eran los elementos clave que quería conseguir. (La lluvia y la niebla son parte importante del look real del juego, pero las dejé fuera del alcance ya que esto es puramente un ejercicio de reiluminación). Lo más difícil fue clavar los colores — los rojos tenían que parecer sangre, y los verdes necesitaban esa calidad de descomposición.
+Antes de tocar ninguna luz, estudié las secciones del "Lugar Oscuro" de *Alan Wake 2*, especialmente las calles de Nueva York. Por mis referencias, sabía que el nivel necesitaba un tono base verde amarillento cálido, roto por luces de neón de un rojo sangre profundo. Charcos reflectantes, contrastes duros, sombras muy oscuras y una atmósfera brumosa eran los elementos clave que quería conseguir. (La lluvia y la niebla son parte importante del look real del juego, pero las dejé fuera del alcance ya que esto es puramente un ejercicio de reiluminación). Lo más difícil fue clavar los colores. Los rojos tenían que parecer sangre, y los verdes necesitaban esa calidad de descomposición.
 
 <div style="display: flex; gap: 1rem; margin: 1rem 0; align-items: stretch;">
   <div style="flex: 1; display: flex; flex-direction: column;">
@@ -213,7 +213,7 @@ El postprocesado hace gran parte del trabajo pesado aquí. Para que el neón rea
 <p class="video-text">Comparación que muestra el impacto del agresivo Volumen de Postprocesado, destacando el Bloom de Convolución y el fuerte contraste de sombras.</p>
 
 #### Creación de la Cinemática y Secuenciación
-La cinemática entera se montó en el Sequencer de UE5 — cámara, audio, todo. Usé trazados de *spline* personalizados para la cámara y conseguir tomas de seguimiento suaves y deliberadas que construyen la tensión progresivamente.
+La cinemática entera se montó en el Sequencer de UE5, incluyendo cámara, audio y todo lo demás. Usé trazados de *spline* personalizados para la cámara y conseguir tomas de seguimiento suaves y deliberadas que construyen la tensión progresivamente.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/cinematic_spline.gif" alt="Configuración de Spline en Cinemática" style="width: 100%; border-radius: 8px;">
@@ -227,7 +227,7 @@ La cinemática entera se montó en el Sequencer de UE5 — cámara, audio, todo.
 </div>
 <p class="video-text">Prueba de la luz parpadeante que muestra el comportamiento errático que fue difícil de sincronizar consistentemente dentro del Sequencer.</p>
 
-- **El Truco del Intercambio de Objetos:** Para el clímax, necesitaba que ciertas luces cambiaran a rojo intenso en un fotograma específico. El problema era que los materiales emisivos no se activaban en el fotograma exacto que necesitaba en el Sequencer. Mi solución fue un "intercambio de objetos" — en el momento preciso, los objetos apagados se reemplazan instantáneamente por copias idénticas que ya tienen los materiales emisivos activos. En la reproducción es completamente imperceptible.
+- **El Truco del Intercambio de Objetos:** Para el clímax, necesitaba que ciertas luces cambiaran a rojo intenso en un fotograma específico. El problema era que los materiales emisivos no se activaban en el fotograma exacto que necesitaba en el Sequencer. Mi solución fue un "intercambio de objetos": en el momento preciso, los objetos apagados se reemplazan instantáneamente por copias idénticas que ya tienen los materiales emisivos activos. En la reproducción es completamente imperceptible.
 
 <div style="text-align: center; margin: 1rem 0;">
   <img src="/assets/images/tokyo-relight/object_swap.gif" alt="Object Swap Trick" style="width: 100%; border-radius: 8px;">

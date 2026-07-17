@@ -149,7 +149,7 @@ body_es: |-
 
   ### Diseño de Niveles, Iluminación y Entornos
 
-  Cada miembro del equipo tenía asignado crear al menos un mapa, pero a medida que el proyecto avanzaba las responsabilidades se fueron adaptando según las necesidades. Yo me encargué de construir el **Nivel 1** por completo desde cero—manejando geometría, colocación de enemigos y ritmo—con el enfoque puesto en mantener el bucle de impulso del juego. La inspiración inicial vino de secuencias de *Ghostrunner*, pero con el tiempo el diseño evolucionó bastante para encajar con nuestras propias mecánicas.
+  Cada miembro del equipo tenía asignado crear al menos un mapa, pero a medida que el proyecto avanzaba las responsabilidades se fueron adaptando según las necesidades. Yo me encargué de construir el **Nivel 1** por completo desde cero, manejando geometría, colocación de enemigos y ritmo, con el enfoque puesto en mantener el bucle de impulso del juego. La inspiración inicial vino de secuencias de *Ghostrunner*, pero con el tiempo el diseño evolucionó bastante para encajar con nuestras propias mecánicas.
 
   A continuación se muestra la progresión del Nivel 1, desde el *blockout* inicial hasta el resultado final:
 
@@ -381,7 +381,7 @@ Every successful hit calls `StartHitstop` on the glove. For light hits, the glov
 
 ### Level Design, Lighting & Environment Art
 
-Each team member was initially assigned to create at least one map, but as the project evolved, responsibilities shifted based on what the game needed. I built **Level 1** entirely from scratch—handling geometry, enemy placements, and pacing—focusing on maintaining the game's momentum-based core loop. The initial inspiration came from *Ghostrunner*, but over time the layout evolved quite a bit to fit our own mechanics.
+Each team member was initially assigned to create at least one map, but as the project evolved, responsibilities shifted based on what the game needed. I built **Level 1** entirely from scratch, handling geometry, enemy placements, and pacing while focusing on maintaining the game's momentum-based core loop. The initial inspiration came from *Ghostrunner*, but over time the layout evolved quite a bit to fit our own mechanics.
 
 Here's the progression of Level 1, from early blockout to the final result:
 

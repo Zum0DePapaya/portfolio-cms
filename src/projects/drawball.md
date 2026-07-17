@@ -243,6 +243,6 @@ public static string GenerateChecksum(string rawScoreString)
 
 ### What I Learned
 
-This project was a masterclass in pivoting and finding the core "fun" of a game. Halfway through the jam, I scrapped my original idea—a massively over-scoped Unreal Engine 5 god-game—after realizing UE5 lacked web export, which would severely hurt the game's reach. Making the difficult call to pivot paid off immensely. 
+This project was a masterclass in pivoting and finding the core "fun" of a game. Halfway through the jam, I scrapped my original idea (a massively over-scoped Unreal Engine 5 god-game) after realizing UE5 lacked web export, which would severely hurt the game's reach. Making the difficult call to pivot paid off immensely. 
 
 Once I transitioned to this physics-drawing concept, everything clicked. I focused on making the drawing mechanics satisfying, combining them with a frictionless character and speed pickups. The game naturally evolved into a speedrunner, which dictated the rest of the feature set: leaderboards, quick-reset buttons, and a zoomed-out camera to handle the speed. Finding the core loop also made level design incredibly intuitive; I learned to structure levels by starting slow, ramping up the velocity, and culminating in a lightning-fast reflex skill-check finale.
