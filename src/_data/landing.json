@@ -12,9 +12,14 @@
       "id": "games"
     },
     {
-      "title": "Tools",
-      "title_es": "Utilidades",
+      "title": "Tools & Mods",
+      "title_es": "Utilidades y Mods",
       "id": "tools"
+    },
+    {
+      "title": "Exercises & Showcases",
+      "title_es": "Ejercicios y Demos",
+      "id": "showcases"
     }
   ]
 }

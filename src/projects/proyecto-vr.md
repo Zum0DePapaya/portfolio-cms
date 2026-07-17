@@ -1,7 +1,7 @@
 ---
 title: "Industrial Sorting Simulator - UE5.5 - VR - Blueprints - Solo Developer"
-title_es: "Industrial Sorting Simulator - UE5.5 - RV - Blueprints - Desarrollador Solitario"
-category: "games"
+title_es: "Industrial Sorting Simulator - UE5.5 - RV - Blueprints - Solo Developer"
+category: "showcases"
 weight: 3
 thumbnail: "/assets/images/industrial-sorting-thumbnail.gif"
 hover_description: "• Unreal Engine 5 VR Simulation.<br> • Built data-driven package generation systems using Structs & Enums.<br> • Programmed dynamic conveyor belt physics and delivery validation.<br> • Optimized rendering for Intel ARC GPUs."

@@ -1,6 +1,6 @@
 ---
 title: BLACKSHARD Optimized Tweaks - Mod - Performance Optimization - Solo Developer
-title_es: BLACKSHARD Optimized Tweaks - Mod - Optimización de Rendimiento - Desarrollador en Solitario
+title_es: BLACKSHARD Optimized Tweaks - Mod - Optimización de Rendimiento - Solo Developer
 weight: 5
 category: tools
 thumbnail: /assets/images/dfba02ee.jpg
