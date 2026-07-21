@@ -15,7 +15,18 @@ module.exports = function(eleventyConfig) {
   const { EleventyRenderPlugin } = require("@11ty/eleventy");
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
-  const md = require("markdown-it")({ html: true });
+  const markdownItAnchor = require("markdown-it-anchor");
+  const md = require("markdown-it")({ html: true }).use(markdownItAnchor, {
+    permalink: markdownItAnchor.permalink.linkInsideHeader({
+      symbol: '#',
+      placement: 'after',
+      class: 'header-anchor',
+      ariaHidden: true
+    })
+  });
+
+  eleventyConfig.setLibrary("md", md);
+
   eleventyConfig.addFilter("markdownify", (content) => {
     return md.render(content || "");
   });

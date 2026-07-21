@@ -677,3 +677,30 @@ p > code, li > code {
 .lang-toggle-container {
     pointer-events: auto; /* Re-enable clicks for language buttons */
 }
+
+/* Header Anchor Links */
+.header-anchor {
+    text-decoration: none;
+    color: var(--text-primary);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    margin-left: 0.5rem;
+    font-weight: normal;
+}
+
+h2:hover .header-anchor,
+h3:hover .header-anchor,
+h4:hover .header-anchor,
+h5:hover .header-anchor,
+h6:hover .header-anchor {
+    opacity: 0.7;
+}
+
+.header-anchor:hover {
+    opacity: 1 !important;
+}
+
+/* Offset for fixed headers or spacing when jumping to an anchor */
+h2[id], h3[id], h4[id], h5[id], h6[id] {
+    scroll-margin-top: 2rem;
+}
